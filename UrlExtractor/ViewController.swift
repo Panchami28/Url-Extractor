@@ -16,8 +16,8 @@ class ViewController: UIViewController {
 
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let displayViewController = storyboard.instantiateViewController(identifier: "DisplayViewController") as? DisplayViewController {
-            self.navigationController?.pushViewController(displayViewController, animated: true)
+        if let mainUrlViewController = storyboard.instantiateViewController(identifier: "MainUrlViewController") as? MainUrlViewController {
+            self.navigationController?.pushViewController(mainUrlViewController, animated: true)
         }
     }
 

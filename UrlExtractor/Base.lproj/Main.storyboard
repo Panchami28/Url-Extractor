@@ -36,7 +36,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050.7246376811595" y="123.88392857142857"/>
+            <point key="canvasLocation" x="1023" y="115"/>
+        </scene>
+        <!--Main Url View Controller-->
+        <scene sceneID="TtX-qN-ezI">
+            <objects>
+                <viewController storyboardIdentifier="MainUrlViewController" id="Uvo-4Z-1Ee" customClass="MainUrlViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1fb-YD-Wzd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="58j-Kx-YUa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainUrlCell" id="ssc-u5-U3G">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ssc-u5-U3G" id="dIP-OD-osQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AfZ-BQ-Jag"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AfZ-BQ-Jag" firstAttribute="trailing" secondItem="58j-Kx-YUa" secondAttribute="trailing" id="HCu-ZV-qu5"/>
+                            <constraint firstItem="AfZ-BQ-Jag" firstAttribute="bottom" secondItem="58j-Kx-YUa" secondAttribute="bottom" id="UcE-SB-Vbf"/>
+                            <constraint firstItem="58j-Kx-YUa" firstAttribute="top" secondItem="AfZ-BQ-Jag" secondAttribute="top" id="lKb-SQ-eli"/>
+                            <constraint firstItem="58j-Kx-YUa" firstAttribute="leading" secondItem="AfZ-BQ-Jag" secondAttribute="leading" id="yMr-eB-nOP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainUrlTableView" destination="58j-Kx-YUa" id="Dei-OR-15x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UZf-OR-Krs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720" y="115"/>
         </scene>
         <!--Display View Controller-->
         <scene sceneID="PiU-zp-mlG">
@@ -76,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHv-qF-3Wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760.8695652173915" y="123.88392857142857"/>
+            <point key="canvasLocation" x="2451" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eZV-3P-EcW">

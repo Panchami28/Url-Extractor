@@ -14,38 +14,34 @@ import SwiftSoup
 class DisplayViewController: UIViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
+    var mainSiteName:String = ""
     var streamUrlArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         urlTableView.dataSource = self
         urlTableView.delegate = self
-        //loadWebpage()
-        scrapeWebpage()
+        callRequiredScrape(mainSiteName)
         self.urlTableView.reloadData()
-        // Do any additional setup after loading the view.
     }
     
-//    func loadWebpage() {
-//        let url = URL(string: "https://www.radio.net/s/ndr2")!
-//        self.webView.load(URLRequest(url: url))
-//        //webView.allowsBackForwardNavigationGestures = true
-//        self.webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: .new, context: nil)
-//    }
-//    
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "loading" {
-//            if webView.isLoading {
-//                loadingPageActivityIndicator.isHidden = false
-//            } else {
-//                loadingPageActivityIndicator.isHidden = true
-//            }
-//        }
-//    }
-        
-    func scrapeWebpage() {
+// MARK: -
+// MARK: Private methods
+// MARK: -
+    func callRequiredScrape(_ mainUrl:String)
+    {
+        switch mainUrl {
+        case "Radionet": streamUrlArray = []
+            scrapeRadionetWebpage("https://www.radio.net/")
+        case "ShalomBeats Radio": streamUrlArray = []
+            scrapeShalombeatsradioWebpage("http://shalombeatsradio.com/")
+        default: scrapeRadionetWebpage("https://www.radio.net/")
+        }
+    }
+    
+    func scrapeRadionetWebpage(_ mainUrl:String) {
         do{
-            let content = try String(contentsOf: URL(string: "https://www.radio.net/")!)
+            let content = try String(contentsOf: URL(string: mainUrl)!)
             do{
                 let doc: Document = try SwiftSoup.parse(content)
                 let body = doc.body()
@@ -53,18 +49,37 @@ class DisplayViewController: UIViewController {
                 for tag:Element in script {
                     let myText = tag.data()
                     //print("Datanode result:\(tag.dataNodes()[0])")
-                    let p = Pattern.compile("\"streams\":\\[\\{\"url\":\"[^,]*")
-                    //let p = Pattern.compile("https\\:\\/\\/.*.mp3")
+                    let p = Pattern.compile("\"streams\":\\[\\{\"url\":\"[^\"]*")
                     let m: Matcher = p.matcher(in: myText)
                     while( m.find() )
                     {
                         let json = m.group()
                         if let streamUrl = json {
-                            print("\(streamUrl)\n\n\n")
-                            
-                            streamUrlArray.append(streamUrl)
+                            //print("\(streamUrl)\n\n\n")
+                            let firstIndex = streamUrl.index(streamUrl.startIndex, offsetBy: 18)
+                            let lastIndex = streamUrl.index(streamUrl.endIndex, offsetBy: -2)
+                            let appendingUrl = streamUrl[firstIndex...lastIndex]
+                            streamUrlArray.append(String(appendingUrl))
                         }
                     }
+                }
+            }
+        } catch {
+            //Error handle
+        }
+    }
+    
+    
+    func scrapeShalombeatsradioWebpage(_ mainUrl:String) {
+        do{
+            let content = try String(contentsOf: URL(string: mainUrl)!)
+            do{
+                let doc: Document = try SwiftSoup.parse(content)
+                let requiredCode = try doc.getElementsByClass("cc_streaminfo")
+                for element:Element in requiredCode {
+                    let tag = try element.attr("href")
+                    //print(tag)
+                    streamUrlArray.append(tag)
                 }
             }
         } catch {

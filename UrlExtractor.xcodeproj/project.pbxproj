@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		2042361A261C720900CBAA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20423619261C720900CBAA8B /* Assets.xcassets */; };
 		2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2042361B261C720900CBAA8B /* LaunchScreen.storyboard */; };
 		20423629261C7ED900CBAA8B /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423628261C7ED900CBAA8B /* DisplayViewController.swift */; };
+		20E630432626E4BC0001CF28 /* MainUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E630422626E4BC0001CF28 /* MainUrlViewController.swift */; };
 		2D6AE956EEAB7C9C02FC602D /* Pods_UrlExtractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		2042361C261C720900CBAA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2042361E261C720900CBAA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20423628261C7ED900CBAA8B /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
+		20E630422626E4BC0001CF28 /* MainUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUrlViewController.swift; sourceTree = "<group>"; };
 		35AF972D0FCC0DFC4E82780B /* Pods-UrlExtractor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.debug.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.debug.xcconfig"; sourceTree = "<group>"; };
 		60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UrlExtractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC65D2F4C4DADA1593581ED4 /* Pods-UrlExtractor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.release.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				20423610261C720700CBAA8B /* AppDelegate.swift */,
 				20423612261C720700CBAA8B /* SceneDelegate.swift */,
 				20423614261C720700CBAA8B /* ViewController.swift */,
+				20E630422626E4BC0001CF28 /* MainUrlViewController.swift */,
 				20423628261C7ED900CBAA8B /* DisplayViewController.swift */,
 				20423616261C720700CBAA8B /* Main.storyboard */,
 				20423619261C720900CBAA8B /* Assets.xcassets */,
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E630432626E4BC0001CF28 /* MainUrlViewController.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
