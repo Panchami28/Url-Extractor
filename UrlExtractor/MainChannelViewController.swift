@@ -31,10 +31,14 @@ class MainChannelViewController: UIViewController {
         } else {
             if let subChannelTableViewController = storyboard.instantiateViewController(identifier: "SubChannelTableViewController") as? SubChannelTableViewController {
                 self.navigationController?.pushViewController(subChannelTableViewController, animated: true)
+            }
         }
     }
-    }
 }
+
+// MARK:
+// MARK: - Table view data source and delegate
+// MARK:
 
 extension MainChannelViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

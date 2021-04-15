@@ -18,16 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq">
-                                <rect key="frame" x="182.5" y="460" width="49" height="30"/>
-                                <state key="normal" title="Submit"/>
+                                <rect key="frame" x="126.5" y="445" width="161" height="60"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2i-aK-gWh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-Ht-8Uy">
+                                <rect key="frame" x="67" y="217" width="280" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="UHw-ie-0hX"/>
+                                    <constraint firstAttribute="height" constant="200" id="jyU-d9-Nwc"/>
+                                </constraints>
+                                <string key="text">This app provides users a set of streaming urls for a given set of websites and also allows users to play tracks on clicking these urls</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uzG-sH-6wq" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="28" id="Pjj-Ho-HhR"/>
+                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="efu-f7-VUu"/>
                             <constraint firstItem="uzG-sH-6wq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fGf-7d-7a7"/>
                             <constraint firstItem="uzG-sH-6wq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="hrU-ma-srF"/>
                         </constraints>
@@ -36,12 +59,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="115"/>
+            <point key="canvasLocation" x="1021.7391304347827" y="114.50892857142857"/>
         </scene>
-        <!--Main Url View Controller-->
+        <!--Main Channel View Controller-->
         <scene sceneID="TtX-qN-ezI">
             <objects>
-                <viewController storyboardIdentifier="MainUrlViewController" id="Uvo-4Z-1Ee" customClass="MainUrlViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainUrlViewController" id="Uvo-4Z-1Ee" customClass="MainChannelViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1fb-YD-Wzd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,12 +99,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZf-OR-Krs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720" y="115"/>
+            <point key="canvasLocation" x="1804" y="115"/>
         </scene>
-        <!--Display View Controller-->
+        <!--Stream Url View Controller-->
         <scene sceneID="PiU-zp-mlG">
             <objects>
-                <viewController storyboardIdentifier="DisplayViewController" id="ty3-BT-9Kk" customClass="DisplayViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplayViewController" id="ty3-BT-9Kk" customClass="StreamUrlViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lKT-GN-11P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +139,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHv-qF-3Wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2451" y="115"/>
+            <point key="canvasLocation" x="2577" y="-52"/>
+        </scene>
+        <!--Sub Channel Table View Controller-->
+        <scene sceneID="Jnk-XQ-xSG">
+            <objects>
+                <tableViewController storyboardIdentifier="SubChannelTableViewController" id="kbN-XZ-f1U" customClass="SubChannelTableViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LAa-zw-18c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubChannelCell" id="iNL-wW-5Mn">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iNL-wW-5Mn" id="xgd-gU-3Hi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kbN-XZ-f1U" id="6ob-KI-xea"/>
+                            <outlet property="delegate" destination="kbN-XZ-f1U" id="JxU-KE-wCk"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="subChannelTableView" destination="LAa-zw-18c" id="ifS-2C-CSz"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uX8-Su-Lew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2577" y="634"/>
+        </scene>
+        <!--Music Player View Controller-->
+        <scene sceneID="eLh-1c-yGh">
+            <objects>
+                <viewController storyboardIdentifier="MusicPlayerViewController" id="Deh-R0-J6C" customClass="MusicPlayerViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jr5-Zc-RJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM0-br-cb4">
+                                <rect key="frame" x="166.5" y="421" width="81" height="64"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playButtonClicked:" destination="Deh-R0-J6C" eventType="touchUpInside" id="Ilq-fT-Njw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lZS-mr-KOi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LM0-br-cb4" firstAttribute="centerX" secondItem="lZS-mr-KOi" secondAttribute="centerX" id="ISU-fM-ixr"/>
+                            <constraint firstItem="LM0-br-cb4" firstAttribute="centerY" secondItem="lZS-mr-KOi" secondAttribute="centerY" id="x8I-en-gPp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cyw-S1-0eE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3397" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eZV-3P-EcW">
@@ -138,8 +230,17 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
