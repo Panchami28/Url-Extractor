@@ -41,20 +41,19 @@ class SubChannelTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            loadData(subChannel[indexPath.row],UIImage(named: "\(subChannel[indexPath.row])"))
+        loadData(subChannel[indexPath.row])
     }
 
 // MARK:
 // MARK: - Private Methods
 // MARK:
 
-    func loadData(_ mainUrl:String,_ logoImage:UIImage?)
+    func loadData(_ channelName:String)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
             self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-            streamUrlViewController.mainSiteName = mainUrl
-            streamUrlViewController.mainchannelImage = logoImage
+            streamUrlViewController.mainSiteName = channelName
         }
     }
 }

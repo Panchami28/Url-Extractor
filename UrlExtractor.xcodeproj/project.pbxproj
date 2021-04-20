@@ -17,9 +17,7 @@
 		209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095316F2628045000DDA758 /* SubChannelTableViewController.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
-		209B8FC1262976B000487E05 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B8FC0262976B000487E05 /* MusicViewController.swift */; };
 		20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E630422626E4BC0001CF28 /* MainChannelViewController.swift */; };
-		20E63047262703D20001CF28 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E63046262703D20001CF28 /* MusicPlayerViewController.swift */; };
 		2D6AE956EEAB7C9C02FC602D /* Pods_UrlExtractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +34,7 @@
 		2095316F2628045000DDA758 /* SubChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubChannelTableViewController.swift; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
-		209B8FC0262976B000487E05 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		20E630422626E4BC0001CF28 /* MainChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelViewController.swift; sourceTree = "<group>"; };
-		20E63046262703D20001CF28 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		35AF972D0FCC0DFC4E82780B /* Pods-UrlExtractor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.debug.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.debug.xcconfig"; sourceTree = "<group>"; };
 		60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UrlExtractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC65D2F4C4DADA1593581ED4 /* Pods-UrlExtractor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.release.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,8 +88,6 @@
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
 				2095316F2628045000DDA758 /* SubChannelTableViewController.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
-				20E63046262703D20001CF28 /* MusicPlayerViewController.swift */,
-				209B8FC0262976B000487E05 /* MusicViewController.swift */,
 				2038D872262EF328009250FA /* Storyboards */,
 				2095318626284D2C00DDA758 /* BasicUrlCell.swift */,
 				2095318726284D2C00DDA758 /* BasicUrlCell.xib */,
@@ -237,11 +231,9 @@
 			files = (
 				209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
-				20E63047262703D20001CF28 /* MusicPlayerViewController.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
-				209B8FC1262976B000487E05 /* MusicViewController.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
 			);

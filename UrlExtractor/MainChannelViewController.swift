@@ -11,7 +11,7 @@ class MainChannelViewController: UIViewController {
 
     @IBOutlet weak var mainUrlTableView: UITableView!
     
-    let mainUrlArray = ["RadioNet","RadioGarden"]
+    let mainChannelArray = ["RadioNet","RadioGarden"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +20,13 @@ class MainChannelViewController: UIViewController {
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     
-    func loadData(_ mainUrl:String,_ mainChannelImage:UIImage)
+    func loadData(_ ChannelName:String)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if mainUrl != "RadioGarden" {
+        if ChannelName != "RadioGarden" {
             if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
                 self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-                streamUrlViewController.mainSiteName = mainUrl
-                streamUrlViewController.mainchannelImage = mainChannelImage
+                streamUrlViewController.mainSiteName = ChannelName
             }
         } else {
             if let subChannelTableViewController = storyboard.instantiateViewController(identifier: "SubChannelTableViewController") as? SubChannelTableViewController {
@@ -43,18 +42,15 @@ class MainChannelViewController: UIViewController {
 
 extension MainChannelViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainUrlArray.count
+        return mainChannelArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = mainUrlTableView.dequeueReusableCell(withIdentifier: "BasicUrlCell", for: indexPath) as! BasicUrlCell
-        cell.logoImage.image = UIImage(named: "\(mainUrlArray[indexPath.row])")
-        cell.urlLabel.text = mainUrlArray[indexPath.row]
+        cell.logoImage.image = UIImage(named: "\(mainChannelArray[indexPath.row])")
+        cell.urlLabel.text = mainChannelArray[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let logoImage = UIImage(named: "\(mainUrlArray[indexPath.row])") {
-            loadData(mainUrlArray[indexPath.row],logoImage)
-        }
+        loadData(mainChannelArray[indexPath.row])
     }
-    
 }

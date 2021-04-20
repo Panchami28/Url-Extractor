@@ -10,8 +10,10 @@ import WebKit
 import Alamofire
 import Kanna
 import SwiftSoup
+import AVFoundation
+import AVKit
 
-class StreamUrlViewController: UIViewController {
+class StreamUrlViewController: ViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
@@ -20,13 +22,11 @@ class StreamUrlViewController: UIViewController {
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
     var patternList = ["\"streams\":\\[\\{\"url\":\"[^\"]*","https://media[^\"]*","http://stream[^\"]*"]
-    var mainchannelImage:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         urlTableView.dataSource = self
         urlTableView.delegate = self
-        //urlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,21 +38,12 @@ class StreamUrlViewController: UIViewController {
 // MARK: -
 // MARK: Private methods
 // MARK: -
-    func loadData(_ musicUrl:String)
-    {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let musicPlayerViewController = storyboard.instantiateViewController(identifier: "MusicPlayerViewController") as? MusicPlayerViewController {
-            self.navigationController?.pushViewController(musicPlayerViewController, animated: true)
-            musicPlayerViewController.musicUrl = musicUrl
-            musicPlayerViewController.channelImage = mainchannelImage
-        }
-    }
     
     func callRequiredScrape(_ mainSiteName:String)
     {
         var mainUrl:String?
         switch mainSiteName {
-        case "Radionet": streamUrlArray = []
+        case "RadioNet": streamUrlArray = []
            mainUrl = "https://www.radio.net/"
         case "ShalomBeats Radio": streamUrlArray = []
             mainUrl = "http://shalombeatsradio.com/"
@@ -60,7 +51,7 @@ class StreamUrlViewController: UIViewController {
             mainUrl = "http://nammradio.com/"
         case "RadioMirchi": streamUrlArray = []
             mainUrl = "https://www.radiomirchi.com/"
-        default: mainUrl = "https://www.radio.net/"
+        default: mainUrl = ""
         }
         scrapeWebpage(mainUrl)
     }
@@ -105,6 +96,23 @@ class StreamUrlViewController: UIViewController {
             //Error handle
         }
     }
+    
+    func playMusic(_ musicUrl:String)
+    {
+        let url = URL(string: musicUrl)
+        let player = AVPlayer(url: url!) // url can be remote or local
+        let playerViewController = AVPlayerViewController()
+        // creating a player view controller
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) {
+            playerViewController.player!.play()
+            if let frame = playerViewController.contentOverlayView?.bounds {
+                let imageView = UIImageView(image: UIImage(named: self.mainSiteName))
+                imageView.frame = frame
+                playerViewController.contentOverlayView?.addSubview(imageView)
+            }
+        }
+    }
 }
 // MARK: -
 // MARK: Tableview DataSource and Delegates
@@ -120,7 +128,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadData(streamUrlArray[indexPath.row])
+        playMusic(streamUrlArray[indexPath.row])
     }
     
 }
