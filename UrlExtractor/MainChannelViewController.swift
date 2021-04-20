@@ -20,13 +20,14 @@ class MainChannelViewController: UIViewController {
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     
-    func loadData(_ mainUrl:String)
+    func loadData(_ mainUrl:String,_ mainChannelImage:UIImage)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if mainUrl != "RadioGarden" {
-            if let displayViewController = storyboard.instantiateViewController(identifier: "DisplayViewController") as? StreamUrlViewController {
-                self.navigationController?.pushViewController(displayViewController, animated: true)
-                displayViewController.mainSiteName = mainUrl
+            if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+                self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+                streamUrlViewController.mainSiteName = mainUrl
+                streamUrlViewController.mainchannelImage = mainChannelImage
             }
         } else {
             if let subChannelTableViewController = storyboard.instantiateViewController(identifier: "SubChannelTableViewController") as? SubChannelTableViewController {
@@ -51,7 +52,9 @@ extension MainChannelViewController:UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadData(mainUrlArray[indexPath.row])
+        if let logoImage = UIImage(named: "\(mainUrlArray[indexPath.row])") {
+            loadData(mainUrlArray[indexPath.row],logoImage)
+        }
     }
     
 }

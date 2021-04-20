@@ -12,7 +12,7 @@ class SubChannelTableViewController: UITableViewController {
     @IBOutlet var subChannelTableView: UITableView!
     
     var subChannel = ["ShalomBeats Radio","NammRadio","RadioMirchi"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         subChannelTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
@@ -41,19 +41,20 @@ class SubChannelTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadData(subChannel[indexPath.row])
+            loadData(subChannel[indexPath.row],UIImage(named: "\(subChannel[indexPath.row])"))
     }
 
 // MARK:
 // MARK: - Private Methods
 // MARK:
 
-    func loadData(_ mainUrl:String)
+    func loadData(_ mainUrl:String,_ logoImage:UIImage?)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let displayViewController = storyboard.instantiateViewController(identifier: "DisplayViewController") as? StreamUrlViewController {
-            self.navigationController?.pushViewController(displayViewController, animated: true)
-            displayViewController.mainSiteName = mainUrl
+        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+            streamUrlViewController.mainSiteName = mainUrl
+            streamUrlViewController.mainchannelImage = logoImage
         }
     }
 }
