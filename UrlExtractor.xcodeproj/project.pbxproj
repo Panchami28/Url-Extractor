@@ -14,6 +14,7 @@
 		2042361A261C720900CBAA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20423619261C720900CBAA8B /* Assets.xcassets */; };
 		2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2042361B261C720900CBAA8B /* LaunchScreen.storyboard */; };
 		20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */; };
+		205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */; };
 		209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095316F2628045000DDA758 /* SubChannelTableViewController.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
@@ -31,6 +32,7 @@
 		2042361C261C720900CBAA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2042361E261C720900CBAA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlViewController.swift; sourceTree = "<group>"; };
+		205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUrlManagerViewController.swift; sourceTree = "<group>"; };
 		2095316F2628045000DDA758 /* SubChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubChannelTableViewController.swift; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				20423610261C720700CBAA8B /* AppDelegate.swift */,
 				20423612261C720700CBAA8B /* SceneDelegate.swift */,
 				20423614261C720700CBAA8B /* ViewController.swift */,
+				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
 				2095316F2628045000DDA758 /* SubChannelTableViewController.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
@@ -232,6 +235,7 @@
 				209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
+				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
@@ -391,7 +395,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Panchami.UrlExtractor;
+				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.UrlExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -412,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Panchami.UrlExtractor;
+				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.UrlExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -11,7 +11,11 @@ class MainChannelViewController: UIViewController {
 
     @IBOutlet weak var mainUrlTableView: UITableView!
     
-    let mainChannelArray = ["RadioNet","RadioGarden"]
+    let mainChannelArray = ["RadioNet","RadioGarden","RetroFM","CBCListen","HindiRadio"]
+    
+// MARK: -
+// MARK: View Lifecycle
+// MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +24,13 @@ class MainChannelViewController: UIViewController {
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     
+// MARK: -
+// MARK: Private Methods
+// MARK: -
     func loadData(_ ChannelName:String)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if ChannelName != "RadioGarden" {
+        if ChannelName != "RadioGarden" && ChannelName != "HindiRadio" {
             if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
                 self.navigationController?.pushViewController(streamUrlViewController, animated: true)
                 streamUrlViewController.mainSiteName = ChannelName
@@ -31,9 +38,11 @@ class MainChannelViewController: UIViewController {
         } else {
             if let subChannelTableViewController = storyboard.instantiateViewController(identifier: "SubChannelTableViewController") as? SubChannelTableViewController {
                 self.navigationController?.pushViewController(subChannelTableViewController, animated: true)
+                subChannelTableViewController.mainChannel = ChannelName
             }
         }
     }
+    
 }
 
 // MARK:

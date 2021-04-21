@@ -10,11 +10,13 @@ import UIKit
 class SubChannelTableViewController: UITableViewController {
     
     @IBOutlet var subChannelTableView: UITableView!
+    var mainChannel:String = ""
     
-    var subChannel = ["ShalomBeats Radio","NammRadio","RadioMirchi"]
+    var subChannel = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSubChannelArray()
         subChannelTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
 
@@ -48,6 +50,15 @@ class SubChannelTableViewController: UITableViewController {
 // MARK: - Private Methods
 // MARK:
 
+    func setSubChannelArray()
+    {
+        switch mainChannel {
+        case "RadioGarden": subChannel = ["ShalomBeats Radio","NammRadio","RadioMirchi"]
+        case "HindiRadio": subChannel = ["Indian Australian Radio","Bombay Beats","RadioCity Hindi"]
+        default: subChannel = []
+        }
+    }
+    
     func loadData(_ channelName:String)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
