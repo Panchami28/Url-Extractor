@@ -21,7 +21,7 @@ class StreamUrlViewController: ViewController {
     var mainUrl:String = ""
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
-    var patternList = ["\"radio_station_stream_url\":\"https[^\"]*","\"streams\":\\[\\{\"url\":\"[^\"]*","https://media[^\"]*","http://stream[^\"]*","\"streamURL\":\"https[^\"]*","\"stream\":\"http[^\"]*","http(.*)stream\\.mp3","http(.*)listen\\.mp3","http(.*)awaz\\.mp3","http(.*)listen\\.mp3"]
+    var patternList = ["\"radio_station_stream_url\":\"https[^\"]*","\"streams\":\\[\\{\"url\":\"[^\"]*","mp3:\"https://media[^\"]*","https?://stream[^\"]*","\"streamURL\":\"https[^\"]*","\"stream\":\"http[^\"]*","http(.*)stream\\.mp3","https?(.*)listen\\.mp3","http(.*)awaz\\.mp3","https?://listen[^\"]*","https?:\\\\/\\\\/scdn[^&]*","streamURL = 'https[^\']*","source src=\"https?:(.+)\\.mp3\""]
 
 // MARK: -
 // MARK: View LifeCycle
@@ -34,6 +34,7 @@ class StreamUrlViewController: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        streamUrlArray = []
         callRequiredScrape(mainSiteName)
         loadingActivityIndicator.isHidden = true
         self.urlTableView.reloadData()
@@ -79,8 +80,8 @@ class StreamUrlViewController: ViewController {
             let content = try String(contentsOf: requiredUrl)
             do{
                 let doc: Document = try SwiftSoup.parse(content)
-                let myText = doc.data()
-                //print(myText)
+                let myText = try doc.outerHtml()
+                print(myText)
                 for pattern in patternList {
                     let p = Pattern.compile(pattern)
                     let m: Matcher = p.matcher(in: myText)
@@ -88,11 +89,11 @@ class StreamUrlViewController: ViewController {
                     {
                         let json = m.group()
                         if let streamUrl = json {
-                            //print("\(streamUrl)\n\n\n")
+                            print("\(streamUrl)\n\n\n")
                             let newStreamUrl = streamUrl.replacingOccurrences(of: "\\", with: "")
                             if let regex = try? NSRegularExpression(pattern: "http[^\"]*", options: .caseInsensitive) {
                                 let string = newStreamUrl as NSString
-                                regex.matches(in: newStreamUrl, options: [], range: NSRange(location: 0, length: string.length)).map {Result in
+                                regex.matches(in: newStreamUrl, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
                                     streamUrlArray.append(string.substring(with: Result.range))
                                 }
                             }
@@ -108,7 +109,7 @@ class StreamUrlViewController: ViewController {
                 }
             }
         } catch {
-            print(error)
+            print("Error while parsing:\(error)")
         }
     }
     
@@ -123,9 +124,8 @@ class StreamUrlViewController: ViewController {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
             let player = AVPlayer(url: requiredUrl)
-            // url can be remote or local
+            // Creating a player view controller
             let playerViewController = AVPlayerViewController()
-            // creating a player view controller
             playerViewController.player = player
             self.present(playerViewController, animated: true) {
                 playerViewController.player!.play()
