@@ -35,12 +35,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-Ht-8Uy">
-                                <rect key="frame" x="55" y="191" width="280" height="200"/>
+                                <rect key="frame" x="45" y="111" width="300" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="UHw-ie-0hX"/>
-                                    <constraint firstAttribute="height" constant="200" id="jyU-d9-Nwc"/>
+                                    <constraint firstAttribute="width" constant="300" id="UHw-ie-0hX"/>
+                                    <constraint firstAttribute="height" constant="280" id="jyU-d9-Nwc"/>
                                 </constraints>
-                                <string key="text">This app provides users a set of streaming urls for a given set of websites and also allows users to play tracks on clicking these urls</string>
+                                <string key="text">This app helps users to search and list streaming audio urls from a webpage, given the URL of a website. It also allows users to view a set of sample websites whose streaming urls are listed and also allows users to play tracks on clicking these urls.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -69,13 +69,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a valid URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Abg-TN-wxN">
-                                <rect key="frame" x="32" y="410" width="326" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter a valid URL" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Abg-TN-wxN">
+                                <rect key="frame" x="32" y="411" width="326" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-e3-eSe">
-                                <rect key="frame" x="152" y="496" width="86" height="51"/>
+                                <rect key="frame" x="152" y="495" width="86" height="51"/>
                                 <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,7 +94,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voj-or-ZzY">
-                                <rect key="frame" x="117" y="598" width="156" height="30"/>
+                                <rect key="frame" x="117" y="597" width="156" height="30"/>
                                 <state key="normal" title="View Sample Channels"/>
                                 <connections>
                                     <action selector="viewButtonPressed:" destination="gMo-Y0-58c" eventType="touchUpInside" id="wIU-rf-2ko"/>
