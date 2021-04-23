@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import WebKit
-import Alamofire
-import Kanna
 import SwiftSoup
 import AVFoundation
 import AVKit
@@ -18,10 +15,13 @@ class StreamUrlViewController: ViewController {
     @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    var streamCheckingQueue = DispatchQueue(label: "StreamCheckerQueue")
+    
     var mainUrl:String = ""
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
-    var patternList = ["\"radio_station_stream_url\":\"https[^\"]*","\"streams\":\\[\\{\"url\":\"[^\"]*","mp3:\"https://media[^\"]*","https?://stream[^\"]*","\"streamURL\":\"https[^\"]*","\"stream\":\"http[^\"]*","http(.*)stream\\.mp3","https?(.*)listen\\.mp3","http(.*)awaz\\.mp3","https?://listen[^\"]*","https?:\\\\/\\\\/scdn[^&]*","streamURL = 'https[^\']*","source src=\"https?:(.+)\\.mp3\""]
+    var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
+    
 
 // MARK: -
 // MARK: View LifeCycle
@@ -82,29 +82,20 @@ class StreamUrlViewController: ViewController {
                 let doc: Document = try SwiftSoup.parse(content)
                 let myText = try doc.outerHtml()
                 print(myText)
-                for pattern in patternList {
-                    let p = Pattern.compile(pattern)
-                    let m: Matcher = p.matcher(in: myText)
-                    while( m.find() )
-                    {
-                        let json = m.group()
-                        if let streamUrl = json {
-                            print("\(streamUrl)\n\n\n")
-                            let newStreamUrl = streamUrl.replacingOccurrences(of: "\\", with: "")
-                            if let regex = try? NSRegularExpression(pattern: "http[^\"]*", options: .caseInsensitive) {
-                                let string = newStreamUrl as NSString
-                                regex.matches(in: newStreamUrl, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
-                                    streamUrlArray.append(string.substring(with: Result.range))
-                                }
+                if let regex = try? NSRegularExpression(pattern: regexx, options: .caseInsensitive) {
+                    let string = myText as NSString
+                    regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
+                        let obtainedUrl = string.substring(with: Result.range)
+                        streamCheckingQueue.async {
+                            let streamResult = AVAsset(url: URL(string: obtainedUrl)!).isPlayable
+                            print(streamResult)
+                            if streamResult == true {
+                                self.streamUrlArray.append(obtainedUrl)
+                            }
+                            DispatchQueue.main.async {
+                                self.urlTableView.reloadData()
                             }
                         }
-                    }
-                }
-                if streamUrlArray.isEmpty {
-                    let requiredCode = try doc.getElementsByClass("cc_streaminfo")
-                    for element:Element in requiredCode {
-                        let tag = try element.attr("href")
-                        streamUrlArray.append(tag)
                     }
                 }
             }
@@ -113,9 +104,10 @@ class StreamUrlViewController: ViewController {
         }
     }
     
+    
     func checkStreamUrlArray() {
         if streamUrlArray.isEmpty {
-            UIAlertController.showAlert("\(mainUrl) doesn't have streamable URLs that can be extracted", self)
+            UIAlertController.showAlert("Wait until the urls are being fetched", self)
         }
     }
     
