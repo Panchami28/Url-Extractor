@@ -15,8 +15,6 @@ class StreamUrlViewController: ViewController {
     @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
-    var streamCheckingQueue = DispatchQueue(label: "StreamCheckerQueue")
-    
     var mainUrl:String = ""
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
@@ -34,10 +32,11 @@ class StreamUrlViewController: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        streamUrlArray = []
-        callRequiredScrape(mainSiteName)
-        loadingActivityIndicator.isHidden = true
-        self.urlTableView.reloadData()
+        if self.isBeingPresented || self.isMovingToParent {
+            callRequiredScrape(mainSiteName)
+            loadingActivityIndicator.isHidden = true
+        }
+        //self.urlTableView.reloadData()
     }
 // MARK: -
 // MARK: Private methods
@@ -86,15 +85,12 @@ class StreamUrlViewController: ViewController {
                     let string = myText as NSString
                     regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
                         let obtainedUrl = string.substring(with: Result.range)
-                        streamCheckingQueue.async {
-                            let streamResult = AVAsset(url: URL(string: obtainedUrl)!).isPlayable
+                        isPlayable(url: URL(string: obtainedUrl)!) { (streamResult) in
                             print(streamResult)
                             if streamResult == true {
                                 self.streamUrlArray.append(obtainedUrl)
                             }
-                            DispatchQueue.main.async {
-                                self.urlTableView.reloadData()
-                            }
+                            self.urlTableView.reloadData()
                         }
                     }
                 }
@@ -104,6 +100,18 @@ class StreamUrlViewController: ViewController {
         }
     }
     
+    func isPlayable(url: URL, completion: @escaping (Bool) -> ()) {
+        let asset = AVAsset(url: url)
+        let playableKey = "playable"
+        asset.loadValuesAsynchronously(forKeys: [playableKey]) {
+            var error: NSError? = nil
+            let status = asset.statusOfValue(forKey: playableKey, error: &error)
+            let isPlayable = status == .loaded
+            DispatchQueue.main.async {
+                completion(isPlayable)
+            }
+        }
+    }
     
     func checkStreamUrlArray() {
         if streamUrlArray.isEmpty {
