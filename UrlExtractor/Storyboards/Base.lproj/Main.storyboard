@@ -64,7 +64,7 @@
         <!--User Url Manager View Controller-->
         <scene sceneID="grH-5M-iz9">
             <objects>
-                <viewController storyboardIdentifier="UserUrlManagerViewCon" id="gMo-Y0-58c" customClass="UserUrlManagerViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserUrlManagerViewController" id="gMo-Y0-58c" customClass="UserUrlManagerViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WJ1-7q-185">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

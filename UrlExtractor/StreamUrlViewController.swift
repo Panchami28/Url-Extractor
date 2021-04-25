@@ -10,6 +10,8 @@ import SwiftSoup
 import AVFoundation
 import AVKit
 
+
+
 class StreamUrlViewController: ViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
@@ -39,6 +41,7 @@ class StreamUrlViewController: ViewController {
 // MARK: -
 // MARK: Private methods
 // MARK: -
+        
     
     func callRequiredScrape(_ mainSiteName:String)
     {
@@ -81,14 +84,17 @@ class StreamUrlViewController: ViewController {
                 if let regex = try? NSRegularExpression(pattern: regexx, options: .caseInsensitive) {
                     let string = myText as NSString
                     regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
-                        let obtainedUrl = string.substring(with: Result.range)
-                        isPlayable(url: URL(string: obtainedUrl)!) { (streamResult) in
-                            print(streamResult)
-                            if streamResult == true {
-                                self.streamUrlArray.append(obtainedUrl)
-                                self.loadingActivityIndicator.isHidden = true
+                        let obtainedString = string.substring(with: Result.range)
+                        let obtainedUrl = URL(string: obtainedString)
+                        if let obtainedUrl = obtainedUrl {
+                            isPlayable(url: obtainedUrl) { (streamResult) in
+                                print(streamResult)
+                                if streamResult == true {
+                                    self.streamUrlArray.append(obtainedString)
+                                    self.loadingActivityIndicator.isHidden = true
+                                }
+                                self.urlTableView.reloadData()
                             }
-                            self.urlTableView.reloadData()
                         }
                     }
                 }

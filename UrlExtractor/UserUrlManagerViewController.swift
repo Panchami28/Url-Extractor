@@ -17,6 +17,7 @@ class UserUrlManagerViewController: UIViewController {
 // MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
+        urlTextField.delegate = self
         //submitButton.isEnabled = false
     }
     
@@ -77,4 +78,16 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         controller.present(alert, animated: true, completion: nil)
     }
+}
+
+extension UserUrlManagerViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
