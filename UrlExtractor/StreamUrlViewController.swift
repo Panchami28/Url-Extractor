@@ -10,8 +10,6 @@ import SwiftSoup
 import AVFoundation
 import AVKit
 
-
-
 class StreamUrlViewController: ViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
@@ -35,42 +33,13 @@ class StreamUrlViewController: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if self.isBeingPresented || self.isMovingToParent {
-            callRequiredScrape(mainSiteName)
+            scrapeWebpage(mainUrl)
         }
     }
 // MARK: -
 // MARK: Private methods
 // MARK: -
         
-    
-    func callRequiredScrape(_ mainSiteName:String)
-    {
-        switch mainSiteName {
-        case "RadioNet": streamUrlArray = []
-           mainUrl = "https://www.radio.net/"
-        case "ShalomBeats Radio": streamUrlArray = []
-            mainUrl = "http://shalombeatsradio.com/"
-        case "NammRadio": streamUrlArray = []
-            mainUrl = "http://nammradio.com/"
-        case "RadioMirchi": streamUrlArray = []
-            mainUrl = "https://www.radiomirchi.com/"
-        case "RetroFM": streamUrlArray = []
-            mainUrl = "https://sky.ee/tag/retrofm/"
-        case "CBCListen": streamUrlArray = []
-            mainUrl = "https://www.cbc.ca/listen/live-radio"
-        case "HindiRadio": streamUrlArray = []
-            mainUrl = "https://hindiradios.com/"
-        case "Indian Australian Radio": streamUrlArray = []
-            mainUrl = "https://hindiradios.com/australian-indian-radio"
-        case "Bombay Beats": streamUrlArray = []
-            mainUrl = "https://hindiradios.com/bombay-beats-radio"
-        case "RadioCity Hindi": streamUrlArray = []
-            mainUrl = "https://hindiradios.com/radio-city-hindi-fm"
-        default: mainUrl = mainUrl+""
-        }
-        scrapeWebpage(mainUrl)
-    }
-    
     func scrapeWebpage(_ mainUrl:String?) {
         do{
             guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else { UIAlertController.showAlert("Oops!Something went wrong", self)

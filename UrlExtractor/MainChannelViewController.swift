@@ -11,7 +11,8 @@ class MainChannelViewController: UIViewController {
 
     @IBOutlet weak var mainUrlTableView: UITableView!
     
-    let mainChannelArray = ["RadioNet","RadioGarden","RetroFM","CBCListen","HindiRadio"]
+    let basicChannel = BasicChannelModel()
+    
     
 // MARK: -
 // MARK: View Lifecycle
@@ -27,19 +28,13 @@ class MainChannelViewController: UIViewController {
 // MARK: -
 // MARK: Private Methods
 // MARK: -
-    func loadData(_ ChannelName:String)
+    func loadData(_ channelUrl:String,_ channelName:String)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if ChannelName != "RadioGarden" && ChannelName != "HindiRadio" {
             if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
                 self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-                streamUrlViewController.mainSiteName = ChannelName
-            }
-        } else {
-            if let subChannelTableViewController = storyboard.instantiateViewController(identifier: "SubChannelTableViewController") as? SubChannelTableViewController {
-                self.navigationController?.pushViewController(subChannelTableViewController, animated: true)
-                subChannelTableViewController.mainChannel = ChannelName
-            }
+                streamUrlViewController.mainUrl = channelUrl
+                streamUrlViewController.mainSiteName = channelName
         }
     }
     
@@ -51,15 +46,15 @@ class MainChannelViewController: UIViewController {
 
 extension MainChannelViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainChannelArray.count
+        return basicChannel.numberOfChannels()
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = mainUrlTableView.dequeueReusableCell(withIdentifier: "BasicUrlCell", for: indexPath) as! BasicUrlCell
-        cell.logoImage.image = UIImage(named: "\(mainChannelArray[indexPath.row])")
-        cell.urlLabel.text = mainChannelArray[indexPath.row]
+        cell.logoImage.image = UIImage(named: "\(basicChannel.item(atIndexPath: indexPath))")
+        cell.urlLabel.text = basicChannel.item(atIndexPath: indexPath).websiteUrl
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadData(mainChannelArray[indexPath.row])
+        loadData(basicChannel.item(atIndexPath: indexPath).websiteUrl,"\(basicChannel.item(atIndexPath: indexPath))")
     }
 }

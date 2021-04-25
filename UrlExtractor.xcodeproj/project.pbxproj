@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */; };
 		20423611261C720700CBAA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423610261C720700CBAA8B /* AppDelegate.swift */; };
 		20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423612261C720700CBAA8B /* SceneDelegate.swift */; };
 		20423615261C720700CBAA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423614261C720700CBAA8B /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicChannelModel.swift; sourceTree = "<group>"; };
 		2042360D261C720700CBAA8B /* UrlExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrlExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20423610261C720700CBAA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20423612261C720700CBAA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				20423610261C720700CBAA8B /* AppDelegate.swift */,
 				20423612261C720700CBAA8B /* SceneDelegate.swift */,
+				2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */,
 				20423614261C720700CBAA8B /* ViewController.swift */,
 				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */,
+				2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
