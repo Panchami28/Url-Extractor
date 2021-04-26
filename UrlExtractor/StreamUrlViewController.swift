@@ -33,14 +33,16 @@ class StreamUrlViewController: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if self.isBeingPresented || self.isMovingToParent {
-            scrapeWebpage(mainUrl)
+            scrapeWebpage(mainUrl) {
+                self.checkStreamUrlArray()
+            }
         }
     }
 // MARK: -
 // MARK: Private methods
 // MARK: -
         
-    func scrapeWebpage(_ mainUrl:String?) {
+    func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()->()) {
         do{
             guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else { UIAlertController.showAlert("Oops!Something went wrong", self)
                 return
@@ -49,7 +51,6 @@ class StreamUrlViewController: ViewController {
             do{
                 let doc: Document = try SwiftSoup.parse(content)
                 let myText = try doc.outerHtml()
-                //print(myText)
                 if let regex = try? NSRegularExpression(pattern: regexx, options: .caseInsensitive) {
                     let string = myText as NSString
                     regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
@@ -71,6 +72,9 @@ class StreamUrlViewController: ViewController {
         } catch {
             print("Error while parsing:\(error)")
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
+            completion()
+        }
     }
     
     func isPlayable(url: URL, completion: @escaping (Bool) -> ()) {
@@ -86,11 +90,12 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-//    func checkStreamUrlArray() {
-//        if streamUrlArray.isEmpty {
-//            UIAlertController.showAlert("\(mainUrl) doesn't have any streaming urls that can be fetched", self)
-//        }
-//    }
+    func checkStreamUrlArray() {
+        if streamUrlArray.isEmpty {
+            loadingActivityIndicator.isHidden = true
+            UIAlertController.showAlert("\(mainUrl) doesn't have any streaming urls that can be fetched", self)
+        }
+    }
     
     func playMusic(_ musicUrl:String)
     {

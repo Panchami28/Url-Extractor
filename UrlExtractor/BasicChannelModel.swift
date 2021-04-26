@@ -21,6 +21,8 @@ enum MainChannelOption :CaseIterable{
     case CamFM
     case Madhuban
     case ElectricRadio
+    case RadioSwissPop
+    case CheesyRadio
     
     var websiteUrl : String {
         switch self {
@@ -48,12 +50,16 @@ enum MainChannelOption :CaseIterable{
             return "http://radiomadhuban.in/pop_up_player.html"
         case .ElectricRadio:
             return "https://player.electricradio.co.uk/"
+        case .RadioSwissPop:
+            return "https://www.radioswisspop.ch/en"
+        case .CheesyRadio :
+            return "https://cheesyfm.co.uk/radioplayer/"
         }
     }
 }
 
 
-struct BasicChannelModel {
+class BasicChannelModel {
     var channelList = [MainChannelOption]()
     
     init() {
