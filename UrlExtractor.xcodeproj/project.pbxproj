@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */; };
+		203A93192639234800ABF38A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A93182639234800ABF38A /* WebViewController.swift */; };
 		20423611261C720700CBAA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423610261C720700CBAA8B /* AppDelegate.swift */; };
 		20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423612261C720700CBAA8B /* SceneDelegate.swift */; };
 		20423615261C720700CBAA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423614261C720700CBAA8B /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicChannelModel.swift; sourceTree = "<group>"; };
+		203A93182639234800ABF38A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2042360D261C720700CBAA8B /* UrlExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrlExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20423610261C720700CBAA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20423612261C720700CBAA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
 				2095316F2628045000DDA758 /* SubChannelTableViewController.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
+				203A93182639234800ABF38A /* WebViewController.swift */,
 				2038D872262EF328009250FA /* Storyboards */,
 				2095318626284D2C00DDA758 /* BasicUrlCell.swift */,
 				2095318726284D2C00DDA758 /* BasicUrlCell.xib */,
@@ -238,6 +241,7 @@
 				209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */,
 				2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
+				203A93192639234800ABF38A /* WebViewController.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,

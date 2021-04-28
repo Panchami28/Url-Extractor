@@ -23,27 +23,47 @@
                             <constraint firstAttribute="width" constant="64" id="if5-fP-PKP"/>
                             <constraint firstAttribute="height" constant="64" id="rZ6-TF-b7O"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrD-RE-QIq">
-                        <rect key="frame" x="96" y="48" width="369" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="96" y="48" width="200" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="Sdf-55-6xz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdT-kz-3m2">
+                        <rect key="frame" x="312" y="33" width="161" height="30"/>
+                        <state key="normal" title="View Webpage"/>
+                        <connections>
+                            <action selector="viewWebPageButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PFU-fW-FrT"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nNB-3B-8o2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="4sl-Qq-YCH"/>
-                    <constraint firstAttribute="trailing" secondItem="wrD-RE-QIq" secondAttribute="trailing" constant="16" id="DWl-LY-HEs"/>
                     <constraint firstItem="nNB-3B-8o2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="LgU-Zd-9sx"/>
                     <constraint firstItem="wrD-RE-QIq" firstAttribute="centerY" secondItem="nNB-3B-8o2" secondAttribute="centerY" id="PBe-d5-l8S"/>
+                    <constraint firstItem="NdT-kz-3m2" firstAttribute="leading" secondItem="wrD-RE-QIq" secondAttribute="trailing" constant="16" id="Vk0-Gd-Nht"/>
+                    <constraint firstItem="NdT-kz-3m2" firstAttribute="centerY" secondItem="wrD-RE-QIq" secondAttribute="centerY" id="Z1Z-uU-Yv6"/>
                     <constraint firstAttribute="bottom" secondItem="nNB-3B-8o2" secondAttribute="bottom" constant="16" id="cPJ-eI-1m0"/>
                     <constraint firstItem="wrD-RE-QIq" firstAttribute="leading" secondItem="nNB-3B-8o2" secondAttribute="trailing" constant="16" id="jUy-Rk-zeX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <constraints>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="NdT-kz-3m2" secondAttribute="trailing" constant="8" id="7ka-jJ-oGj"/>
+            </constraints>
             <connections>
                 <outlet property="logoImage" destination="nNB-3B-8o2" id="D2h-7P-wXZ"/>
                 <outlet property="urlLabel" destination="wrD-RE-QIq" id="pQb-bR-guX"/>
+                <outlet property="viewWebPageButton" destination="NdT-kz-3m2" id="4Sz-0B-rNh"/>
             </connections>
             <point key="canvasLocation" x="257.24637681159425" y="57.589285714285708"/>
         </tableViewCell>

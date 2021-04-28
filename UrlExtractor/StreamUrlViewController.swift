@@ -28,6 +28,7 @@ class StreamUrlViewController: ViewController {
         super.viewDidLoad()
         urlTableView.dataSource = self
         urlTableView.delegate = self
+        self.navigationItem.title = "Streaming Urls"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +39,8 @@ class StreamUrlViewController: ViewController {
             }
         }
     }
+    
+
 // MARK: -
 // MARK: Private methods
 // MARK: -
@@ -118,6 +121,7 @@ class StreamUrlViewController: ViewController {
         }
     }
     
+    
 }
 // MARK: -
 // MARK: Tableview DataSource and Delegates
@@ -137,3 +141,4 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
 }
+

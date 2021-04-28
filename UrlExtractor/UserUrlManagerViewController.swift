@@ -18,6 +18,7 @@ class UserUrlManagerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         urlTextField.delegate = self
+        self.navigationItem.title = "URLTextField"
         //submitButton.isEnabled = false
     }
     

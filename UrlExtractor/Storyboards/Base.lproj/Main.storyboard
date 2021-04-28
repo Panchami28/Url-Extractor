@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Fb9-hD-ATo">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq">
                                 <rect key="frame" x="114.66666666666669" y="419" width="161" height="60"/>
                                 <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -49,7 +52,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1FY-XJ-O6c"/>
+                            <constraint firstAttribute="bottom" secondItem="Fb9-hD-ATo" secondAttribute="bottom" id="6x9-Vu-FmM"/>
                             <constraint firstItem="uzG-sH-6wq" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="28" id="Pjj-Ho-HhR"/>
+                            <constraint firstAttribute="trailing" secondItem="Fb9-hD-ATo" secondAttribute="trailing" id="ce1-b5-xlK"/>
+                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="df1-Np-MBt"/>
                             <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="efu-f7-VUu"/>
                             <constraint firstItem="uzG-sH-6wq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fGf-7d-7a7"/>
                             <constraint firstItem="uzG-sH-6wq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="hrU-ma-srF"/>
@@ -59,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.7391304347827" y="114.50892857142857"/>
+            <point key="canvasLocation" x="1021.5384615384615" y="114.45497630331754"/>
         </scene>
         <!--User Url Manager View Controller-->
         <scene sceneID="grH-5M-iz9">
@@ -202,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-dp-iOu">
-                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="urlCell" id="eUF-kp-TK7">
@@ -216,7 +223,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Ts-Px-3Rk">
-                                <rect key="frame" x="176.66666666666666" y="408.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="176.66666666666666" y="359" width="37" height="37"/>
                                 <color key="color" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -226,8 +233,8 @@
                             <constraint firstItem="2Ts-Px-3Rk" firstAttribute="centerX" secondItem="pNQ-dp-iOu" secondAttribute="centerX" id="2T0-Vr-cAH"/>
                             <constraint firstItem="fgt-wz-OnF" firstAttribute="trailing" secondItem="pNQ-dp-iOu" secondAttribute="trailing" id="58K-qf-v8y"/>
                             <constraint firstItem="pNQ-dp-iOu" firstAttribute="top" secondItem="fgt-wz-OnF" secondAttribute="top" id="JPf-L3-N3H"/>
-                            <constraint firstItem="fgt-wz-OnF" firstAttribute="bottom" secondItem="pNQ-dp-iOu" secondAttribute="bottom" id="SoU-y6-ql3"/>
                             <constraint firstItem="pNQ-dp-iOu" firstAttribute="leading" secondItem="fgt-wz-OnF" secondAttribute="leading" id="gRD-PN-Opy"/>
+                            <constraint firstItem="fgt-wz-OnF" firstAttribute="bottom" secondItem="pNQ-dp-iOu" secondAttribute="bottom" constant="99" id="tgo-ta-r0b"/>
                             <constraint firstItem="2Ts-Px-3Rk" firstAttribute="centerY" secondItem="pNQ-dp-iOu" secondAttribute="centerY" id="vqR-4J-j9i"/>
                         </constraints>
                     </view>
@@ -238,7 +245,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHv-qF-3Wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3385" y="-160"/>
+            <point key="canvasLocation" x="3384.6153846153843" y="-160.66350710900474"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="lyO-VW-cUq">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="m0d-td-2N7" customClass="WebViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Cf-d0-rDH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l98-Ba-95l">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2zA-I4-BQN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l98-Ba-95l" firstAttribute="leading" secondItem="2zA-I4-BQN" secondAttribute="leading" id="K96-P9-Oxn"/>
+                            <constraint firstItem="l98-Ba-95l" firstAttribute="top" secondItem="2zA-I4-BQN" secondAttribute="top" id="Rbw-0X-Zv1"/>
+                            <constraint firstItem="2zA-I4-BQN" firstAttribute="bottom" secondItem="l98-Ba-95l" secondAttribute="bottom" id="dsK-7p-ima"/>
+                            <constraint firstItem="2zA-I4-BQN" firstAttribute="trailing" secondItem="l98-Ba-95l" secondAttribute="trailing" id="hHe-yi-4Ar"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="l98-Ba-95l" id="hKw-57-ftc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mli-eP-yNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4249" y="99"/>
         </scene>
         <!--Sub Channel Table View Controller-->
         <scene sceneID="Jnk-XQ-xSG">
@@ -279,6 +320,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hU3-mg-a9f">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -291,6 +333,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="640" height="1136"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

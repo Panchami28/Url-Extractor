@@ -7,10 +7,18 @@
 
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject {
+    func viewWebPageButtonClicked(indexPath:IndexPath)
+}
+
 class BasicUrlCell: UITableViewCell {
 
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var viewWebPageButton: UIButton!
+    
+    weak var delegate: TableViewCellDelegate?
+    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +31,10 @@ class BasicUrlCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func viewWebPageButtonClicked(_ sender: UIButton) {
+        if let indexPath = indexPath {
+            delegate?.viewWebPageButtonClicked(indexPath: indexPath)
+            
+        }
+    }
 }
