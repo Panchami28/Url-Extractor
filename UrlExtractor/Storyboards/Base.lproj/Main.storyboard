@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sUU-s3-mxf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YOi-ZU-fYA">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ktu-BX-eep">
+            <objects>
+                <tabBarController id="YOi-ZU-fYA" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VIn-7d-Vd0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sUU-s3-mxf" kind="relationship" relationship="viewControllers" id="jKt-oq-qxA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54k-r1-2so" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-715" y="124"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,51 +34,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Fb9-hD-ATo">
+                            <imageView clipsSubviews="YES" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fb9-hD-ATo">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq">
-                                <rect key="frame" x="114.66666666666669" y="419" width="161" height="60"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                <state key="normal" title="Get Started">
-                                    <color key="titleColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2i-aK-gWh"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-Ht-8Uy">
                                 <rect key="frame" x="45" y="111" width="300" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="UHw-ie-0hX"/>
-                                    <constraint firstAttribute="height" constant="280" id="jyU-d9-Nwc"/>
+                                    <constraint firstAttribute="height" constant="280" id="Wv8-84-hXO"/>
+                                    <constraint firstAttribute="width" constant="300" id="z5e-9g-KBw"/>
                                 </constraints>
                                 <string key="text">This app helps users to search and list streaming audio urls from a webpage, given the URL of a website. It also allows users to view a set of sample websites whose streaming urls are listed and also allows users to play tracks on clicking these urls.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-qI-UpM">
+                                <rect key="frame" x="75.666666666666686" y="436" width="239" height="274"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq" userLabel="Search Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="239" height="64"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                        <state key="normal" title="Search">
+                                            <color key="titleColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2i-aK-gWh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-Vl-WFP" userLabel="View Sample Stations Button">
+                                        <rect key="frame" x="0.0" y="105" width="239" height="64"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                        <state key="normal" title="View Sample Stations">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="viewSampleStationsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cTm-zV-wxm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86h-bv-GVD" userLabel="View Favorites Button">
+                                        <rect key="frame" x="0.0" y="210" width="239" height="64"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="View Favorites">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="viewFavouritesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aKG-WK-UJ3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fb9-hD-ATo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1FY-XJ-O6c"/>
+                            <constraint firstItem="h4j-qI-UpM" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="45" id="3HG-ch-xmT"/>
                             <constraint firstAttribute="bottom" secondItem="Fb9-hD-ATo" secondAttribute="bottom" id="6x9-Vu-FmM"/>
-                            <constraint firstItem="uzG-sH-6wq" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="28" id="Pjj-Ho-HhR"/>
                             <constraint firstAttribute="trailing" secondItem="Fb9-hD-ATo" secondAttribute="trailing" id="ce1-b5-xlK"/>
                             <constraint firstItem="Fb9-hD-ATo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="df1-Np-MBt"/>
-                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="efu-f7-VUu"/>
-                            <constraint firstItem="uzG-sH-6wq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fGf-7d-7a7"/>
-                            <constraint firstItem="uzG-sH-6wq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="hrU-ma-srF"/>
+                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="23" id="gNh-AA-vXE"/>
+                            <constraint firstItem="h4j-qI-UpM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="o9L-Uw-fxO"/>
+                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tRA-0i-XcF"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="IOI-oW-DCO"/>
                     <navigationItem key="navigationItem" id="kq2-5g-fXw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,12 +139,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-e3-eSe">
-                                <rect key="frame" x="152" y="495" width="86" height="51"/>
+                                <rect key="frame" x="117.66666666666669" y="495" width="155" height="51"/>
                                 <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Extract Streams">
                                     <color key="titleColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
@@ -127,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nY1-uF-1P7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="114"/>
+            <point key="canvasLocation" x="1811" y="94"/>
         </scene>
         <!--Main Channel View Controller-->
         <scene sceneID="TtX-qN-ezI">
@@ -198,7 +255,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZf-OR-Krs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2495" y="114"/>
+            <point key="canvasLocation" x="2714" y="94"/>
+        </scene>
+        <!--Favourite Stream View Controller-->
+        <scene sceneID="sqi-zG-CTq">
+            <objects>
+                <viewController storyboardIdentifier="FavouriteStreamViewController" id="w3u-7O-6Kj" customClass="FavouriteStreamViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RpY-DO-WwZ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LdN-ps-RBC">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" id="Q8h-9T-as6">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q8h-9T-as6" id="guI-9g-XGe">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gRE-2n-tVb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gRE-2n-tVb" firstAttribute="trailing" secondItem="LdN-ps-RBC" secondAttribute="trailing" id="F81-lN-K98"/>
+                            <constraint firstItem="LdN-ps-RBC" firstAttribute="leading" secondItem="gRE-2n-tVb" secondAttribute="leading" id="JRW-tW-Ct0"/>
+                            <constraint firstItem="gRE-2n-tVb" firstAttribute="bottom" secondItem="LdN-ps-RBC" secondAttribute="bottom" id="Smz-mE-AIs"/>
+                            <constraint firstItem="LdN-ps-RBC" firstAttribute="top" secondItem="gRE-2n-tVb" secondAttribute="top" id="u5p-35-b0d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Aq-B8-BeI"/>
+                    <connections>
+                        <outlet property="favoritesTableView" destination="LdN-ps-RBC" id="ttf-FW-o0L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mh3-Vd-eMe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3612" y="94"/>
         </scene>
         <!--Stream Url View Controller-->
         <scene sceneID="PiU-zp-mlG">
@@ -209,7 +307,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-dp-iOu">
-                                <rect key="frame" x="0.0" y="44" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="urlCell" id="eUF-kp-TK7">
@@ -223,7 +321,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Ts-Px-3Rk">
-                                <rect key="frame" x="176.66666666666666" y="359" width="37" height="37"/>
+                                <rect key="frame" x="176.66666666666666" y="408.66666666666669" width="37" height="37"/>
                                 <color key="color" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -234,7 +332,7 @@
                             <constraint firstItem="fgt-wz-OnF" firstAttribute="trailing" secondItem="pNQ-dp-iOu" secondAttribute="trailing" id="58K-qf-v8y"/>
                             <constraint firstItem="pNQ-dp-iOu" firstAttribute="top" secondItem="fgt-wz-OnF" secondAttribute="top" id="JPf-L3-N3H"/>
                             <constraint firstItem="pNQ-dp-iOu" firstAttribute="leading" secondItem="fgt-wz-OnF" secondAttribute="leading" id="gRD-PN-Opy"/>
-                            <constraint firstItem="fgt-wz-OnF" firstAttribute="bottom" secondItem="pNQ-dp-iOu" secondAttribute="bottom" constant="99" id="tgo-ta-r0b"/>
+                            <constraint firstItem="fgt-wz-OnF" firstAttribute="bottom" secondItem="pNQ-dp-iOu" secondAttribute="bottom" id="tgo-ta-r0b"/>
                             <constraint firstItem="2Ts-Px-3Rk" firstAttribute="centerY" secondItem="pNQ-dp-iOu" secondAttribute="centerY" id="vqR-4J-j9i"/>
                         </constraints>
                     </view>
@@ -245,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHv-qF-3Wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3384.6153846153843" y="-160.66350710900474"/>
+            <point key="canvasLocation" x="4400" y="94"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="lyO-VW-cUq">
@@ -279,43 +377,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mli-eP-yNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4249" y="99"/>
+            <point key="canvasLocation" x="5232" y="94"/>
         </scene>
-        <!--Sub Channel Table View Controller-->
-        <scene sceneID="Jnk-XQ-xSG">
-            <objects>
-                <tableViewController storyboardIdentifier="SubChannelTableViewController" id="kbN-XZ-f1U" customClass="SubChannelTableViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LAa-zw-18c">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubChannelCell" id="iNL-wW-5Mn">
-                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iNL-wW-5Mn" id="xgd-gU-3Hi">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="kbN-XZ-f1U" id="6ob-KI-xea"/>
-                            <outlet property="delegate" destination="kbN-XZ-f1U" id="JxU-KE-wCk"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="subChannelTableView" destination="LAa-zw-18c" id="ifS-2C-CSz"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uX8-Su-Lew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3414" y="542"/>
-        </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="eZV-3P-EcW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sUU-s3-mxf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="agz-cq-yk6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hU3-mg-a9f">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -333,7 +401,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="640" height="1136"/>
+        <image name="background" width="800" height="729"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */; };
 		203A93192639234800ABF38A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A93182639234800ABF38A /* WebViewController.swift */; };
+		203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932026395C4C00ABF38A /* StreamUrlCell.swift */; };
+		203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203A932126395C4C00ABF38A /* StreamUrlCell.xib */; };
+		203A932726396F0700ABF38A /* FavouriteStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */; };
+		203A932C26399B6A00ABF38A /* FavoritesStreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932B26399B6A00ABF38A /* FavoritesStreamModel.swift */; };
 		20423611261C720700CBAA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423610261C720700CBAA8B /* AppDelegate.swift */; };
 		20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423612261C720700CBAA8B /* SceneDelegate.swift */; };
 		20423615261C720700CBAA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423614261C720700CBAA8B /* ViewController.swift */; };
@@ -17,7 +21,6 @@
 		2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2042361B261C720900CBAA8B /* LaunchScreen.storyboard */; };
 		20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */; };
 		205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */; };
-		209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095316F2628045000DDA758 /* SubChannelTableViewController.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
 		20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E630422626E4BC0001CF28 /* MainChannelViewController.swift */; };
@@ -27,6 +30,10 @@
 /* Begin PBXFileReference section */
 		2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicChannelModel.swift; sourceTree = "<group>"; };
 		203A93182639234800ABF38A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		203A932026395C4C00ABF38A /* StreamUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlCell.swift; sourceTree = "<group>"; };
+		203A932126395C4C00ABF38A /* StreamUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamUrlCell.xib; sourceTree = "<group>"; };
+		203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStreamViewController.swift; sourceTree = "<group>"; };
+		203A932B26399B6A00ABF38A /* FavoritesStreamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStreamModel.swift; sourceTree = "<group>"; };
 		2042360D261C720700CBAA8B /* UrlExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrlExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20423610261C720700CBAA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20423612261C720700CBAA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +44,6 @@
 		2042361E261C720900CBAA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlViewController.swift; sourceTree = "<group>"; };
 		205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUrlManagerViewController.swift; sourceTree = "<group>"; };
-		2095316F2628045000DDA758 /* SubChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubChannelTableViewController.swift; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
 		20E630422626E4BC0001CF28 /* MainChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +73,41 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		203A932F26399E5000ABF38A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */,
+				203A932B26399B6A00ABF38A /* FavoritesStreamModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		203A933126399E7F00ABF38A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20423612261C720700CBAA8B /* SceneDelegate.swift */,
+				20423610261C720700CBAA8B /* AppDelegate.swift */,
+				20423614261C720700CBAA8B /* ViewController.swift */,
+				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
+				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
+				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
+				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
+				203A93182639234800ABF38A /* WebViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		203A933326399EA000ABF38A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2095318626284D2C00DDA758 /* BasicUrlCell.swift */,
+				2095318726284D2C00DDA758 /* BasicUrlCell.xib */,
+				203A932026395C4C00ABF38A /* StreamUrlCell.swift */,
+				203A932126395C4C00ABF38A /* StreamUrlCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		20423604261C720700CBAA8B = {
 			isa = PBXGroup;
 			children = (
@@ -88,18 +129,10 @@
 		2042360F261C720700CBAA8B /* UrlExtractor */ = {
 			isa = PBXGroup;
 			children = (
-				20423610261C720700CBAA8B /* AppDelegate.swift */,
-				20423612261C720700CBAA8B /* SceneDelegate.swift */,
-				2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */,
-				20423614261C720700CBAA8B /* ViewController.swift */,
-				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
-				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
-				2095316F2628045000DDA758 /* SubChannelTableViewController.swift */,
-				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
-				203A93182639234800ABF38A /* WebViewController.swift */,
+				203A932F26399E5000ABF38A /* Model */,
+				203A933126399E7F00ABF38A /* Controller */,
+				203A933326399EA000ABF38A /* View */,
 				2038D872262EF328009250FA /* Storyboards */,
-				2095318626284D2C00DDA758 /* BasicUrlCell.swift */,
-				2095318726284D2C00DDA758 /* BasicUrlCell.xib */,
 				20423619261C720900CBAA8B /* Assets.xcassets */,
 				2042361E261C720900CBAA8B /* Info.plist */,
 			);
@@ -182,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */,
 				2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */,
 				2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */,
 				2042361A261C720900CBAA8B /* Assets.xcassets in Resources */,
@@ -238,14 +272,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				209531702628045000DDA758 /* SubChannelTableViewController.swift in Sources */,
+				203A932726396F0700ABF38A /* FavouriteStreamViewController.swift in Sources */,
 				2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				203A93192639234800ABF38A /* WebViewController.swift in Sources */,
+				203A932C26399B6A00ABF38A /* FavoritesStreamModel.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
+				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
 			);
