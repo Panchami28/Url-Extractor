@@ -20,7 +20,7 @@ class StreamUrlViewController: ViewController {
     var streamUrlArray = [String]()
     var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
     var favoritesStreamModel = FavouritesStreamModel()
-    
+    var favoriteStream = FavoriteStream()
 
 // MARK: -
 // MARK: View LifeCycle
@@ -147,7 +147,11 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
 
 extension StreamUrlViewController: StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
-        favoritesStreamModel.storeStreamUrl(item: streamUrlArray[indexPath.row])
+        let cell = urlTableView.cellForRow(at: indexPath) as! StreamUrlCell
+        cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        favoriteStream.mainChannel = mainSiteName
+        favoriteStream.stream = streamUrlArray[indexPath.row]
+        favoritesStreamModel.storeStreamUrl(item: favoriteStream)
     }
     
 }

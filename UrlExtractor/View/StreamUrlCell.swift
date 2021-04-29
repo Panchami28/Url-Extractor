@@ -33,7 +33,6 @@ class StreamUrlCell: UITableViewCell {
     
     
     @IBAction func addToFavouritesButtonClicked(_ sender: UIButton) {
-        favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         if let indexpath = indexpath {
             delegate?.addToFavouritesButtonClicked(indexPath: indexpath)
         }
