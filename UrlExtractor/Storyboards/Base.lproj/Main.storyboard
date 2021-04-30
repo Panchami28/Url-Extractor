@@ -346,38 +346,32 @@
             <point key="canvasLocation" x="4400" y="94"/>
         </scene>
         <!--Web View Controller-->
-        <scene sceneID="lyO-VW-cUq">
+        <scene sceneID="o8G-Yf-q52">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" id="m0d-td-2N7" customClass="WebViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Cf-d0-rDH">
+                <viewController storyboardIdentifier="WebViewController" id="tTQ-Xe-pFY" customClass="WebViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WiF-d9-EVx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l98-Ba-95l">
-                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="XM9-Fy-XuQ">
+                                <rect key="frame" x="176.66666666666666" y="408.66666666666669" width="37" height="37"/>
+                                <color key="color" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="2zA-I4-BQN"/>
+                        <viewLayoutGuide key="safeArea" id="zAL-HH-ja9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="l98-Ba-95l" firstAttribute="leading" secondItem="2zA-I4-BQN" secondAttribute="leading" id="K96-P9-Oxn"/>
-                            <constraint firstItem="l98-Ba-95l" firstAttribute="top" secondItem="2zA-I4-BQN" secondAttribute="top" id="Rbw-0X-Zv1"/>
-                            <constraint firstItem="2zA-I4-BQN" firstAttribute="bottom" secondItem="l98-Ba-95l" secondAttribute="bottom" id="dsK-7p-ima"/>
-                            <constraint firstItem="2zA-I4-BQN" firstAttribute="trailing" secondItem="l98-Ba-95l" secondAttribute="trailing" id="hHe-yi-4Ar"/>
+                            <constraint firstItem="XM9-Fy-XuQ" firstAttribute="centerY" secondItem="zAL-HH-ja9" secondAttribute="centerY" id="bA8-gM-vEQ"/>
+                            <constraint firstItem="XM9-Fy-XuQ" firstAttribute="centerX" secondItem="zAL-HH-ja9" secondAttribute="centerX" id="rmP-Be-i1P"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="l98-Ba-95l" id="hKw-57-ftc"/>
+                        <outlet property="loadingActivityIndicator" destination="XM9-Fy-XuQ" id="d5m-i4-cty"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mli-eP-yNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8I-pM-E8l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5232" y="94"/>
+            <point key="canvasLocation" x="5060" y="93.838862559241704"/>
         </scene>
         <!--Home-->
         <scene sceneID="eZV-3P-EcW">

@@ -9,4 +9,5 @@ target 'UrlExtractor' do
   pod 'Alamofire'
   pod 'Kanna'
   pod 'SwiftSoup'
+  pod 'ReachabilitySwift'
 end

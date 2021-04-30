@@ -34,7 +34,6 @@ class BasicUrlCell: UITableViewCell {
     @IBAction func viewWebPageButtonClicked(_ sender: UIButton) {
         if let indexPath = indexPath {
             delegate?.viewWebPageButtonClicked(indexPath: indexPath)
-            
         }
     }
 }

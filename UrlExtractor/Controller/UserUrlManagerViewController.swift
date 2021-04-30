@@ -18,13 +18,17 @@ class UserUrlManagerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         urlTextField.delegate = self
-        self.navigationItem.title = "URLTextField"
-        //submitButton.isEnabled = false
+        self.navigationItem.title = "Search"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        submitButton.isEnabled = false
         urlTextField.text = ""
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
 // MARK: -
@@ -39,12 +43,7 @@ class UserUrlManagerViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-       let result = verifyUrl()
-        if result == true {
-            loadData()
-        } else {
-            UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
-        }
+        loadData()
     }
     
 // MARK: -
@@ -84,6 +83,12 @@ extension UIAlertController {
 extension UserUrlManagerViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
+        let result = verifyUrl()
+        if result == true {
+            submitButton.isEnabled = true
+        } else {
+            UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

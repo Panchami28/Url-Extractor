@@ -2,28 +2,27 @@
 //  WebViewController.swift
 //  UrlExtractor
 //
-//  Created by Panchami Rao on 28/04/21.
+//  Created by Panchami Rao on 30/04/21.
 //
 
 import UIKit
-import WebKit
+import SafariServices
 
-class WebViewController: UIViewController ,WKUIDelegate {
-    
-    @IBOutlet weak var webView: WKWebView!
-    var websiteUrl:String?
+class WebViewController: SFSafariViewController,SFSafariViewControllerDelegate {
+
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "WebView"
-        displayWebView()
     }
     
-    func displayWebView() {
-        if let requiredUrl = websiteUrl, let myURL = URL(string:requiredUrl) {
-            let myRequest = URLRequest(url: myURL)
-            webView.load(myRequest)
+    public override init(url URL: URL, configuration: SFSafariViewController.Configuration) {
+        super.init(url: URL, configuration: configuration)
+    }
+    
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+        if  didLoadSuccessfully == true {
+            loadingActivityIndicator.isHidden = true
         }
     }
-
 }

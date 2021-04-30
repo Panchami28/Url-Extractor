@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import SafariServices
+import SystemConfiguration
 
 class MainChannelViewController: UIViewController {
 
+    @IBOutlet weak var webPageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var mainUrlTableView: UITableView!
     
     let basicChannel = BasicChannelModel()
-    
     
 // MARK: -
 // MARK: View Lifecycle
@@ -39,13 +41,17 @@ class MainChannelViewController: UIViewController {
         }
     }
     
-    func loadWebViewControllerData(websiteUrl: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
-            self.navigationController?.pushViewController(webViewController, animated: true)
-            webViewController.websiteUrl = websiteUrl
+   
+    
+    func displayWebView(websiteUrl: String?) {
+        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let vc = WebViewController(url: url, configuration: config)
+            present(vc, animated: true)
         }
     }
+    
     
     func animateTableView() {
         mainUrlTableView.reloadData()
@@ -104,8 +110,6 @@ extension MainChannelViewController:UITableViewDelegate,UITableViewDataSource {
 
 extension MainChannelViewController: TableViewCellDelegate {
     func viewWebPageButtonClicked(indexPath: IndexPath) {
-        loadWebViewControllerData(websiteUrl: basicChannel.item(atIndexPath: indexPath).websiteUrl)
+        displayWebView(websiteUrl: basicChannel.item(atIndexPath: indexPath).websiteUrl)
     }
-    
 }
-

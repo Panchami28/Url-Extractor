@@ -6,13 +6,40 @@
 //
 
 import UIKit
+import Reachability
 
 class ViewController: UIViewController {
+    
+    let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
-        // Do any additional setup after loading the view.
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
+    
+    @objc func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+        case .wifi:
+            UIAlertController.showAlert("Reachable via wifi", self)
+        case .cellular:
+            UIAlertController.showAlert("Reachable via Cellular", self)
+        case .unavailable:
+            UIAlertController.showAlert("Network not reachable", self)
+        }
     }
 
     @IBAction func searchButtonPressed(_ sender: UIButton) {
