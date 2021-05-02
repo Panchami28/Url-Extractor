@@ -63,4 +63,12 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func viewRecentButtonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let recentStreamTableViewController = storyboard.instantiateViewController(identifier: "RecentStreamTableViewController") as? RecentStreamTableViewController {
+            self.navigationController?.pushViewController(recentStreamTableViewController, animated: true)
+        }
+    }
+    
 }

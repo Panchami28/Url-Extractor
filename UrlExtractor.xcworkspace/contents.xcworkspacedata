@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:UrlExtractor.xcodeproj">
    </FileRef>
    <FileRef

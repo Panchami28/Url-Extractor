@@ -21,6 +21,8 @@ class StreamUrlViewController: ViewController {
     var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
     var favoritesStreamModel = FavouritesStreamModel()
     var favoriteStream = FavoriteStream()
+    var streamDataManager = StreamDataManager()
+    
 
 // MARK: -
 // MARK: View LifeCycle
@@ -102,8 +104,7 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-    func playMusic(_ musicUrl:String)
-    {
+    func playMusic(_ musicUrl:String) {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
             let player = AVPlayer(url: requiredUrl)
@@ -123,7 +124,6 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-    
 }
 // MARK: -
 // MARK: Tableview DataSource and Delegates
@@ -142,6 +142,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         playMusic(streamUrlArray[indexPath.row])
+        streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
     }
 }
 

@@ -48,8 +48,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-qI-UpM">
-                                <rect key="frame" x="75.666666666666686" y="436" width="239" height="274"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-qI-UpM">
+                                <rect key="frame" x="75.666666666666686" y="436" width="239" height="346"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq" userLabel="Search Button">
                                         <rect key="frame" x="0.0" y="0.0" width="239" height="64"/>
@@ -69,7 +69,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-Vl-WFP" userLabel="View Sample Stations Button">
-                                        <rect key="frame" x="0.0" y="105" width="239" height="64"/>
+                                        <rect key="frame" x="0.0" y="94" width="239" height="64"/>
                                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -86,7 +86,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86h-bv-GVD" userLabel="View Favorites Button">
-                                        <rect key="frame" x="0.0" y="210" width="239" height="64"/>
+                                        <rect key="frame" x="0.0" y="188" width="239" height="64"/>
                                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -100,6 +100,22 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="viewFavouritesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aKG-WK-UJ3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjd-GM-LJU" userLabel="View Recents Button">
+                                        <rect key="frame" x="0.0" y="282" width="239" height="64"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="View Recents">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="viewRecentButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRD-1N-kAn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -372,6 +388,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8I-pM-E8l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5060" y="93.838862559241704"/>
+        </scene>
+        <!--Recent Stream Table View Controller-->
+        <scene sceneID="Yda-MD-RbZ">
+            <objects>
+                <tableViewController storyboardIdentifier="RecentStreamTableViewController" id="ly3-Gf-aeZ" customClass="RecentStreamTableViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LSv-ef-PEo">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" id="K6l-US-xr5">
+                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K6l-US-xr5" id="EWo-cw-iFt">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ly3-Gf-aeZ" id="hWb-lZ-IGa"/>
+                            <outlet property="delegate" destination="ly3-Gf-aeZ" id="sgC-vA-W2G"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="recentTableView" destination="LSv-ef-PEo" id="h0h-bA-pGm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2fZ-v4-Ryq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="87"/>
         </scene>
         <!--Home-->
         <scene sceneID="eZV-3P-EcW">

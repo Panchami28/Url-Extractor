@@ -22,6 +22,11 @@
 		205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
+		2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */; };
+		2095EA30263EA0BA0021DFA8 /* Stream+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA2E263EA0BA0021DFA8 /* Stream+CoreDataProperties.swift */; };
+		2095EA31263EA0BA0021DFA8 /* Stream+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA2F263EA0BA0021DFA8 /* Stream+CoreDataClass.swift */; };
+		2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */; };
+		2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA36263ED8430021DFA8 /* StreamDataManager.swift */; };
 		20B5805D263BF03500A1F985 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5805C263BF03500A1F985 /* WebViewController.swift */; };
 		20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */; };
 		20B58074263C597900A1F985 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B58073263C597900A1F985 /* Reachability.swift */; };
@@ -47,6 +52,11 @@
 		205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUrlManagerViewController.swift; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
+		2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UrlExtractor.xcdatamodel; sourceTree = "<group>"; };
+		2095EA2E263EA0BA0021DFA8 /* Stream+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Stream+CoreDataProperties.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		2095EA2F263EA0BA0021DFA8 /* Stream+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Stream+CoreDataClass.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentStreamTableViewController.swift; sourceTree = "<group>"; };
+		2095EA36263ED8430021DFA8 /* StreamDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataManager.swift; sourceTree = "<group>"; };
 		20B5805C263BF03500A1F985 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		20B58073263C597900A1F985 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -83,6 +93,9 @@
 				2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */,
 				203A932B26399B6A00ABF38A /* FavoritesStreamModel.swift */,
 				20B58073263C597900A1F985 /* Reachability.swift */,
+				2095EA2F263EA0BA0021DFA8 /* Stream+CoreDataClass.swift */,
+				2095EA2E263EA0BA0021DFA8 /* Stream+CoreDataProperties.swift */,
+				2095EA36263ED8430021DFA8 /* StreamDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +112,7 @@
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				20B5805C263BF03500A1F985 /* WebViewController.swift */,
 				20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */,
+				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -141,6 +155,7 @@
 				2038D872262EF328009250FA /* Storyboards */,
 				20423619261C720900CBAA8B /* Assets.xcassets */,
 				2042361E261C720900CBAA8B /* Info.plist */,
+				2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */,
 			);
 			path = UrlExtractor;
 			sourceTree = "<group>";
@@ -279,16 +294,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B58074263C597900A1F985 /* Reachability.swift in Sources */,
+				2095EA30263EA0BA0021DFA8 /* Stream+CoreDataProperties.swift in Sources */,
 				203A932726396F0700ABF38A /* FavouriteStreamViewController.swift in Sources */,
+				2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */,
 				2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */,
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				203A932C26399B6A00ABF38A /* FavoritesStreamModel.swift in Sources */,
+				2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */,
+				2095EA31263EA0BA0021DFA8 /* Stream+CoreDataClass.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20B5805D263BF03500A1F985 /* WebViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
+				2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */,
 				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
@@ -497,6 +517,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */,
+			);
+			currentVersion = 2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */;
+			path = UrlExtractor.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 20423605261C720700CBAA8B /* Project object */;
 }

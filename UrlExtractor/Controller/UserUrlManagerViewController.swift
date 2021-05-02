@@ -80,6 +80,10 @@ extension UIAlertController {
     }
 }
 
+// MARK: -
+// MARK: TextField extension
+// MARK: -
+
 extension UserUrlManagerViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
