@@ -71,7 +71,16 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
             playMusic(stream, mainChannel)
         }
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let tableHeight: CGFloat = favoritesTableView.bounds.size.height
+        cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+        var index = 0
+        UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
+            cell.transform = CGAffineTransform(translationX: 0, y: 0);
+        }, completion: nil)
+        
+        index += 1
+    }
 }
 
 extension FavouriteStreamViewController : StreamUrlCellDelegate {
