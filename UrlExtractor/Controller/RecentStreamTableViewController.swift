@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 class RecentStreamTableViewController: UITableViewController {
     @IBOutlet var recentTableView: UITableView!
@@ -19,7 +20,25 @@ class RecentStreamTableViewController: UITableViewController {
 // MARK: -
 // MARK: - Private Methods
 // MARK: -
-    
+    func playMusic(_ musicUrl: String,_ mainChannel: String) {
+        let url = URL(string: musicUrl)
+        if let requiredUrl = url {
+            let player = AVPlayer(url: requiredUrl)
+            // Creating a player view controller
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+                if let frame = playerViewController.contentOverlayView?.bounds {
+                    let imageView = UIImageView(image: UIImage(named: mainChannel))
+                    imageView.frame = frame
+                    playerViewController.contentOverlayView?.addSubview(imageView)
+                }
+            }
+        } else {
+            UIAlertController.showAlert("Unable to play the track", self)
+        }
+    }
     
 
 // MARK: -
@@ -40,5 +59,9 @@ class RecentStreamTableViewController: UITableViewController {
         let cell = recentTableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
         cell.textLabel?.text = streamDataManager.item(indexPath).url
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        playMusic(streamDataManager.item(indexPath).url ?? "", streamDataManager.item(indexPath).mainChannel ?? "")
     }
 }
