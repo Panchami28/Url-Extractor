@@ -13,13 +13,13 @@ class FavouriteStreamViewController: UIViewController {
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    var favouritesStreamModel = FavouritesStreamModel()
+    var favoriteStreamDataManager = FavoriteStreamDataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesTableView.dataSource = self
         favoritesTableView.delegate = self
-        favouritesStreamModel.loadStreamUrl()
+        favoriteStreamDataManager.getData()
         favoritesTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
     
@@ -55,39 +55,32 @@ class FavouriteStreamViewController: UIViewController {
 
 extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favouritesStreamModel.numberOfRows()
+        favoriteStreamDataManager.numberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
-        cell.streamLabel.text = favouritesStreamModel.item(indexPath: indexPath).stream
+        cell.streamLabel.text = favoriteStreamDataManager.item(indexPath).url
         cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         cell.delegate = self
         cell.indexpath = indexPath
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let stream = favouritesStreamModel.item(indexPath: indexPath).stream , let mainChannel = favouritesStreamModel.item(indexPath: indexPath).mainChannel {
+        if let stream = favoriteStreamDataManager.item(indexPath).url , let mainChannel = favoriteStreamDataManager.item(indexPath).mainChannel {
             playMusic(stream, mainChannel)
         }
     }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let tableHeight: CGFloat = favoritesTableView.bounds.size.height
-        cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
-        var index = 0
-        UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
-            cell.transform = CGAffineTransform(translationX: 0, y: 0);
-        }, completion: nil)
-        
-        index += 1
-    }
+    
 }
 
 extension FavouriteStreamViewController : StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
         let cell = favoritesTableView.cellForRow(at: indexPath) as! StreamUrlCell
         cell.favoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        favouritesStreamModel.removeStreamUrl(indexpath: indexPath)
+        favoriteStreamDataManager.deleteData(favoriteStreamDataManager.item(indexPath))
+        //favoriteStreamDataManager.getData()
         favoritesTableView.deleteRows(at: [indexPath], with: .fade)
+        favoritesTableView.reloadData()
     }
 }

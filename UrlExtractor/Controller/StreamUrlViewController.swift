@@ -19,8 +19,9 @@ class StreamUrlViewController: ViewController {
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
     var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
-    var favoritesStreamModel = FavouritesStreamModel()
-    var favoriteStream = FavoriteStream()
+    //var favoritesStreamModel = FavouritesStreamModel()
+    //var favoriteStream = FavoriteStream()
+    var favoriteStreamDataManager = FavoriteStreamDataManager()
     var streamDataManager = StreamDataManager()
     
 
@@ -107,17 +108,20 @@ class StreamUrlViewController: ViewController {
     func playMusic(_ musicUrl:String) {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
-            let player = AVPlayer(url: requiredUrl)
+            //let player = AVPlayer(url: requiredUrl)
             // Creating a player view controller
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+            //let playerViewController = AVPlayerViewController()
+            let playerViewController = PlayerViewController()
+            //playerViewController.player = player
             self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-                if let frame = playerViewController.contentOverlayView?.bounds {
-                    let imageView = UIImageView(image: UIImage(named: self.mainSiteName))
-                    imageView.frame = frame
-                    playerViewController.contentOverlayView?.addSubview(imageView)
-                }
+                //playerViewController.player!.play()
+                playerViewController.playMusic(requiredUrl)
+                playerViewController.displayImage(self.mainSiteName)
+//                if let frame = playerViewController.contentOverlayView?.bounds {
+//                    let imageView = UIImageView(image: UIImage(named: self.mainSiteName))
+//                    imageView.frame = frame
+//                    playerViewController.contentOverlayView?.addSubview(imageView)
+//                }
             }
         } else {
             UIAlertController.showAlert("Unable to play the track", self)
@@ -134,12 +138,24 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
         return streamUrlArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
         cell.delegate = self
         cell.indexpath = indexPath
+        favoriteStreamDataManager.getData()
+        favUrlArray = favoriteStreamDataManager.getUrl(favUrlArray)
+        if favUrlArray.contains(streamUrlArray[indexPath.row]) {
+            let item = favoriteStreamDataManager.getSelectedData(streamUrlArray[indexPath.row])
+            if item.heartName == "filled" {
+                cell.favoritesButton.setImage(UIImage(systemName:"heart.fill"), for: .normal)
+            }
+        } else {
+            cell.favoritesButton.setImage(UIImage(systemName:"heart"), for: .normal)
+        }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         playMusic(streamUrlArray[indexPath.row])
         streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
@@ -148,11 +164,17 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
 
 extension StreamUrlViewController: StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
-        let cell = urlTableView.cellForRow(at: indexPath) as! StreamUrlCell
-        cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        favoriteStream.mainChannel = mainSiteName
-        favoriteStream.stream = streamUrlArray[indexPath.row]
-        favoritesStreamModel.storeStreamUrl(item: favoriteStream)
+        //let cell = urlTableView.cellForRow(at: indexPath) as! StreamUrlCell
+        //cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        let result = favoriteStreamDataManager.addData(streamUrlArray[indexPath.row], mainSiteName)
+        urlTableView.reloadData()
+        if result == true {
+//            if favoriteStreamDataManager.items.last?.heartName == "filled" {
+//                cell.favoritesButton.setImage(UIImage(systemName:"heart.fill"), for: .normal)
+//            }
+        } else {
+            UIAlertController.showAlert("\(streamUrlArray[indexPath.row]) already exists in Favorite list", self)
+        }
     }
     
 }

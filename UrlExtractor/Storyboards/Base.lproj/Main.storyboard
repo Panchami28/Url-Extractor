@@ -362,6 +362,35 @@
             </objects>
             <point key="canvasLocation" x="4400" y="94"/>
         </scene>
+        <!--Player View Controller-->
+        <scene sceneID="Beh-bX-kJ5">
+            <objects>
+                <viewController storyboardIdentifier="PlayerViewController" id="yXS-Dm-Mew" customClass="PlayerViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fkf-On-1XR">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-9E-dCa">
+                                <rect key="frame" x="139.66666666666666" y="72" width="111" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lkt-nf-fH9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rvi-9E-dCa" firstAttribute="top" secondItem="lkt-nf-fH9" secondAttribute="top" constant="28" id="gQZ-1v-Hg0"/>
+                            <constraint firstItem="rvi-9E-dCa" firstAttribute="centerX" secondItem="lkt-nf-fH9" secondAttribute="centerX" id="k0P-tY-5lU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="likeButton" destination="rvi-9E-dCa" id="PJJ-f6-Snr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-ar-JUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5103" y="464"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="o8G-Yf-q52">
             <objects>
@@ -388,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8I-pM-E8l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5060" y="93.838862559241704"/>
+            <point key="canvasLocation" x="5112" y="-200"/>
         </scene>
         <!--Recent Stream Table View Controller-->
         <scene sceneID="Yda-MD-RbZ">
