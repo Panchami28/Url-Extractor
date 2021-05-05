@@ -12,7 +12,6 @@ import CoreData
 class FavoriteStreamDataManager {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items = [FavoriteStreams]()
-    //var urlArray = [String]()
     
     func addData(_ streamUrl: String, _ mainSiteName:String) -> Bool {
         var urlArray = [String]()
@@ -33,7 +32,6 @@ class FavoriteStreamDataManager {
             } catch {
                 print("Error saving data")
             }
-            //getData()
             return true
         }
     }
@@ -79,6 +77,29 @@ class FavoriteStreamDataManager {
     func deleteData(_ item: FavoriteStreams) {
         //Delete data
         self.context.delete(item)
+        //Save data
+        do {
+            try context.save()
+        } catch {
+            print("Error saving data")
+        }
+        getData()
+    }
+    
+    func deleteSelectedData(_ streamUrl: String) {
+        var item = [FavoriteStreams]()
+        do {
+            let request = FavoriteStreams.fetchRequest() as NSFetchRequest<FavoriteStreams>
+            let predicate = NSPredicate(format: "url CONTAINS '\(streamUrl)'")
+            request.predicate = predicate
+            item = try context.fetch(request)
+        } catch {
+            print("Error fetching data")
+        }
+        //Delete data
+        if let itemToDelete = item.first {
+            self.context.delete(itemToDelete)
+        }
         //Save data
         do {
             try context.save()

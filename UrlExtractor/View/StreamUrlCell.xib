@@ -24,8 +24,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="StreamUrlCell" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="leH-qh-EMH" userLabel="Add to favorites Button">
-                        <rect key="frame" x="535.5" y="47.5" width="20.5" height="82"/>
-                        <inset key="contentEdgeInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                        <rect key="frame" x="475.5" y="47.5" width="80.5" height="82"/>
+                        <inset key="contentEdgeInsets" minX="30" minY="30" maxX="30" maxY="30"/>
                         <state key="normal" image="heart" catalog="system">
                             <color key="titleColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>

@@ -16,7 +16,7 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     func playMusic(_ url: URL) {
-      player = AVPlayer.init(url: url)
+        player = AVPlayer.init(url: url)
         player?.play()
     }
     
@@ -27,9 +27,10 @@ class PlayerViewController: AVPlayerViewController {
             contentOverlayView?.addSubview(imageView)
         }
         let likeButton = UIButton()
-        likeButton.setTitle("Hello", for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        //likeButton.setTitle("Hello", for: .normal)
         likeButton.setTitleColor(.blue, for: .normal)
-        likeButton.frame = CGRect(x: 15, y: -50, width: 300, height: 500)
+        likeButton.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
         self.view.addSubview(likeButton)
     }
 }

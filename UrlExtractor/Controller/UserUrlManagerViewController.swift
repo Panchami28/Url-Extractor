@@ -91,7 +91,12 @@ extension UserUrlManagerViewController: UITextFieldDelegate {
         if result == true {
             submitButton.isEnabled = true
         } else {
-            UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
+            if urlTextField.text == "" {
+                UIAlertController.showAlert("Textfield is empty", self)
+            } else {
+                UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
+                
+            }
         }
     }
 

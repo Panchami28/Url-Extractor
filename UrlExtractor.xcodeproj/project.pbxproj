@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2000CA1526426595001CA014 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2000CA1426426595001CA014 /* UIViewController+Convenience.swift */; };
 		2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */; };
 		203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932026395C4C00ABF38A /* StreamUrlCell.swift */; };
 		203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203A932126395C4C00ABF38A /* StreamUrlCell.xib */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2000CA1426426595001CA014 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicChannelModel.swift; sourceTree = "<group>"; };
 		203A932026395C4C00ABF38A /* StreamUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlCell.swift; sourceTree = "<group>"; };
 		203A932126395C4C00ABF38A /* StreamUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamUrlCell.xib; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				205FC71C26412DD600C72B3E /* FavoriteStreams+CoreDataClass.swift */,
 				205FC71926412DC900C72B3E /* FavoriteStreams+CoreDataProperties.swift */,
 				204225E326410B2200E408C7 /* FavoriteStreamDataManager.swift */,
+				2000CA1426426595001CA014 /* UIViewController+Convenience.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			files = (
 				20E545DF263FBA5500A8A3B1 /* Stream+CoreDataClass.swift in Sources */,
 				20B58074263C597900A1F985 /* Reachability.swift in Sources */,
+				2000CA1526426595001CA014 /* UIViewController+Convenience.swift in Sources */,
 				203A932726396F0700ABF38A /* FavouriteStreamViewController.swift in Sources */,
 				205FC72026414C4100C72B3E /* PlayerViewController.swift in Sources */,
 				2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */,
@@ -483,7 +487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.UrlExtractor;
+				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.A.UrlExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -504,7 +508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.UrlExtractor;
+				PRODUCT_BUNDLE_IDENTIFIER = Panchami.Rao.A.UrlExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

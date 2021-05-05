@@ -14,7 +14,10 @@ class FavouriteStreamViewController: UIViewController {
     @IBOutlet weak var favoritesTableView: UITableView!
     
     var favoriteStreamDataManager = FavoriteStreamDataManager()
-
+    
+// MARK: -
+// MARK: View LifeCycle
+// MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesTableView.dataSource = self
@@ -74,12 +77,14 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
     
 }
 
+// MARK: -
+// MARK: Custom Table cell Delegate
+// MARK: -
 extension FavouriteStreamViewController : StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
         let cell = favoritesTableView.cellForRow(at: indexPath) as! StreamUrlCell
         cell.favoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
         favoriteStreamDataManager.deleteData(favoriteStreamDataManager.item(indexPath))
-        //favoriteStreamDataManager.getData()
         favoritesTableView.deleteRows(at: [indexPath], with: .fade)
         favoritesTableView.reloadData()
     }

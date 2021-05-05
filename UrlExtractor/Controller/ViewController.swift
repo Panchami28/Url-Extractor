@@ -34,7 +34,8 @@ class ViewController: UIViewController {
         
         switch reachability.connection {
         case .wifi:
-            UIAlertController.showAlert("Reachable via wifi", self)
+            print("Reachable wifi")
+            //UIAlertController.showAlert("Reachable via wifi", self)
         case .cellular:
             UIAlertController.showAlert("Reachable via Cellular", self)
         case .unavailable:
