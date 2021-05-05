@@ -24,7 +24,6 @@ class MainChannelViewController: UIViewController {
         mainUrlTableView.dataSource = self
         mainUrlTableView.delegate = self
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
-        //animateTableView()
     }
     
 // MARK: -
@@ -39,8 +38,6 @@ class MainChannelViewController: UIViewController {
                 streamUrlViewController.mainSiteName = channelName
         }
     }
-    
-   
     
     func displayWebView(websiteUrl: String?) {
         if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {

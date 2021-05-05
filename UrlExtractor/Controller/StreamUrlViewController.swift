@@ -9,6 +9,7 @@ import UIKit
 import SwiftSoup
 import AVFoundation
 import AVKit
+import Reachability
 
 class StreamUrlViewController: ViewController {
         
@@ -34,6 +35,7 @@ class StreamUrlViewController: ViewController {
         urlTableView.dataSource = self
         urlTableView.delegate = self
         self.navigationItem.title = "Streaming Urls"
+        //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
     
@@ -41,8 +43,12 @@ class StreamUrlViewController: ViewController {
         super.viewDidAppear(true)
         //To load stream urls only once initially when view appears
         if self.isBeingPresented || self.isMovingToParent {
-            scrapeWebpage(mainUrl) {
-                self.checkStreamUrlArray()
+            if reachability.connection == .unavailable {
+                loadingActivityIndicator.isHidden = true
+            } else {
+                scrapeWebpage(mainUrl) {
+                    self.checkStreamUrlArray()
+                }
             }
         }
     }
@@ -63,17 +69,22 @@ class StreamUrlViewController: ViewController {
                 }
                 let content = try String(contentsOf: requiredUrl)
                 do{
+                    //Get source code of entire webpage of given URL
                     let doc: Document = try SwiftSoup.parse(content)
                     let myText = try doc.outerHtml()
+                    //Parse the source code for given regex
                     if let pattern = self?.regexx,
                        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
                         let string = myText as NSString
                         regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
+                            //If match found, get the corresponding URL
                             let obtainedString = string.substring(with: Result.range)
                             let obtainedUrl = URL(string: obtainedString)
+                            //Check if corresponding URL is streamable or not
                             if let obtainedUrl = obtainedUrl {
                                 self?.isPlayable(url: obtainedUrl) { (streamResult) in
                                     print(streamResult)
+                                    //If URL is streamable, append it to streamUrlArray for further processing
                                     if streamResult == true {
                                         self?.streamUrlArray.append(obtainedString)
                                         self?.loadingActivityIndicator.isHidden = true
@@ -158,7 +169,10 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         playMusic(streamUrlArray[indexPath.row])
-        streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
+        //Check if network is available
+        if reachability.connection == .cellular || reachability.connection == .wifi {
+            streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
+        }
     }
 }
 
@@ -168,6 +182,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
 extension StreamUrlViewController: StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
         let result = favoriteStreamDataManager.addData(streamUrlArray[indexPath.row], mainSiteName)
+        //If stream URL is already prsent in favourite list, then display action sheet with option to remove it from list
         if result == false {
             let alert = UIAlertController(title: "Alert", message: "\(streamUrlArray[indexPath.row]) already exists in Favorite list. Do you want to remove it from list?", preferredStyle: .actionSheet)
             let action1 = UIAlertAction(title: "Remove", style: .default) { (action) in

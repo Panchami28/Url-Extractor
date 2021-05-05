@@ -23,6 +23,7 @@ class FavouriteStreamViewController: UIViewController {
         favoritesTableView.dataSource = self
         favoritesTableView.delegate = self
         favoriteStreamDataManager.getData()
+        //Register a custome cell
         favoritesTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
     
@@ -30,20 +31,13 @@ class FavouriteStreamViewController: UIViewController {
 //MARK: Private Methods
 //MARK: -
     
-    func playMusic(_ musicUrl: String,_ mainChannel: String) {
+    func playMusic(_ musicUrl: String,_ mainSiteName: String) {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
-            let player = AVPlayer(url: requiredUrl)
-            // Creating a player view controller
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+            let playerViewController = PlayerViewController()
             self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-                if let frame = playerViewController.contentOverlayView?.bounds {
-                    let imageView = UIImageView(image: UIImage(named: mainChannel))
-                    imageView.frame = frame
-                    playerViewController.contentOverlayView?.addSubview(imageView)
-                }
+                playerViewController.playMusic(requiredUrl)
+                playerViewController.displayImage(mainSiteName)
             }
         } else {
             UIAlertController.showAlert("Unable to play the track", self)

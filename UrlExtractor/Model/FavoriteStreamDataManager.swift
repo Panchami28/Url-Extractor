@@ -11,7 +11,7 @@ import CoreData
 
 class FavoriteStreamDataManager {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var items = [FavoriteStreams]()
+    private var items = [FavoriteStreams]()
     
     func addData(_ streamUrl: String, _ mainSiteName:String) -> Bool {
         var urlArray = [String]()
@@ -88,6 +88,7 @@ class FavoriteStreamDataManager {
     
     func deleteSelectedData(_ streamUrl: String) {
         var item = [FavoriteStreams]()
+        //Selection criteria is defined
         do {
             let request = FavoriteStreams.fetchRequest() as NSFetchRequest<FavoriteStreams>
             let predicate = NSPredicate(format: "url CONTAINS '\(streamUrl)'")

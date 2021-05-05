@@ -23,17 +23,11 @@ class RecentStreamTableViewController: UITableViewController {
     func playMusic(_ musicUrl: String,_ mainChannel: String) {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
-            let player = AVPlayer(url: requiredUrl)
-            // Creating a player view controller
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+            // Creating an instance of playerViewController
+            let playerViewController = PlayerViewController()
             self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-                if let frame = playerViewController.contentOverlayView?.bounds {
-                    let imageView = UIImageView(image: UIImage(named: mainChannel))
-                    imageView.frame = frame
-                    playerViewController.contentOverlayView?.addSubview(imageView)
-                }
+                playerViewController.playMusic(requiredUrl)
+                playerViewController.displayImage(mainChannel)
             }
         } else {
             UIAlertController.showAlert("Unable to play the track", self)
@@ -72,7 +66,6 @@ class RecentStreamTableViewController: UITableViewController {
         UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
             cell.transform = CGAffineTransform(translationX: 0, y: 0);
         }, completion: nil)
-        
         index += 1
     }
 }

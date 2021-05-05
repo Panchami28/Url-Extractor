@@ -17,8 +17,10 @@ class StreamDataManager {
     func addData(_ streamUrl: String,_ mainSiteName: String) {
         //Check if item exists in db
         getData()
+        //Get all urls and compare it with current streamUrl
         getUrl()
         if urlArray.contains(streamUrl) {
+            //If already present, update item in db
             updateData(streamUrl,mainSiteName)
         } else {
             //Create a stream object
