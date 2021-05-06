@@ -56,6 +56,38 @@ enum MainChannelOption :CaseIterable{
             return "https://cheesyfm.co.uk/radioplayer/"
         }
     }
+        var websiteName : String {
+            switch self {
+            case .RadioNet:
+                return "RadioNet"
+            case .ShalomBeats:
+                return "ShalomBeats Radio"
+            case .NammRadio:
+                return "NammRadio"
+            case .RadioMirchi:
+                return "RadioMirchi"
+            case .CBCListen:
+                return "CBCListen Radio"
+            case .IndianAustralianRadio:
+                return "Indian Australian Radio"
+            case .BombayBeats:
+                return "BombayBeats Radio"
+            case .RadioCityHindi:
+                return "RadioCity Hindi"
+            case .Wgbh:
+                return "WGBH Radio"
+            case .CamFM:
+                return "CamFM Radio"
+            case .Madhuban:
+                return "Madhuban Radio"
+            case .ElectricRadio:
+                return "Electric Radio"
+            case .RadioSwissPop:
+                return "RadioSwissPop"
+            case .CheesyRadio :
+                return "CheesyRadio"
+            }
+    }
 }
 
 
