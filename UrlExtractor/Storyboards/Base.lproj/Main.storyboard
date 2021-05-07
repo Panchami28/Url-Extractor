@@ -35,105 +35,134 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fb9-hD-ATo">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-Ht-8Uy">
-                                <rect key="frame" x="45" y="111" width="300" height="280"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="280" id="Wv8-84-hXO"/>
-                                    <constraint firstAttribute="width" constant="300" id="z5e-9g-KBw"/>
-                                </constraints>
-                                <string key="text">This app helps users to search and list streaming audio urls from a webpage, given the URL of a website. It also allows users to view a set of sample websites whose streaming urls are listed and also allows users to play tracks on clicking these urls.</string>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-qI-UpM">
-                                <rect key="frame" x="67.666666666666686" y="436" width="255" height="338"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCT-EK-yTz">
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq" userLabel="Search Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="255" height="62"/>
-                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                        <state key="normal" title="Search" image="magnifyingglass" catalog="system">
-                                            <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="18"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2i-aK-gWh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-Vl-WFP" userLabel="View Sample Stations Button">
-                                        <rect key="frame" x="0.0" y="92" width="255" height="62"/>
-                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                        <state key="normal" title="View Sample Stations" image="music.note.list" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="viewSampleStationsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cTm-zV-wxm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86h-bv-GVD" userLabel="View Favorites Button">
-                                        <rect key="frame" x="0.0" y="184" width="255" height="62"/>
-                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" title="View Favorites" image="heart.fill" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="viewFavouritesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aKG-WK-UJ3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjd-GM-LJU" userLabel="View Recents Button">
-                                        <rect key="frame" x="0.0" y="276" width="255" height="62"/>
-                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                        <state key="normal" title="View Recents" image="clock.arrow.2.circlepath" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="viewRecentButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRD-1N-kAn"/>
-                                        </connections>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="neS-y7-RRD" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fb9-hD-ATo">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-Ht-8Uy">
+                                                <rect key="frame" x="45" y="50" width="300" height="280"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="280" id="Wv8-84-hXO"/>
+                                                    <constraint firstAttribute="width" constant="300" id="z5e-9g-KBw"/>
+                                                </constraints>
+                                                <string key="text">This app helps users to search and list streaming audio urls from a webpage, given the URL of a website. It also allows users to view a set of sample websites whose streaming urls are listed and also allows users to play tracks on clicking these urls.</string>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-qI-UpM">
+                                                <rect key="frame" x="67.666666666666686" y="375" width="255" height="338"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-sH-6wq" userLabel="Search Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="255" height="62"/>
+                                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                        <state key="normal" title="Search" image="magnifyingglass" catalog="system">
+                                                            <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="18"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2i-aK-gWh"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-Vl-WFP" userLabel="View Sample Stations Button">
+                                                        <rect key="frame" x="0.0" y="92" width="255" height="62"/>
+                                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                        <state key="normal" title="View Sample Stations" image="music.note.list" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="viewSampleStationsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cTm-zV-wxm"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86h-bv-GVD" userLabel="View Favorites Button">
+                                                        <rect key="frame" x="0.0" y="184" width="255" height="62"/>
+                                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                        <state key="normal" title="View Favorites" image="heart.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="viewFavouritesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aKG-WK-UJ3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjd-GM-LJU" userLabel="View Recents Button">
+                                                        <rect key="frame" x="0.0" y="276" width="255" height="62"/>
+                                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                        <state key="normal" title="View Recents" image="clock.arrow.2.circlepath" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="viewRecentButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRD-1N-kAn"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="h4j-qI-UpM" firstAttribute="centerX" secondItem="neS-y7-RRD" secondAttribute="centerX" id="5W0-Ps-Hzt"/>
+                                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="top" secondItem="neS-y7-RRD" secondAttribute="top" constant="50" id="AG7-jk-wCw"/>
+                                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="neS-y7-RRD" secondAttribute="centerX" id="Cb7-Nn-dQp"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="h4j-qI-UpM" secondAttribute="bottom" constant="20" id="U7h-D0-4Fy"/>
+                                            <constraint firstItem="h4j-qI-UpM" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="45" id="XYF-Oi-5Dm"/>
+                                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="leading" secondItem="neS-y7-RRD" secondAttribute="leading" id="cq4-Qk-5Dj"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fb9-hD-ATo" secondAttribute="trailing" id="haV-X9-YTj"/>
+                                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="top" secondItem="neS-y7-RRD" secondAttribute="top" id="odL-RY-pAz"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fb9-hD-ATo" secondAttribute="bottom" id="uYA-8n-7LD"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="neS-y7-RRD" secondAttribute="bottom" id="7G8-L3-mi1"/>
+                                    <constraint firstAttribute="trailing" secondItem="neS-y7-RRD" secondAttribute="trailing" id="Q9i-vw-mF8"/>
+                                    <constraint firstItem="neS-y7-RRD" firstAttribute="top" secondItem="MCT-EK-yTz" secondAttribute="top" id="bxH-pQ-bMk"/>
+                                    <constraint firstItem="neS-y7-RRD" firstAttribute="leading" secondItem="MCT-EK-yTz" secondAttribute="leading" id="dpi-aH-Heu"/>
+                                    <constraint firstItem="neS-y7-RRD" firstAttribute="centerX" secondItem="MCT-EK-yTz" secondAttribute="centerX" id="xxT-iM-K3J"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DsB-cv-3qX"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Rge-z8-Yik"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1FY-XJ-O6c"/>
-                            <constraint firstItem="h4j-qI-UpM" firstAttribute="top" secondItem="LbJ-Ht-8Uy" secondAttribute="bottom" constant="45" id="3HG-ch-xmT"/>
-                            <constraint firstAttribute="bottom" secondItem="Fb9-hD-ATo" secondAttribute="bottom" id="6x9-Vu-FmM"/>
-                            <constraint firstAttribute="trailing" secondItem="Fb9-hD-ATo" secondAttribute="trailing" id="ce1-b5-xlK"/>
-                            <constraint firstItem="Fb9-hD-ATo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="df1-Np-MBt"/>
-                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="23" id="gNh-AA-vXE"/>
-                            <constraint firstItem="h4j-qI-UpM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="o9L-Uw-fxO"/>
-                            <constraint firstItem="LbJ-Ht-8Uy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tRA-0i-XcF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="MCT-EK-yTz" secondAttribute="leading" id="Ha8-ky-B1N"/>
+                            <constraint firstItem="MCT-EK-yTz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IM4-u6-BLZ"/>
+                            <constraint firstItem="MCT-EK-yTz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OQF-3N-UN7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="MCT-EK-yTz" secondAttribute="top" id="dL6-ht-LK5"/>
+                            <constraint firstItem="neS-y7-RRD" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="hdz-hO-dYQ"/>
+                            <constraint firstItem="neS-y7-RRD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="lUc-QK-1lg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="IOI-oW-DCO"/>
@@ -186,7 +215,7 @@
                         <viewLayoutGuide key="safeArea" id="cdk-T4-2z1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dlP-e3-eSe" firstAttribute="centerX" secondItem="Abg-TN-wxN" secondAttribute="centerX" id="Cfy-sp-6eD"/>
+                            <constraint firstItem="dlP-e3-eSe" firstAttribute="centerX" secondItem="cdk-T4-2z1" secondAttribute="centerX" id="OI7-L3-F3j"/>
                             <constraint firstItem="dlP-e3-eSe" firstAttribute="top" secondItem="Abg-TN-wxN" secondAttribute="bottom" constant="52" id="OVF-Un-jLR"/>
                             <constraint firstItem="Voj-or-ZzY" firstAttribute="centerX" secondItem="dlP-e3-eSe" secondAttribute="centerX" id="Wqd-V9-wEz"/>
                             <constraint firstItem="cdk-T4-2z1" firstAttribute="trailing" secondItem="Abg-TN-wxN" secondAttribute="trailing" constant="32" id="ZKR-xb-mF9"/>
@@ -212,18 +241,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VtX-HM-IPc">
-                            <size key="itemSize" width="128" height="128"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VtX-HM-IPc">
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="njI-Yk-GP6">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="95" y="5" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Rp9-rb-iUX">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
                             </collectionViewCell>
@@ -463,7 +492,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" id="K6l-US-xr5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" id="K6l-US-xr5">
                                 <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K6l-US-xr5" id="EWo-cw-iFt">

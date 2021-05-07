@@ -61,17 +61,17 @@ enum MainChannelOption :CaseIterable{
             case .RadioNet:
                 return "RadioNet"
             case .ShalomBeats:
-                return "ShalomBeats Radio"
+                return "Shalom Beats Radio"
             case .NammRadio:
-                return "NammRadio"
+                return "Namm Radio"
             case .RadioMirchi:
-                return "RadioMirchi"
+                return "Radio Mirchi"
             case .CBCListen:
                 return "CBCListen Radio"
             case .IndianAustralianRadio:
                 return "Indian Australian Radio"
             case .BombayBeats:
-                return "BombayBeats Radio"
+                return "Bombay Beats Radio"
             case .RadioCityHindi:
                 return "RadioCity Hindi"
             case .Wgbh:
@@ -83,9 +83,9 @@ enum MainChannelOption :CaseIterable{
             case .ElectricRadio:
                 return "Electric Radio"
             case .RadioSwissPop:
-                return "RadioSwissPop"
+                return "Radio SwissPop"
             case .CheesyRadio :
-                return "CheesyRadio"
+                return "Cheesy Radio"
             }
     }
 }

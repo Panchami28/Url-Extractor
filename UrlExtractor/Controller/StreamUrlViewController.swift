@@ -26,7 +26,7 @@ class StreamUrlViewController: ViewController {
     private var favoriteStreamDataManager = FavoriteStreamDataManager()
     private var streamDataManager = StreamDataManager()
     private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
-
+    
 // MARK: -
 // MARK: View LifeCycle
 // MARK: -
@@ -53,49 +53,43 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-
 // MARK: -
 // MARK: Private methods
 // MARK: -
         
     func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()-> Void) {
         scrapingWebpageQueue.async { [weak self] in
+            guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else {
+                self?.handleError()
+                return
+            }
             do{
-                guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else {
-                    if let viewController = self {
-                        UIAlertController.showAlert("Oops!Something went wrong", viewController)
-                    }
-                    return
-                }
+                ///Get source code of entire webpage of given URL
                 let content = try String(contentsOf: requiredUrl)
-                do{
-                    //Get source code of entire webpage of given URL
-                    let doc: Document = try SwiftSoup.parse(content)
-                    let myText = try doc.outerHtml()
-                    //Parse the source code for given regex
-                    if let pattern = self?.regexx,
-                       let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
-                        let string = myText as NSString
-                        regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
-                            //If match found, get the corresponding URL
-                            let obtainedString = string.substring(with: Result.range)
-                            let obtainedUrl = URL(string: obtainedString)
-                            //Check if corresponding URL is streamable or not
-                            if let obtainedUrl = obtainedUrl {
-                                self?.isPlayable(url: obtainedUrl) { (streamResult) in
-                                    print(streamResult)
-                                    //If URL is streamable, append it to streamUrlArray for further processing
-                                    if streamResult == true {
-                                        self?.streamUrlArray.append(obtainedString)
-                                        self?.loadingActivityIndicator.isHidden = true
-                                    }
-                                    self?.urlTableView.reloadData()
+                ///Parse the source code for given regex
+                if let pattern = self?.regexx,
+                   let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+                    let string = (content) as NSString
+                    regex.matches(in: content, options: [], range: NSRange(location: 0, length: string.length)).map {
+                        ///If match found, get the corresponding URL
+                        let obtainedString = string.substring(with: $0.range)
+                        let obtainedUrl = URL(string: obtainedString)
+                        ///Check if corresponding URL is streamable or not
+                        if let obtainedUrl = obtainedUrl {
+                            self?.isPlayable(url: obtainedUrl) { (streamResult) in
+                                print(streamResult)
+                                ///If URL is streamable, append it to streamUrlArray for further processing
+                                if streamResult == true {
+                                    self?.streamUrlArray.append(obtainedString)
+                                    self?.loadingActivityIndicator.isHidden = true
                                 }
+                                self?.urlTableView.reloadData()
                             }
                         }
                     }
                 }
             } catch {
+                self?.handleError()
                 print("Error while parsing:\(error)")
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
@@ -134,6 +128,13 @@ class StreamUrlViewController: ViewController {
             }
         } else {
             UIAlertController.showAlert("Unable to play the track", self)
+        }
+    }
+    
+    func handleError() {
+        DispatchQueue.main.async {
+            self.loadingActivityIndicator.isHidden = true
+            UIAlertController.showAlert("Oops!Something went wrong", self)
         }
     }
     

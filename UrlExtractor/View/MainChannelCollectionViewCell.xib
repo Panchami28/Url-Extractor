@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="226" height="337"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="89v-eN-YXv">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="89v-eN-YXv">
                         <rect key="frame" x="0.0" y="44" width="226" height="232.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="226" id="Ufk-Ze-qG0"/>
@@ -26,18 +26,18 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="15"/>
+                                <integer key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-YK-e65">
-                        <rect key="frame" x="8" y="284.5" width="41.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="8" y="284.5" width="47.5" height="44.5"/>
+                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
                         <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QQX-BP-dpH" userLabel="List Button">
-                        <rect key="frame" x="165" y="275" width="61" height="39.5"/>
+                        <rect key="frame" x="165" y="275" width="61" height="63.5"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.2420537243150685" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="61" id="tzr-wq-yvr"/>
@@ -57,9 +57,9 @@
                 <constraint firstItem="QQX-BP-dpH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jge-YK-e65" secondAttribute="trailing" constant="4" id="03e-4z-vG1"/>
                 <constraint firstItem="Jge-YK-e65" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="4Mf-Dy-fw1"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="89v-eN-YXv" secondAttribute="trailing" id="8Lz-eZ-ma8"/>
-                <constraint firstItem="QQX-BP-dpH" firstAttribute="top" secondItem="89v-eN-YXv" secondAttribute="bottom" constant="-1.5" id="9NF-2K-ejt"/>
+                <constraint firstItem="89v-eN-YXv" firstAttribute="bottom" secondItem="QQX-BP-dpH" secondAttribute="top" constant="1.5" id="9NF-2K-ejt"/>
                 <constraint firstItem="Jge-YK-e65" firstAttribute="top" secondItem="89v-eN-YXv" secondAttribute="bottom" constant="8" id="Bo8-qA-3Uc"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Jge-YK-e65" secondAttribute="bottom" constant="32" id="Scq-bs-9KI"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Jge-YK-e65" secondAttribute="bottom" constant="8" id="Scq-bs-9KI"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="89v-eN-YXv" secondAttribute="top" id="aUD-Ie-h9a"/>
                 <constraint firstItem="89v-eN-YXv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="e4Q-kH-ZLc"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="QQX-BP-dpH" secondAttribute="trailing" id="icN-RQ-xue"/>
@@ -71,7 +71,7 @@
                 <outlet property="listButton" destination="QQX-BP-dpH" id="6vb-Ab-RDi"/>
                 <outlet property="urlLabel" destination="Jge-YK-e65" id="BvB-kr-eDM"/>
             </connections>
-            <point key="canvasLocation" x="-278.26086956521743" y="2.34375"/>
+            <point key="canvasLocation" x="-254" y="-65"/>
         </collectionViewCell>
     </objects>
     <resources>

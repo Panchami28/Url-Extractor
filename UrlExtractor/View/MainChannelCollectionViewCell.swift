@@ -30,5 +30,5 @@ class MainChannelCollectionViewCell: UICollectionViewCell {
             delegate?.listButtonClicked(indexpath)
         }
     }
-    
 }
+

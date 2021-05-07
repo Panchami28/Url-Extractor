@@ -52,6 +52,7 @@ class RecentStreamTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = recentTableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
         cell.textLabel?.text = streamDataManager.item(indexPath).url
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     

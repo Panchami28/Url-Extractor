@@ -13,15 +13,17 @@ private let reuseIdentifier = "Cell"
 class MainChannelCollectionViewController: UICollectionViewController {
 
     let basicChannel = BasicChannelModel()
+    var cellWidth:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(UINib(nibName: "MainChannelCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "MainChannelCollectionViewCell")
-        let height = view.frame.size.height
-        let width = view.frame.size.width
-        // in case you you want the cell to be 40% of your controllers view
-        let layout =  self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width * 0.3, height: height * 0.3)
+//        let height = view.frame.size.height
+//        let width = view.frame.size.width
+//        // in case you you want the cell to be 40% of your controllers view
+//        let layout =  self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.itemSize = CGSize(width: width * 0.3, height: height * 0.3)
+//        cellWidth = (UIScreen.main.bounds.width - 54)/3
     }
 
 // MARK: -
@@ -92,11 +94,13 @@ extension MainChannelCollectionViewController: MainChannelCollectionViewCellDele
     }
 }
 
-//extension MainChannelCollectionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let height = self.collectionView.frame.size.height
-//        let width = self.collectionView.frame.size.width
-//        // in case you you want the cell to be 40% of your controllers view
-//        return CGSize(width: width * 0.5, height: height * 0.5)
-//    }
-//}
+extension MainChannelCollectionViewController: UICollectionViewDelegateFlowLayout {
+   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // in case you you want the cell to be 40% of your controllers view
+    if UIDevice.current.userInterfaceIdiom == .phone {
+        return CGSize(width: (view.frame.size.width - 50)/2 , height: (view.frame.size.height - 50)/2)
+    } else {
+        return CGSize(width: (view.frame.size.width - 50)/4 , height: (view.frame.size.height - 50)/4)
+    }
+    }
+}
