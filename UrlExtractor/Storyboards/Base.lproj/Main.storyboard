@@ -211,6 +211,13 @@
                                     <action selector="viewButtonPressed:" destination="gMo-Y0-58c" eventType="touchUpInside" id="wIU-rf-2ko"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wh-K3-Jr9" userLabel="View Recent Search">
+                                <rect key="frame" x="118.66666666666669" y="659" width="153" height="30"/>
+                                <state key="normal" title="View Recent Searches"/>
+                                <connections>
+                                    <action selector="viewRecentButtonPressed:" destination="gMo-Y0-58c" eventType="touchUpInside" id="4n0-b5-eI4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cdk-T4-2z1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -220,8 +227,10 @@
                             <constraint firstItem="Voj-or-ZzY" firstAttribute="centerX" secondItem="dlP-e3-eSe" secondAttribute="centerX" id="Wqd-V9-wEz"/>
                             <constraint firstItem="cdk-T4-2z1" firstAttribute="trailing" secondItem="Abg-TN-wxN" secondAttribute="trailing" constant="32" id="ZKR-xb-mF9"/>
                             <constraint firstItem="Voj-or-ZzY" firstAttribute="top" secondItem="dlP-e3-eSe" secondAttribute="bottom" constant="51" id="dH6-gm-C7M"/>
+                            <constraint firstItem="3wh-K3-Jr9" firstAttribute="top" secondItem="Voj-or-ZzY" secondAttribute="bottom" constant="32" id="fx6-Er-7HU"/>
                             <constraint firstItem="Abg-TN-wxN" firstAttribute="centerY" secondItem="cdk-T4-2z1" secondAttribute="centerY" id="hzu-cF-sfy"/>
                             <constraint firstItem="Abg-TN-wxN" firstAttribute="leading" secondItem="cdk-T4-2z1" secondAttribute="leading" constant="32" id="i0Y-A2-sY4"/>
+                            <constraint firstItem="3wh-K3-Jr9" firstAttribute="centerX" secondItem="Voj-or-ZzY" secondAttribute="centerX" id="kvP-OK-uGw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -231,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nY1-uF-1P7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1811" y="94"/>
+            <point key="canvasLocation" x="1810.7692307692307" y="93.838862559241704"/>
         </scene>
         <!--Main Channel Collection View Controller-->
         <scene sceneID="hjS-H8-toF">
@@ -265,7 +274,47 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZ0-Jr-KgW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="830"/>
+            <point key="canvasLocation" x="2714" y="825"/>
+        </scene>
+        <!--Recent Search View Controller-->
+        <scene sceneID="DL2-JG-s9L">
+            <objects>
+                <viewController storyboardIdentifier="RecentSearchViewController" id="58D-an-ad7" customClass="RecentSearchViewController" customModule="UrlExtractor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sKc-nX-ToU">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-Mg-76C">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cc9-LY-1Z7">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cc9-LY-1Z7" id="mSB-33-wS4">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nsz-jN-8J5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nsz-jN-8J5" firstAttribute="trailing" secondItem="Hoq-Mg-76C" secondAttribute="trailing" id="M62-a6-FGZ"/>
+                            <constraint firstItem="Hoq-Mg-76C" firstAttribute="leading" secondItem="Nsz-jN-8J5" secondAttribute="leading" id="Vga-Zq-a0X"/>
+                            <constraint firstItem="Nsz-jN-8J5" firstAttribute="bottom" secondItem="Hoq-Mg-76C" secondAttribute="bottom" id="eKS-tf-7cM"/>
+                            <constraint firstItem="Hoq-Mg-76C" firstAttribute="top" secondItem="Nsz-jN-8J5" secondAttribute="top" id="qJC-of-ZgT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="recentSearchTableView" destination="Hoq-Mg-76C" id="x5Q-js-xzd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJb-jq-6Kt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835" y="825"/>
         </scene>
         <!--Main Channel View Controller-->
         <scene sceneID="TtX-qN-ezI">

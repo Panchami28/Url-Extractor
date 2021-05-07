@@ -11,6 +11,8 @@ class UserUrlManagerViewController: UIViewController {
 
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+    
+    private var recentSearchManager = RecentSearchManager()
  
 // MARK: -
 // MARK: View Lifecycle
@@ -42,6 +44,13 @@ class UserUrlManagerViewController: UIViewController {
         }
     }
     
+    @IBAction func viewRecentButtonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let recentSearchViewController = storyboard.instantiateViewController(identifier: "RecentSearchViewController") as? RecentSearchViewController {
+            self.navigationController?.pushViewController(recentSearchViewController, animated: true)
+        }
+    }
+    
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         loadData()
     }
@@ -63,7 +72,10 @@ class UserUrlManagerViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
             self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-            streamUrlViewController.mainUrl = urlTextField.text ?? ""
+            if let textFieldText = urlTextField.text {
+                streamUrlViewController.mainUrl = textFieldText
+                recentSearchManager.addData(textFieldText)
+            }
         }
     }
     

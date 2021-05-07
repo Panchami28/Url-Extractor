@@ -98,7 +98,7 @@ extension MainChannelCollectionViewController: UICollectionViewDelegateFlowLayou
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // in case you you want the cell to be 40% of your controllers view
     if UIDevice.current.userInterfaceIdiom == .phone {
-        return CGSize(width: (view.frame.size.width - 50)/2 , height: (view.frame.size.height - 50)/2)
+        return CGSize(width: (view.frame.size.width - 50)/2 , height: (view.frame.size.height - 50)/3)
     } else {
         return CGSize(width: (view.frame.size.width - 50)/4 , height: (view.frame.size.height - 50)/4)
     }
