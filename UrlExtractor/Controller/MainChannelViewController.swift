@@ -23,6 +23,7 @@ class MainChannelViewController: UIViewController {
         super.viewDidLoad()
         mainUrlTableView.dataSource = self
         mainUrlTableView.delegate = self
+        mainUrlTableView.separatorStyle = .none
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     

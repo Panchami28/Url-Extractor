@@ -14,6 +14,7 @@ protocol StreamUrlCellDelegate: AnyObject {
 
 class StreamUrlCell: UITableViewCell {
 
+    @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var streamLabel: UILabel!
     @IBOutlet weak var favoritesButton: UIButton!
     
@@ -30,7 +31,6 @@ class StreamUrlCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
     
     @IBAction func addToFavouritesButtonClicked(_ sender: UIButton) {
         if let indexpath = indexpath {

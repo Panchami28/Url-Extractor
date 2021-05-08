@@ -35,6 +35,7 @@ class StreamUrlViewController: ViewController {
         urlTableView.dataSource = self
         urlTableView.delegate = self
         self.navigationItem.title = "Streaming Urls"
+        urlTableView.separatorStyle = .none
         //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
@@ -152,6 +153,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
         var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
+        //cell.channelImageView.image = UIImage(named: mainSiteName)
         cell.delegate = self
         cell.indexpath = indexPath
         //Check if streamUrl is present in favorite stream list to display heart

@@ -23,7 +23,7 @@ class WebViewController: SFSafariViewController,SFSafariViewControllerDelegate {
     
     func showActivityIndicatory() {
         let container: UIView = UIView()
-        container.frame = CGRect(x: 30, y: 90, width: 80, height: 80) // Set X and Y whatever you want
+        container.frame = CGRect(x: self.view.center.x, y: self.view.center.y, width: 80, height: 80) // Set X and Y whatever you want
         container.backgroundColor = .clear
         let activityView = UIActivityIndicatorView(style: .large)
         activityView.center = self.view.center

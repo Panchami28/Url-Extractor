@@ -15,6 +15,7 @@ class RecentStreamTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //recentTableView.separatorStyle = .none
         streamDataManager.getData()
     }
 // MARK: -
@@ -53,6 +54,8 @@ class RecentStreamTableViewController: UITableViewController {
         let cell = recentTableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
         cell.textLabel?.text = streamDataManager.item(indexPath).url
         cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         return cell
     }
     

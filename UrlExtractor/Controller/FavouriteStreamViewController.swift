@@ -22,6 +22,7 @@ class FavouriteStreamViewController: UIViewController {
         super.viewDidLoad()
         favoritesTableView.dataSource = self
         favoritesTableView.delegate = self
+        favoritesTableView.separatorStyle = .none
         favoriteStreamDataManager.getData()
         //Register a custome cell
         favoritesTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
@@ -59,6 +60,7 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = favoriteStreamDataManager.item(indexPath).url
         cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        //cell.channelImageView.image = UIImage(named: favoriteStreamDataManager.item(indexPath).mainChannel ?? "")
         cell.delegate = self
         cell.indexpath = indexPath
         return cell

@@ -39,8 +39,8 @@ class UserUrlManagerViewController: UIViewController {
     
     @IBAction func viewButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let mainChannelViewController = storyboard.instantiateViewController(identifier: "MainChannelViewController") as? MainChannelViewController {
-            self.navigationController?.pushViewController(mainChannelViewController, animated: true)
+        if let mainChannelCollectionViewController = storyboard.instantiateViewController(identifier: "MainChannelCollectionViewController") as? MainChannelCollectionViewController {
+            self.navigationController?.pushViewController(mainChannelCollectionViewController, animated: true)
         }
     }
     
