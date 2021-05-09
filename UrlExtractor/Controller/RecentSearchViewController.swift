@@ -27,6 +27,7 @@ class RecentSearchViewController: UIViewController, UITableViewDataSource, UITab
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
             self.navigationController?.pushViewController(streamUrlViewController, animated: true)
             streamUrlViewController.mainUrl = siteUrl
+            streamUrlViewController.mainSiteName = "RecentStation"
         }
     }
     

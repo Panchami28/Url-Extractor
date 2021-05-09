@@ -17,6 +17,8 @@ class RecentStreamTableViewController: UITableViewController {
         super.viewDidLoad()
         //recentTableView.separatorStyle = .none
         streamDataManager.getData()
+        //Register a custome cell
+        recentTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
 // MARK: -
 // MARK: - Private Methods
@@ -51,11 +53,17 @@ class RecentStreamTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recentTableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
-        cell.textLabel?.text = streamDataManager.item(indexPath).url
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
+        let cell = recentTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
+        cell.streamLabel.text = streamDataManager.item(indexPath).url
+        cell.favoritesButton.isHidden = true
+        if let channelImage = streamDataManager.item(indexPath).mainChannel {
+        cell.channelImageView.image = UIImage(named: channelImage)
+        } else {
+            cell.channelImageView.image = UIImage(named: "RecentStation")
+        }
+//        cell.textLabel?.numberOfLines = 0
+//        cell.textLabel?.textColor = .white
+//        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         return cell
     }
     

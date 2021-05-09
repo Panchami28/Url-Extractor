@@ -153,7 +153,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
         var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
-        //cell.channelImageView.image = UIImage(named: mainSiteName)
+        cell.channelImageView.image = UIImage(named: mainSiteName)
         cell.delegate = self
         cell.indexpath = indexPath
         //Check if streamUrl is present in favorite stream list to display heart
