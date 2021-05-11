@@ -110,7 +110,7 @@ extension FavouriteStreamViewController : StreamUrlCellDelegate {
             alert.addAction(action1)
             alert.addAction(action2)
             presentAlertController(alert)
-            favoritesTableView.reloadData()
         }
+        favoritesTableView.reloadData()
     }
 }

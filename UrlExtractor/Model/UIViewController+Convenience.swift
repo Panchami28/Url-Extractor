@@ -23,12 +23,12 @@ extension UIViewController {
         }
     }
     
-    func presentActivityViewController(_ activityViewController: UIActivityViewController, _ sender: AnyObject) {
+    func presentActivityViewController(_ activityViewController: UIActivityViewController) {
         if UIDevice.current.userInterfaceIdiom == .pad {
             if let popoverPresentationController = activityViewController.popoverPresentationController {
-//                popoverPresentationController.permittedArrowDirections = []
-//                popoverPresentationController.sourceView = self.view
-//                popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.minX, y: self.view.bounds.maxY, width: 1.0, height: 1.0)
+                popoverPresentationController.permittedArrowDirections = []
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
                 self.present(activityViewController, animated: true, completion: nil)
             } else {
                 present(activityViewController, animated: true, completion: nil)

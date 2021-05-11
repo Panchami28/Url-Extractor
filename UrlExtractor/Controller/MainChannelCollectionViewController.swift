@@ -10,21 +10,30 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class MainChannelCollectionViewController: UICollectionViewController {
+class MainChannelCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var mainUrlTableView: UITableView!
+    @IBOutlet weak var channelCollectionView: UICollectionView!
+    
     let basicChannel = BasicChannelModel()
-    var cellWidth:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(UINib(nibName: "MainChannelCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "MainChannelCollectionViewCell")
+        ///Set collectionView dataSource and delegate
+        channelCollectionView.delegate = self
+        channelCollectionView.dataSource = self
+        ///Register a custom collection cell
+        channelCollectionView.register(UINib(nibName: "MainChannelCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "MainChannelCollectionViewCell")
+        ///Set navigation title and rightBarButtonItem
         self.navigationItem.title = "Sample Stations"
-//        let height = view.frame.size.height
-//        let width = view.frame.size.width
-//        // in case you you want the cell to be 40% of your controllers view
-//        let layout =  self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.itemSize = CGSize(width: width * 0.3, height: height * 0.3)
-//        cellWidth = (UIScreen.main.bounds.width - 54)/3
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.bookmarks, target: self, action: #selector(switchToListView))
+        ///Set tableView dataSource and delegate
+        mainUrlTableView.dataSource = self
+        mainUrlTableView.delegate = self
+        ///Register a custom table cell
+        mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
+        ///Initially make tableView hidden to avoid overlapping of collectionView and tableView
+        mainUrlTableView.alpha = 0
     }
 
 // MARK: -
@@ -40,29 +49,47 @@ class MainChannelCollectionViewController: UICollectionViewController {
     }
     
     func displayWebView(websiteUrl: String?) {
-//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-//            let config = SFSafariViewController.Configuration()
-//            config.entersReaderIfAvailable = true
-//            let vc = SafariWebViewController(url: url, configuration: config)
-//            present(vc, animated: true)
-//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
+            self.navigationController?.pushViewController(webViewController, animated: true)
+            webViewController.websiteUrl = websiteUrl
+        }
+    }
+    
+    @objc func switchToListView() {
+        //Make collectionView hidden
+        channelCollectionView.alpha = 0
+        //Make tableView visible
+        mainUrlTableView.alpha = 1
+        //Change navigation button to create an option to switch from tableView to collectionView
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(switchToTableView))
+    }
+    
+    @objc func switchToTableView() {
+        //Make collectionView visble
+        channelCollectionView.alpha = 1
+        //Make tableView hidden
+        mainUrlTableView.alpha = 0
+        //Change navigatioBar button to provide an option to switch from collectionView to tableView
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(switchToListView))
     }
     
 // MARK: -
 // MARK: UICollectionViewDataSource
 // MARK: -
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return basicChannel.numberOfChannels()
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainChannelCollectionViewCell", for: indexPath) as! MainChannelCollectionViewCell
         cell.channelImageView.image = UIImage(named: "\(basicChannel.item(atIndexPath: indexPath))")
         cell.urlLabel.text = basicChannel.item(atIndexPath: indexPath).websiteName
@@ -72,11 +99,12 @@ class MainChannelCollectionViewController: UICollectionViewController {
         return cell
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         loadStreamUrlViewControllerData(basicChannel.item(atIndexPath: indexPath).websiteUrl,"\(basicChannel.item(atIndexPath: indexPath))")
     }
     
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    //To create animation for collectionView cells
+   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 100, 0)
         cell.layer.transform = rotationTransform
         cell.alpha = 0
@@ -86,6 +114,46 @@ class MainChannelCollectionViewController: UICollectionViewController {
         }
     }
     
+    //To set the width and height of collectionView cells dynamically based on deviceSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+     if UIDevice.current.userInterfaceIdiom == .phone {
+        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/2 , height: (channelCollectionView.bounds.size.height - 50)/3)
+     } else {
+        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/4 , height: (channelCollectionView.bounds.size.height - 50)/4)
+     }
+     }
+    
+// MARK:
+// MARK: - Table view data source and delegate
+// MARK:
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return basicChannel.numberOfChannels()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = mainUrlTableView.dequeueReusableCell(withIdentifier: "BasicUrlCell", for: indexPath) as! BasicUrlCell
+        cell.logoImage.image = UIImage(named: "\(basicChannel.item(atIndexPath: indexPath))")
+        cell.urlLabel.text = basicChannel.item(atIndexPath: indexPath).websiteUrl
+        cell.indexPath = indexPath
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        loadStreamUrlViewControllerData(basicChannel.item(atIndexPath: indexPath).websiteUrl,"\(basicChannel.item(atIndexPath: indexPath))")
+    }
+    
+    //To create animation for tableView cells
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 100, 0)
+        cell.layer.transform = rotationTransform
+        cell.alpha = 0
+        UIView.animate(withDuration: 1.0) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1.0
+        }
+    }
 }
 
 // MARK: -
@@ -94,24 +162,34 @@ class MainChannelCollectionViewController: UICollectionViewController {
 
 extension MainChannelCollectionViewController: MainChannelCollectionViewCellDelegate {
     func listButtonClicked(_ indexpath: IndexPath) {
+        displayAlert(indexpath)
+    }
+}
+
+extension MainChannelCollectionViewController: TableViewCellDelegate {
+    func viewWebPageButtonClicked(indexPath: IndexPath) {
+        displayAlert(indexPath)
+    }
+}
+
+// MARK: -
+// MARK: AlertController
+// MARK: -
+extension MainChannelCollectionViewController {
+    func displayAlert(_ indexpath: IndexPath) {
         let alert = UIAlertController(title: "\(basicChannel.item(atIndexPath: indexpath).websiteUrl)", message: "Please Choose", preferredStyle: .actionSheet)
         let action1 = UIAlertAction(title: "Visit website", style: .default) { (action) in
             self.displayWebView(websiteUrl: self.basicChannel.item(atIndexPath: indexpath).websiteUrl)
         }
-        let action2 = UIAlertAction(title: "Cancel", style: .destructive)
+        let action2 = UIAlertAction(title: "Share Url", style: .default) { (action) in
+            let items = [URL(string: self.basicChannel.item(atIndexPath: indexpath).websiteUrl)]
+            let activityController = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+            self.presentActivityViewController(activityController)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         alert.addAction(action1)
         alert.addAction(action2)
+        alert.addAction(cancelAction)
         presentAlertController(alert)
-    }
-}
-
-extension MainChannelCollectionViewController: UICollectionViewDelegateFlowLayout {
-   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // in case you you want the cell to be 40% of your controllers view
-    if UIDevice.current.userInterfaceIdiom == .phone {
-        return CGSize(width: (view.frame.size.width - 50)/2 , height: (view.frame.size.height - 50)/3)
-    } else {
-        return CGSize(width: (view.frame.size.width - 50)/4 , height: (view.frame.size.height - 50)/4)
-    }
     }
 }

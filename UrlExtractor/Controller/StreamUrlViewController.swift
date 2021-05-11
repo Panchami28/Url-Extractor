@@ -26,6 +26,7 @@ class StreamUrlViewController: ViewController {
     private var favoriteStreamDataManager = FavoriteStreamDataManager()
     private var streamDataManager = StreamDataManager()
     private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
+    var i = 0
     
 // MARK: -
 // MARK: View LifeCycle
@@ -95,7 +96,7 @@ class StreamUrlViewController: ViewController {
                                 self?.urlTableView.reloadData()
                                 ///To indicate that a batch inside the group that had started executing has now finished its execution
                                 ///This should be called inside the completion handler only
-                                myGroup.leave()
+                               myGroup.leave()
                             }
                         }
                     }
