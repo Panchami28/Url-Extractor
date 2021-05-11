@@ -22,5 +22,18 @@ extension UIViewController {
             present(alertController, animated: true, completion: nil)
         }
     }
-}
+    
+    func presentActivityViewController(_ activityViewController: UIActivityViewController, _ sender: AnyObject) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverPresentationController = activityViewController.popoverPresentationController {
+//                popoverPresentationController.permittedArrowDirections = []
+//                popoverPresentationController.sourceView = self.view
+//                popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.minX, y: self.view.bounds.maxY, width: 1.0, height: 1.0)
+                self.present(activityViewController, animated: true, completion: nil)
+            } else {
+                present(activityViewController, animated: true, completion: nil)
+            }
+        }
+    }
 
+}

@@ -37,7 +37,7 @@ class StreamUrlViewController: ViewController {
         //To add navigation title for the page
         self.navigationItem.title = "Streaming Urls"
         //To add navigation button for the page
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Copy to Clipboard", style: .done, target: self, action: #selector(addToClipboard))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,target: self, action: #selector(shareStreams))
         //To get rid of lines in table view
         urlTableView.separatorStyle = .none
         //Register a custom cell
@@ -152,11 +152,42 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-    @objc func addToClipboard() {
-        UIPasteboard.general.string = ""
+    @objc func shareStreams() {
+        let fileName = "TempUrlFile"
+        let documentDirectoryUrl = try! FileManager.default.url(
+            for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true
+        )
+        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName).appendingPathExtension("txt")
+        // prints the file path
+        print("File path \(fileUrl.path)")
+        //data to write in file
+        var fileData: String = ""
         for i in 0..<streamUrlArray.count {
-            UIPasteboard.general.string?.append(streamUrlArray[i])
-            UIPasteboard.general.string?.append("\n")
+            fileData.append(streamUrlArray[i])
+            fileData.append("\n")
+        }
+        do {
+            try fileData.write(to: fileUrl, atomically: true, encoding: String.Encoding.utf8)
+            let data = try String(contentsOfFile: fileUrl.path, encoding: String.Encoding.utf8)
+            presentShareSheet(data)
+        } catch let error as NSError {
+            UIAlertController.showAlert("Error:\(error)", self)
+        }
+    }
+    
+    func presentShareSheet(_ data: String) {
+        let items = [data]
+        if data.isEmpty {
+            UIAlertController.showAlert("No data to share", self)
+        } else {
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+                //ac.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+                present(ac, animated: true, completion: nil)
+            } else {
+                present(ac, animated: true, completion: nil)
+            }
         }
     }
     
