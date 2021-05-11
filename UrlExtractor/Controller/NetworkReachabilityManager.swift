@@ -31,8 +31,6 @@ class ReachabilityManager: NSObject {
        debugPrint("Network reachable through WiFi")
        case .cellular:
        debugPrint("Network reachable through Cellular Data")
-        case .none:
-            debugPrint("No issues")
         }
     }
     

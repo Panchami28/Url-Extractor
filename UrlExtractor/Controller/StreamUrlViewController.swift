@@ -1,5 +1,5 @@
 //
-//  DisplayViewController.swift
+//  StreamUrlViewController.swift
 //  UrlExtractor
 //
 //  Created by Panchami Rao on 06/04/21.
@@ -9,19 +9,24 @@ import UIKit
 import SwiftSoup
 import AVFoundation
 import AVKit
+import Reachability
 
 class StreamUrlViewController: ViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+// MARK: -
+// MARK: variable declarations
+// MARK: -
     var mainUrl:String = ""
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
     var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
-    var favoritesStreamModel = FavouritesStreamModel()
-    var favoriteStream = FavoriteStream()
-
+    private var favoriteStreamDataManager = FavoriteStreamDataManager()
+    private var streamDataManager = StreamDataManager()
+    private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
+    
 // MARK: -
 // MARK: View LifeCycle
 // MARK: -
@@ -29,56 +34,80 @@ class StreamUrlViewController: ViewController {
         super.viewDidLoad()
         urlTableView.dataSource = self
         urlTableView.delegate = self
+        //To add navigation title for the page
         self.navigationItem.title = "Streaming Urls"
+        //To add navigation button for the page
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,target: self, action: #selector(shareStreams))
+        //To get rid of lines in table view
+        urlTableView.separatorStyle = .none
+        //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        //To load stream urls only once initially when view appears
         if self.isBeingPresented || self.isMovingToParent {
-            scrapeWebpage(mainUrl) {
-                self.checkStreamUrlArray()
+            if reachability.connection == .unavailable {
+                loadingActivityIndicator.isHidden = true
+            } else {
+                scrapeWebpage(mainUrl) {
+                    self.checkStreamUrlArray()
+                }
             }
         }
     }
     
-
 // MARK: -
 // MARK: Private methods
 // MARK: -
         
-    func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()->()) {
-        do{
-            guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else { UIAlertController.showAlert("Oops!Something went wrong", self)
+    func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()-> Void) {
+        scrapingWebpageQueue.async { [weak self] in
+            ///To ensure that completion block is fired only after all urls are fetched
+            let myGroup = DispatchGroup()
+            guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else {
+                self?.handleError()
                 return
             }
-            let content = try String(contentsOf: requiredUrl)
             do{
-                let doc: Document = try SwiftSoup.parse(content)
-                let myText = try doc.outerHtml()
-                if let regex = try? NSRegularExpression(pattern: regexx, options: .caseInsensitive) {
-                    let string = myText as NSString
-                    regex.matches(in: myText, options: [], range: NSRange(location: 0, length: string.length)).map { Result in
-                        let obtainedString = string.substring(with: Result.range)
+                ///Get source code of entire webpage of given URL
+                let content = try String(contentsOf: requiredUrl)
+                ///Parse the source code for given regex
+                if let pattern = self?.regexx,
+                   let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+                    let string = (content) as NSString
+                    regex.matches(in: content, options: [], range: NSRange(location: 0, length: string.length)).map {
+                        ///To indicate that a batch inside the group has started execution
+                        myGroup.enter()
+                        ///If match found, get the corresponding URL
+                        let obtainedString = string.substring(with: $0.range)
                         let obtainedUrl = URL(string: obtainedString)
+                        ///Check if corresponding URL is streamable or not
                         if let obtainedUrl = obtainedUrl {
-                            isPlayable(url: obtainedUrl) { (streamResult) in
+                            self?.isPlayable(url: obtainedUrl) { (streamResult) in
                                 print(streamResult)
+                                ///If URL is streamable, append it to streamUrlArray for further processing
                                 if streamResult == true {
-                                    self.streamUrlArray.append(obtainedString)
-                                    self.loadingActivityIndicator.isHidden = true
+                                    self?.streamUrlArray.append(obtainedString)
+                                    self?.loadingActivityIndicator.isHidden = true
                                 }
-                                self.urlTableView.reloadData()
+                                self?.urlTableView.reloadData()
+                                ///To indicate that a batch inside the group that had started executing has now finished its execution
+                                ///This should be called inside the completion handler only
+                                myGroup.leave()
                             }
                         }
                     }
                 }
+            } catch {
+                self?.handleError()
+                print("Error while parsing:\(error)")
             }
-        } catch {
-            print("Error while parsing:\(error)")
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
-            completion()
+            ///Notify the main thread when all members inside the group have finished their execution
+            myGroup.notify(queue: .main) {
+                completion()
+            }
         }
     }
     
@@ -88,6 +117,7 @@ class StreamUrlViewController: ViewController {
         asset.loadValuesAsynchronously(forKeys: [playableKey]) {
             var error: NSError? = nil
             let status = asset.statusOfValue(forKey: playableKey, error: &error)
+            //Check the status of asset passed and store the result in isPlayable
             let isPlayable = status == .loaded
             DispatchQueue.main.async {
                 completion(isPlayable)
@@ -102,27 +132,64 @@ class StreamUrlViewController: ViewController {
         }
     }
     
-    func playMusic(_ musicUrl:String)
-    {
+    func playMusic(_ musicUrl:String) {
         let url = URL(string: musicUrl)
         if let requiredUrl = url {
-            let player = AVPlayer(url: requiredUrl)
-            // Creating a player view controller
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+            let playerViewController = PlayerViewController()
             self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-                if let frame = playerViewController.contentOverlayView?.bounds {
-                    let imageView = UIImageView(image: UIImage(named: self.mainSiteName))
-                    imageView.frame = frame
-                    playerViewController.contentOverlayView?.addSubview(imageView)
-                }
+                playerViewController.playMusic(requiredUrl)
+                playerViewController.displayImage(self.mainSiteName)
             }
         } else {
             UIAlertController.showAlert("Unable to play the track", self)
         }
     }
     
+    func handleError() {
+        DispatchQueue.main.async {
+            self.loadingActivityIndicator.isHidden = true
+            UIAlertController.showAlert("Oops!Something went wrong", self)
+        }
+    }
+    
+    @objc func shareStreams() {
+        let fileName = "TempUrlFile"
+        let documentDirectoryUrl = try! FileManager.default.url(
+            for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true
+        )
+        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName).appendingPathExtension("txt")
+        // prints the file path
+        print("File path \(fileUrl.path)")
+        //data to write in file
+        var fileData: String = ""
+        for i in 0..<streamUrlArray.count {
+            fileData.append(streamUrlArray[i])
+            fileData.append("\n")
+        }
+        do {
+            try fileData.write(to: fileUrl, atomically: true, encoding: String.Encoding.utf8)
+            let data = try String(contentsOfFile: fileUrl.path, encoding: String.Encoding.utf8)
+            presentShareSheet(data)
+        } catch let error as NSError {
+            UIAlertController.showAlert("Error:\(error)", self)
+        }
+    }
+    
+    func presentShareSheet(_ data: String) {
+        let items = [data]
+        if data.isEmpty {
+            UIAlertController.showAlert("No data to share", self)
+        } else {
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+                //ac.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+                present(ac, animated: true, completion: nil)
+            } else {
+                present(ac, animated: true, completion: nil)
+            }
+        }
+    }
     
 }
 // MARK: -
@@ -133,25 +200,56 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return streamUrlArray.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
+        cell.channelImageView.image = UIImage(named: mainSiteName)
         cell.delegate = self
         cell.indexpath = indexPath
+        //Check if streamUrl is present in favorite stream list to display heart
+        favoriteStreamDataManager.getData()
+        favUrlArray = favoriteStreamDataManager.getUrl(favUrlArray)
+        if favUrlArray.contains(streamUrlArray[indexPath.row]) {
+            let item = favoriteStreamDataManager.getSelectedData(streamUrlArray[indexPath.row])
+            if item.heartName == "filled" {
+                cell.favoritesButton.setImage(UIImage(systemName:"heart.fill"), for: .normal)
+            }
+        } else {
+            cell.favoritesButton.setImage(UIImage(systemName:"heart"), for: .normal)
+        }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         playMusic(streamUrlArray[indexPath.row])
+        //Check if network is available
+        if reachability.connection == .cellular || reachability.connection == .wifi {
+            streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
+        }
     }
 }
 
+// MARK: -
+// MARK: Custom Table cell Delegate
+// MARK: -
 extension StreamUrlViewController: StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
-        let cell = urlTableView.cellForRow(at: indexPath) as! StreamUrlCell
-        cell.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        favoriteStream.mainChannel = mainSiteName
-        favoriteStream.stream = streamUrlArray[indexPath.row]
-        favoritesStreamModel.storeStreamUrl(item: favoriteStream)
+        let result = favoriteStreamDataManager.addData(streamUrlArray[indexPath.row], mainSiteName)
+        //If stream URL is already prsent in favourite list, then display action sheet with option to remove it from list
+        if result == false {
+            let alert = UIAlertController(title: "Alert", message: "\(streamUrlArray[indexPath.row]) already exists in Favorite list. Do you want to remove it from list?", preferredStyle: .actionSheet)
+            let action1 = UIAlertAction(title: "Remove", style: .default) { (action) in
+                self.favoriteStreamDataManager.deleteSelectedData(self.streamUrlArray[indexPath.row])
+                self.urlTableView.reloadData()
+            }
+            let action2 = UIAlertAction(title: "Cancel", style: .destructive)
+            alert.addAction(action1)
+            alert.addAction(action2)
+            presentAlertController(alert)
+        }
+        urlTableView.reloadData()
     }
     
 }

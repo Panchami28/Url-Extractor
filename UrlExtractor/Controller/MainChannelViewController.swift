@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import SafariServices
-import SystemConfiguration
+//import SafariServices
 
 class MainChannelViewController: UIViewController {
 
@@ -24,8 +23,8 @@ class MainChannelViewController: UIViewController {
         super.viewDidLoad()
         mainUrlTableView.dataSource = self
         mainUrlTableView.delegate = self
+        mainUrlTableView.separatorStyle = .none
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
-        //animateTableView()
     }
     
 // MARK: -
@@ -41,38 +40,13 @@ class MainChannelViewController: UIViewController {
         }
     }
     
-   
-    
     func displayWebView(websiteUrl: String?) {
-        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let vc = WebViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
-    }
-    
-    
-    func animateTableView() {
-        mainUrlTableView.reloadData()
-        
-        let cells = mainUrlTableView.visibleCells
-        let tableHeight: CGFloat = mainUrlTableView.bounds.size.height
-        for i in cells {
-                let cell: UITableViewCell = i as UITableViewCell
-            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
-            print(i)
-            }
-        var index = 0
-               
-           for a in cells {
-               let cell: UITableViewCell = a as UITableViewCell
-            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
-                cell.transform = CGAffineTransform(translationX: 0, y: 0);
-               }, completion: nil)
-                   
-               index += 1
-           }
+//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
 }

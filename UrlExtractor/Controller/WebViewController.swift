@@ -1,28 +1,45 @@
 //
-//  WebViewController.swift
+//  WebViewViewController.swift
 //  UrlExtractor
 //
-//  Created by Panchami Rao on 30/04/21.
+//  Created by Panchami Rao on 09/05/21.
 //
 
 import UIKit
-import SafariServices
+import WebKit
 
-class WebViewController: SFSafariViewController,SFSafariViewControllerDelegate {
-
-    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+class WebViewController: UIViewController {
+    
+    @IBOutlet weak var webView: WKWebView!
+    var websiteUrl: String?
+    private var basicChannelModel = BasicChannelModel()
+    private var recentSearchManager = RecentSearchManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Extract Streams", style: .done, target: self, action: #selector(extractButtonTapped))
+        displayWebView()
     }
-    
-    public override init(url URL: URL, configuration: SFSafariViewController.Configuration) {
-        super.init(url: URL, configuration: configuration)
-    }
-    
-    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
-        if  didLoadSuccessfully == true {
-            loadingActivityIndicator.isHidden = true
+
+    @objc func extractButtonTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+            if let currentUrl = webView.url {
+                streamUrlViewController.mainUrl = "\(currentUrl)"
+                streamUrlViewController.mainSiteName = "RecentStation"
+                //print("CurrentUrl:\(currentUrl)")
+                recentSearchManager.addData("\(currentUrl)")
+            }
         }
     }
+    
+    func displayWebView() {
+        if let requiredUrl = websiteUrl, let myUrl = URL(string: requiredUrl) {
+            let request = URLRequest(url: myUrl)
+            webView.load(request)
+        }
+    }
+
 }
+

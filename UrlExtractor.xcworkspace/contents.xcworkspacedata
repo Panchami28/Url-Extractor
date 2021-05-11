@@ -2,6 +2,24 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/RecentSearch+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/RecentSearch+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/FavoriteStreams+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/FavoriteStreams+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:UrlExtractor.xcodeproj">
    </FileRef>
    <FileRef

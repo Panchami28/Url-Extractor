@@ -23,6 +23,7 @@ enum MainChannelOption :CaseIterable{
     case ElectricRadio
     case RadioSwissPop
     case CheesyRadio
+    case WinningPodcast
     
     var websiteUrl : String {
         switch self {
@@ -54,13 +55,69 @@ enum MainChannelOption :CaseIterable{
             return "https://www.radioswisspop.ch/en"
         case .CheesyRadio :
             return "https://cheesyfm.co.uk/radioplayer/"
+        case .WinningPodcast:
+            return "https://podcasts.apple.com/us/podcast/winning-from-trichotillomania/id944887187"
+        }
+    }
+        var websiteName : String {
+            switch self {
+            case .RadioNet:
+                return "RadioNet"
+            case .ShalomBeats:
+                return "Shalom Beats Radio"
+            case .NammRadio:
+                return "Namm Radio"
+            case .RadioMirchi:
+                return "Radio Mirchi"
+            case .CBCListen:
+                return "CBCListen Radio"
+            case .IndianAustralianRadio:
+                return "Indian Australian Radio"
+            case .BombayBeats:
+                return "Bombay Beats Radio"
+            case .RadioCityHindi:
+                return "RadioCity Hindi"
+            case .Wgbh:
+                return "WGBH Radio"
+            case .CamFM:
+                return "CamFM Radio"
+            case .Madhuban:
+                return "Madhuban Radio"
+            case .ElectricRadio:
+                return "Electric Radio"
+            case .RadioSwissPop:
+                return "Radio SwissPop"
+            case .CheesyRadio :
+                return "Cheesy Radio"
+            case .WinningPodcast:
+                return "Winning from Trichotillomania Podcast"
+            }
+    }
+    
+    var websiteRegex: String {
+        switch self {
+        case .RadioNet: return "\"streams\":\\[\\{\"url\":\"[^,]*"
+        case .ShalomBeats: return ""
+        case .NammRadio: return ""
+        case .RadioMirchi: return ""
+        case .CBCListen: return ""
+        case .IndianAustralianRadio: return ""
+        case .BombayBeats: return ""
+        case .RadioCityHindi: return ""
+        case .Wgbh: return ""
+        case .CamFM: return ""
+        case .Madhuban: return ""
+        case .ElectricRadio: return ""
+        case .RadioSwissPop: return ""
+        case .CheesyRadio: return ""
+        case .WinningPodcast: return ""
         }
     }
 }
 
 
 class BasicChannelModel {
-    var channelList = [MainChannelOption]()
+    private var channelList = [MainChannelOption]()
     
     init() {
         for channel in MainChannelOption.allCases {

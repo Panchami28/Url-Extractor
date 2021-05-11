@@ -31,14 +31,14 @@ class ViewController: UIViewController {
     
     @objc func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability
-        
         switch reachability.connection {
         case .wifi:
-            UIAlertController.showAlert("Reachable via wifi", self)
+            print("Reachable wifi")
+            //UIAlertController.showAlert("Reachable via wifi", self)
         case .cellular:
             UIAlertController.showAlert("Reachable via Cellular", self)
         case .unavailable:
-            UIAlertController.showAlert("Network not reachable", self)
+            UIAlertController.showAlert("Network not reachable! UrlExtractor is offline", self)
         }
     }
 
@@ -51,8 +51,11 @@ class ViewController: UIViewController {
     
     @IBAction func viewSampleStationsButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let mainChannelViewController = storyboard.instantiateViewController(identifier: "MainChannelViewController") as? MainChannelViewController {
-            self.navigationController?.pushViewController(mainChannelViewController, animated: true)
+//        if let mainChannelViewController = storyboard.instantiateViewController(identifier: "MainChannelViewController") as? MainChannelViewController {
+//            self.navigationController?.pushViewController(mainChannelViewController, animated: true)
+//        }
+        if let mainChannelCollectionViewController = storyboard.instantiateViewController(identifier: "MainChannelCollectionViewController") as? MainChannelCollectionViewController {
+            self.navigationController?.pushViewController(mainChannelCollectionViewController, animated: true)
         }
     }
     
@@ -60,6 +63,14 @@ class ViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let favouriteStreamViewController = storyboard.instantiateViewController(identifier: "FavouriteStreamViewController") as? FavouriteStreamViewController {
             self.navigationController?.pushViewController(favouriteStreamViewController, animated: true)
+        }
+    }
+    
+    
+    @IBAction func viewRecentButtonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let recentStreamTableViewController = storyboard.instantiateViewController(identifier: "RecentStreamTableViewController") as? RecentStreamTableViewController {
+            self.navigationController?.pushViewController(recentStreamTableViewController, animated: true)
         }
     }
     

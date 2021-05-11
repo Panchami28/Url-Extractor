@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteStreams" representedClassName="FavoriteStreams" syncable="YES">
+        <attribute name="heartName" optional="YES" attributeType="String"/>
+        <attribute name="mainChannel" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="RecentSearch" representedClassName="RecentSearch" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="siteUrl" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Stream" representedClassName="Stream" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mainChannel" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="FavoriteStreams" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="Stream" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="RecentSearch" positionX="-54" positionY="27" width="128" height="73"/>
+    </elements>
+</model>

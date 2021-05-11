@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import SafariServices
+import WebKit
 
 class UserUrlManagerViewController: UIViewController {
 
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+    
+    private var recentSearchManager = RecentSearchManager()
  
 // MARK: -
 // MARK: View Lifecycle
@@ -37,16 +41,29 @@ class UserUrlManagerViewController: UIViewController {
     
     @IBAction func viewButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let mainChannelViewController = storyboard.instantiateViewController(identifier: "MainChannelViewController") as? MainChannelViewController {
-            self.navigationController?.pushViewController(mainChannelViewController, animated: true)
+        if let mainChannelCollectionViewController = storyboard.instantiateViewController(identifier: "MainChannelCollectionViewController") as? MainChannelCollectionViewController {
+            self.navigationController?.pushViewController(mainChannelCollectionViewController, animated: true)
+        }
+    }
+    
+    @IBAction func viewRecentButtonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let recentSearchViewController = storyboard.instantiateViewController(identifier: "RecentSearchViewController") as? RecentSearchViewController {
+            self.navigationController?.pushViewController(recentSearchViewController, animated: true)
         }
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        loadData()
+        if let textFieldText = urlTextField.text {
+        loadData(textFieldText)
+        }
     }
     
-// MARK: -
+    
+    @IBAction func googleButtonPressed(_ sender: UIButton) {
+        loadData("http://google.com")
+    }
+    // MARK: -
 // MARK: Private Methods
 // MARK: -
     
@@ -59,12 +76,26 @@ class UserUrlManagerViewController: UIViewController {
         return false
     }
     
-    func loadData() {
+    func loadData(_ urlToLoad: String) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+//        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+//            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+//            if let textFieldText = urlTextField.text {
+//                streamUrlViewController.mainUrl = textFieldText
+//                recentSearchManager.addData(textFieldText)
+//            }
+//        }
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
-            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-            streamUrlViewController.mainUrl = urlTextField.text ?? ""
+        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
+            self.navigationController?.pushViewController(webViewController, animated: true)
+            webViewController.websiteUrl = urlToLoad
         }
+//        if let textFieldText = urlTextField.text, let  url = URL(string: textFieldText) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
 }
@@ -80,6 +111,10 @@ extension UIAlertController {
     }
 }
 
+// MARK: -
+// MARK: TextField extension
+// MARK: -
+
 extension UserUrlManagerViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
@@ -87,7 +122,12 @@ extension UserUrlManagerViewController: UITextFieldDelegate {
         if result == true {
             submitButton.isEnabled = true
         } else {
-            UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
+            if urlTextField.text == "" {
+                UIAlertController.showAlert("Textfield is empty", self)
+            } else {
+                UIAlertController.showAlert("Error: \(urlTextField.text ?? "") doesn't seem to be a valid URL", self)
+                
+            }
         }
     }
 
