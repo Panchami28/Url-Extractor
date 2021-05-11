@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SafariServices
+//import SafariServices
 
 class MainChannelViewController: UIViewController {
 
@@ -41,12 +41,12 @@ class MainChannelViewController: UIViewController {
     }
     
     func displayWebView(websiteUrl: String?) {
-        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let vc = WebViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
+//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
 }

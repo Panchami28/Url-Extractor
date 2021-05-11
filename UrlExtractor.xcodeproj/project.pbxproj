@@ -27,6 +27,7 @@
 		205FC71A26412DC900C72B3E /* FavoriteStreams+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205FC71926412DC900C72B3E /* FavoriteStreams+CoreDataProperties.swift */; };
 		205FC71D26412DD600C72B3E /* FavoriteStreams+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205FC71C26412DD600C72B3E /* FavoriteStreams+CoreDataClass.swift */; };
 		205FC72026414C4100C72B3E /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205FC71F26414C4100C72B3E /* PlayerViewController.swift */; };
+		2069E13E2648563F00FB7FF4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2069E13D2648563F00FB7FF4 /* WebViewController.swift */; };
 		206AEB6B264562730023FC93 /* RecentSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AEB6A264562730023FC93 /* RecentSearchManager.swift */; };
 		206AEB712645636B0023FC93 /* RecentSearch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AEB6F2645636B0023FC93 /* RecentSearch+CoreDataProperties.swift */; };
 		206AEB722645636B0023FC93 /* RecentSearch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AEB702645636B0023FC93 /* RecentSearch+CoreDataClass.swift */; };
@@ -36,7 +37,7 @@
 		2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */; };
 		2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */; };
 		2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA36263ED8430021DFA8 /* StreamDataManager.swift */; };
-		20B5805D263BF03500A1F985 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5805C263BF03500A1F985 /* WebViewController.swift */; };
+		20B5805D263BF03500A1F985 /* SafariWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5805C263BF03500A1F985 /* SafariWebViewController.swift */; };
 		20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */; };
 		20B58074263C597900A1F985 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B58073263C597900A1F985 /* Reachability.swift */; };
 		20E545DE263FBA5500A8A3B1 /* Stream+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E545DC263FBA5500A8A3B1 /* Stream+CoreDataProperties.swift */; };
@@ -68,6 +69,7 @@
 		205FC71926412DC900C72B3E /* FavoriteStreams+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoriteStreams+CoreDataProperties.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/FavoriteStreams+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		205FC71C26412DD600C72B3E /* FavoriteStreams+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoriteStreams+CoreDataClass.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/FavoriteStreams+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		205FC71F26414C4100C72B3E /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		2069E13D2648563F00FB7FF4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		206AEB6A264562730023FC93 /* RecentSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchManager.swift; sourceTree = "<group>"; };
 		206AEB6F2645636B0023FC93 /* RecentSearch+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearch+CoreDataProperties.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/RecentSearch+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		206AEB702645636B0023FC93 /* RecentSearch+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearch+CoreDataClass.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/RecentSearch+CoreDataClass.swift"; sourceTree = "<absolute>"; };
@@ -77,7 +79,7 @@
 		2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UrlExtractor.xcdatamodel; sourceTree = "<group>"; };
 		2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentStreamTableViewController.swift; sourceTree = "<group>"; };
 		2095EA36263ED8430021DFA8 /* StreamDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataManager.swift; sourceTree = "<group>"; };
-		20B5805C263BF03500A1F985 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		20B5805C263BF03500A1F985 /* SafariWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebViewController.swift; sourceTree = "<group>"; };
 		20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		20B58073263C597900A1F985 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		20E545DC263FBA5500A8A3B1 /* Stream+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Stream+CoreDataProperties.swift"; path = "/Users/panchamirao/Desktop/Project Folder/Url Extractor/UrlExtractor/Model/Stream+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
@@ -138,12 +140,13 @@
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
 				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
-				20B5805C263BF03500A1F985 /* WebViewController.swift */,
+				20B5805C263BF03500A1F985 /* SafariWebViewController.swift */,
 				20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */,
 				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
 				205FC71F26414C4100C72B3E /* PlayerViewController.swift */,
 				203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */,
 				206AEB74264566480023FC93 /* RecentSearchViewController.swift */,
+				2069E13D2648563F00FB7FF4 /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -347,13 +350,14 @@
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
-				20B5805D263BF03500A1F985 /* WebViewController.swift in Sources */,
+				20B5805D263BF03500A1F985 /* SafariWebViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				205FC71D26412DD600C72B3E /* FavoriteStreams+CoreDataClass.swift in Sources */,
 				203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */,
 				206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */,
 				2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */,
 				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
+				2069E13E2648563F00FB7FF4 /* WebViewController.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
 			);

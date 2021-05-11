@@ -34,7 +34,11 @@ class StreamUrlViewController: ViewController {
         super.viewDidLoad()
         urlTableView.dataSource = self
         urlTableView.delegate = self
+        //To add navigation title for the page
         self.navigationItem.title = "Streaming Urls"
+        //To add navigation button for the page
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Copy to Clipboard", style: .done, target: self, action: #selector(addToClipboard))
+        //To get rid of lines in table view
         urlTableView.separatorStyle = .none
         //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
@@ -60,6 +64,8 @@ class StreamUrlViewController: ViewController {
         
     func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()-> Void) {
         scrapingWebpageQueue.async { [weak self] in
+            ///To ensure that completion block is fired only after all urls are fetched
+            let myGroup = DispatchGroup()
             guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else {
                 self?.handleError()
                 return
@@ -72,6 +78,8 @@ class StreamUrlViewController: ViewController {
                    let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
                     let string = (content) as NSString
                     regex.matches(in: content, options: [], range: NSRange(location: 0, length: string.length)).map {
+                        ///To indicate that a batch inside the group has started execution
+                        myGroup.enter()
                         ///If match found, get the corresponding URL
                         let obtainedString = string.substring(with: $0.range)
                         let obtainedUrl = URL(string: obtainedString)
@@ -85,6 +93,9 @@ class StreamUrlViewController: ViewController {
                                     self?.loadingActivityIndicator.isHidden = true
                                 }
                                 self?.urlTableView.reloadData()
+                                ///To indicate that a batch inside the group that had started executing has now finished its execution
+                                ///This should be called inside the completion handler only
+                                myGroup.leave()
                             }
                         }
                     }
@@ -93,7 +104,8 @@ class StreamUrlViewController: ViewController {
                 self?.handleError()
                 print("Error while parsing:\(error)")
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+            ///Notify the main thread when all members inside the group have finished their execution
+            myGroup.notify(queue: .main) {
                 completion()
             }
         }
@@ -105,6 +117,7 @@ class StreamUrlViewController: ViewController {
         asset.loadValuesAsynchronously(forKeys: [playableKey]) {
             var error: NSError? = nil
             let status = asset.statusOfValue(forKey: playableKey, error: &error)
+            //Check the status of asset passed and store the result in isPlayable
             let isPlayable = status == .loaded
             DispatchQueue.main.async {
                 completion(isPlayable)
@@ -136,6 +149,14 @@ class StreamUrlViewController: ViewController {
         DispatchQueue.main.async {
             self.loadingActivityIndicator.isHidden = true
             UIAlertController.showAlert("Oops!Something went wrong", self)
+        }
+    }
+    
+    @objc func addToClipboard() {
+        UIPasteboard.general.string = ""
+        for i in 0..<streamUrlArray.count {
+            UIPasteboard.general.string?.append(streamUrlArray[i])
+            UIPasteboard.general.string?.append("\n")
         }
     }
     

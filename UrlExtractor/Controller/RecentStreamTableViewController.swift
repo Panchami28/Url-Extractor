@@ -61,9 +61,6 @@ class RecentStreamTableViewController: UITableViewController {
         } else {
             cell.channelImageView.image = UIImage(named: "RecentStation")
         }
-//        cell.textLabel?.numberOfLines = 0
-//        cell.textLabel?.textColor = .white
-//        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         return cell
     }
     

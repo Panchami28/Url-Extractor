@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SafariServices
+//import SafariServices
 
 private let reuseIdentifier = "Cell"
 
@@ -40,12 +40,12 @@ class MainChannelCollectionViewController: UICollectionViewController {
     }
     
     func displayWebView(websiteUrl: String?) {
-        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let vc = WebViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
+//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
 // MARK: -

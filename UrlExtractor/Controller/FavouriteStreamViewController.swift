@@ -22,8 +22,14 @@ class FavouriteStreamViewController: UIViewController {
         super.viewDidLoad()
         favoritesTableView.dataSource = self
         favoritesTableView.delegate = self
-        favoritesTableView.separatorStyle = .none
+        //Get data from database
         favoriteStreamDataManager.getData()
+        if favoriteStreamDataManager.numberOfItems() == 0 {
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Remove all", style: .plain, target: self, action:#selector(removeAll))
+        }
+        favoritesTableView.separatorStyle = .none
         //Register a custome cell
         favoritesTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
@@ -43,6 +49,19 @@ class FavouriteStreamViewController: UIViewController {
         } else {
             UIAlertController.showAlert("Unable to play the track", self)
         }
+    }
+    
+    @objc func removeAll() {
+        let alert = UIAlertController(title: "Warning", message: "Are you sure you want to remove all streams from list?", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "Yes", style: .destructive) { (action) in
+            self.favoriteStreamDataManager.deleteAllData()
+            self.favoritesTableView.reloadData()
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        let action2 = UIAlertAction(title: "No", style: .default)
+        alert.addAction(action1)
+        alert.addAction(action2)
+        presentAlertController(alert)
     }
     
 }
@@ -79,9 +98,19 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
 extension FavouriteStreamViewController : StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
         let cell = favoritesTableView.cellForRow(at: indexPath) as! StreamUrlCell
-        cell.favoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        favoriteStreamDataManager.deleteData(favoriteStreamDataManager.item(indexPath))
-        favoritesTableView.deleteRows(at: [indexPath], with: .fade)
-        favoritesTableView.reloadData()
+        if let currentUrl = self.favoriteStreamDataManager.item(indexPath).url {
+            let alert = UIAlertController(title: "Alert", message: "Do you want to remove \(currentUrl) from list?", preferredStyle: .actionSheet)
+            let action1 = UIAlertAction(title: "Remove", style: .destructive) { (action) in
+                cell.favoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.favoriteStreamDataManager.deleteData(self.favoriteStreamDataManager.item(indexPath))
+                self.favoritesTableView.deleteRows(at: [indexPath], with: .fade)
+                self.favoritesTableView.reloadData()
+            }
+            let action2 = UIAlertAction(title: "Cancel", style: .default)
+            alert.addAction(action1)
+            alert.addAction(action2)
+            presentAlertController(alert)
+            favoritesTableView.reloadData()
+        }
     }
 }

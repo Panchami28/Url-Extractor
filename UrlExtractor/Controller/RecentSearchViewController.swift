@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SafariServices
+//import SafariServices
 
 class RecentSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -27,17 +27,17 @@ class RecentSearchViewController: UIViewController, UITableViewDataSource, UITab
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
             self.navigationController?.pushViewController(streamUrlViewController, animated: true)
             streamUrlViewController.mainUrl = siteUrl
-            streamUrlViewController.mainSiteName = "RecentStation"
+            //streamUrlViewController.mainSiteName = "RecentStation"
         }
     }
     
     func displayWebView(websiteUrl: String?) {
-        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let vc = WebViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
+//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

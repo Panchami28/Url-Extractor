@@ -86,6 +86,18 @@ class FavoriteStreamDataManager {
         getData()
     }
     
+    func deleteAllData() {
+        do {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteStreams")
+            let DelAllRequest = NSBatchDeleteRequest(fetchRequest: request)
+            try self.context.execute(DelAllRequest)
+            try context.save()
+        } catch {
+            print("Error saving data")
+        }
+        getData()
+    }
+    
     func deleteSelectedData(_ streamUrl: String) {
         var item = [FavoriteStreams]()
         //Selection criteria is defined

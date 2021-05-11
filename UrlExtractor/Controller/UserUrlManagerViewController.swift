@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SafariServices
+import WebKit
 
 class UserUrlManagerViewController: UIViewController {
 
@@ -52,10 +54,16 @@ class UserUrlManagerViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        loadData()
+        if let textFieldText = urlTextField.text {
+        loadData(textFieldText)
+        }
     }
     
-// MARK: -
+    
+    @IBAction func googleButtonPressed(_ sender: UIButton) {
+        loadData("http://google.com")
+    }
+    // MARK: -
 // MARK: Private Methods
 // MARK: -
     
@@ -68,15 +76,26 @@ class UserUrlManagerViewController: UIViewController {
         return false
     }
     
-    func loadData() {
+    func loadData(_ urlToLoad: String) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+//        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+//            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+//            if let textFieldText = urlTextField.text {
+//                streamUrlViewController.mainUrl = textFieldText
+//                recentSearchManager.addData(textFieldText)
+//            }
+//        }
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
-            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-            if let textFieldText = urlTextField.text {
-                streamUrlViewController.mainUrl = textFieldText
-                recentSearchManager.addData(textFieldText)
-            }
+        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
+            self.navigationController?.pushViewController(webViewController, animated: true)
+            webViewController.websiteUrl = urlToLoad
         }
+//        if let textFieldText = urlTextField.text, let  url = URL(string: textFieldText) {
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//            let vc = SafariWebViewController(url: url, configuration: config)
+//            present(vc, animated: true)
+//        }
     }
     
 }
