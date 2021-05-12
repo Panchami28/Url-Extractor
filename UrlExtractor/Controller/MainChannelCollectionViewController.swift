@@ -31,6 +31,8 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
         ///Initially make tableView hidden to avoid overlapping of collectionView and tableView
         mainUrlTableView.alpha = 0
+        ///To get rid of lines
+        mainUrlTableView.separatorStyle = .none
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,7 +140,7 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = mainUrlTableView.dequeueReusableCell(withIdentifier: "BasicUrlCell", for: indexPath) as! BasicUrlCell
         cell.logoImage.image = UIImage(named: "\(basicChannel.item(atIndexPath: indexPath))")
-        cell.urlLabel.text = basicChannel.item(atIndexPath: indexPath).websiteUrl
+        cell.urlLabel.text = basicChannel.item(atIndexPath: indexPath).websiteName
         cell.indexPath = indexPath
         cell.delegate = self
         return cell

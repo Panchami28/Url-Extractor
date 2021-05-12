@@ -14,10 +14,9 @@ class FavoriteStreamDataManager {
     private var items = [FavoriteStreams]()
     
     func addData(_ streamUrl: String, _ mainSiteName:String) -> Bool {
-        var urlArray = [String]()
         //Check if item exists in db
         getData()
-        urlArray = getUrl(urlArray)
+        let urlArray = getUrl()
         if urlArray.contains(streamUrl) {
             return false
         } else {
@@ -66,8 +65,9 @@ class FavoriteStreamDataManager {
         return selectedItem.first!
     }
     
-    func getUrl(_ urlArray : [String]) -> [String] {
-        var requiredArray = urlArray
+    func getUrl() -> [String] {
+        getData()
+        var requiredArray = [String]()
         for i in 0..<items.count {
             requiredArray.append(items[i].url ?? "")
         }

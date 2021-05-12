@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import Reachability
 
-class StreamUrlViewController: ViewController {
+class StreamUrlViewController: UIViewController {
         
     @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
@@ -26,7 +26,8 @@ class StreamUrlViewController: ViewController {
     private var favoriteStreamDataManager = FavoriteStreamDataManager()
     private var streamDataManager = StreamDataManager()
     private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
-    var i = 0
+    private lazy var checkingStreamQueue = DispatchQueue(label: "StreamCheckingQueue")
+    let vc = ViewController()
     
 // MARK: -
 // MARK: View LifeCycle
@@ -43,13 +44,15 @@ class StreamUrlViewController: ViewController {
         urlTableView.separatorStyle = .none
         //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
+        //scrapingWebpageQueue.resume()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        urlTableView.reloadData()
         //To load stream urls only once initially when view appears
         if self.isBeingPresented || self.isMovingToParent {
-            if reachability.connection == .unavailable {
+            if vc.reachability.connection == .unavailable {
                 loadingActivityIndicator.isHidden = true
             } else {
                 scrapeWebpage(mainUrl) {
@@ -58,6 +61,12 @@ class StreamUrlViewController: ViewController {
             }
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
+    
     
 // MARK: -
 // MARK: Private methods
@@ -134,22 +143,14 @@ class StreamUrlViewController: ViewController {
     }
     
     func playMusic(_ musicUrl:String) {
-        let url = URL(string: musicUrl)
-        if let requiredUrl = url {
             let playerViewController = PlayerViewController()
-            self.present(playerViewController, animated: true) {
-                playerViewController.playMusic(requiredUrl)
-                playerViewController.displayImage(self.mainSiteName)
-            }
-        } else {
-            UIAlertController.showAlert("Unable to play the track", self)
-        }
+            playerViewController.instantiate(musicUrl,mainSiteName,self)
     }
     
     func handleError() {
         DispatchQueue.main.async {
             self.loadingActivityIndicator.isHidden = true
-            UIAlertController.showAlert("Oops!Something went wrong", self)
+            UIAlertController.showAlert("Oops!Something has gone wrong", self)
         }
     }
     
@@ -203,15 +204,15 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var favUrlArray = [String]()
+        //var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
         cell.channelImageView.image = UIImage(named: mainSiteName)
         cell.delegate = self
         cell.indexpath = indexPath
         //Check if streamUrl is present in favorite stream list to display heart
-        favoriteStreamDataManager.getData()
-        favUrlArray = favoriteStreamDataManager.getUrl(favUrlArray)
+        //favoriteStreamDataManager.getData()
+        let favUrlArray = favoriteStreamDataManager.getUrl()
         if favUrlArray.contains(streamUrlArray[indexPath.row]) {
             let item = favoriteStreamDataManager.getSelectedData(streamUrlArray[indexPath.row])
             if item.heartName == "filled" {
@@ -226,7 +227,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         playMusic(streamUrlArray[indexPath.row])
         //Check if network is available
-        if reachability.connection == .cellular || reachability.connection == .wifi {
+        if vc.reachability.connection == .cellular || vc.reachability.connection == .wifi {
             streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
         }
     }

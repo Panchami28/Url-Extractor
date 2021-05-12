@@ -23,21 +23,12 @@ class RecentStreamTableViewController: UITableViewController {
 // MARK: -
 // MARK: - Private Methods
 // MARK: -
-    func playMusic(_ musicUrl: String,_ mainChannel: String) {
-        let url = URL(string: musicUrl)
-        if let requiredUrl = url {
-            // Creating an instance of playerViewController
+    
+    func playMusic(_ musicUrl:String,_ mainChannel: String) {
             let playerViewController = PlayerViewController()
-            self.present(playerViewController, animated: true) {
-                playerViewController.playMusic(requiredUrl)
-                playerViewController.displayImage(mainChannel)
-            }
-        } else {
-            UIAlertController.showAlert("Unable to play the track", self)
-        }
+            playerViewController.instantiate(musicUrl,mainChannel,self)
     }
     
-
 // MARK: -
 // MARK: - Table view data source
 // MARK: -

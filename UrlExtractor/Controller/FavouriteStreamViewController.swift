@@ -38,17 +38,9 @@ class FavouriteStreamViewController: UIViewController {
 //MARK: Private Methods
 //MARK: -
     
-    func playMusic(_ musicUrl: String,_ mainSiteName: String) {
-        let url = URL(string: musicUrl)
-        if let requiredUrl = url {
+    func playMusic(_ musicUrl:String,_ mainSiteName: String) {
             let playerViewController = PlayerViewController()
-            self.present(playerViewController, animated: true) {
-                playerViewController.playMusic(requiredUrl)
-                playerViewController.displayImage(mainSiteName)
-            }
-        } else {
-            UIAlertController.showAlert("Unable to play the track", self)
-        }
+            playerViewController.instantiate(musicUrl,mainSiteName,self)
     }
     
     @objc func removeAll() {
