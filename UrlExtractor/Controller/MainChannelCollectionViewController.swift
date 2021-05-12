@@ -24,9 +24,6 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         channelCollectionView.dataSource = self
         ///Register a custom collection cell
         channelCollectionView.register(UINib(nibName: "MainChannelCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "MainChannelCollectionViewCell")
-        ///Set navigation title and rightBarButtonItem
-        self.navigationItem.title = "Sample Stations"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.bookmarks, target: self, action: #selector(switchToListView))
         ///Set tableView dataSource and delegate
         mainUrlTableView.dataSource = self
         mainUrlTableView.delegate = self
@@ -34,6 +31,13 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         mainUrlTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
         ///Initially make tableView hidden to avoid overlapping of collectionView and tableView
         mainUrlTableView.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        ///Set navigation title and rightBarButtonItem
+        self.navigationItem.title = "Sample Stations"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"),style: .plain,target: self, action: #selector(switchToListView))
     }
 
 // MARK: -
@@ -62,7 +66,7 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         //Make tableView visible
         mainUrlTableView.alpha = 1
         //Change navigation button to create an option to switch from tableView to collectionView
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(switchToTableView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"),style: .plain,target: self, action: #selector(switchToTableView))
     }
     
     @objc func switchToTableView() {
@@ -71,11 +75,11 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         //Make tableView hidden
         mainUrlTableView.alpha = 0
         //Change navigatioBar button to provide an option to switch from collectionView to tableView
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(switchToListView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"),style: .plain,target: self, action: #selector(switchToListView))
     }
     
 // MARK: -
-// MARK: UICollectionViewDataSource
+// MARK: CollectionView DataSource and Delegate
 // MARK: -
     
     
@@ -117,14 +121,14 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
     //To set the width and height of collectionView cells dynamically based on deviceSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
      if UIDevice.current.userInterfaceIdiom == .phone {
-        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/2 , height: (channelCollectionView.bounds.size.height - 50)/3)
+        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/2 , height: (channelCollectionView.bounds.size.height - 60)/3)
      } else {
-        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/4 , height: (channelCollectionView.bounds.size.height - 50)/4)
+        return CGSize(width: (channelCollectionView.bounds.size.width - 50)/4 , height: (channelCollectionView.bounds.size.height - 60)/4)
      }
      }
     
 // MARK:
-// MARK: - Table view data source and delegate
+// MARK: - TableView data source and delegate
 // MARK:
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -159,13 +163,15 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
 // MARK: -
 // MARK: CollectionView Cell delegate
 // MARK: -
-
 extension MainChannelCollectionViewController: MainChannelCollectionViewCellDelegate {
     func listButtonClicked(_ indexpath: IndexPath) {
         displayAlert(indexpath)
     }
 }
 
+// MARK: -
+// MARK: TableView Cell delegate
+// MARK: -
 extension MainChannelCollectionViewController: TableViewCellDelegate {
     func viewWebPageButtonClicked(indexPath: IndexPath) {
         displayAlert(indexPath)
