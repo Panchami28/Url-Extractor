@@ -9,10 +9,12 @@ import UIKit
 import AVKit
 import Reachability
 
+
 class PlayerViewController: AVPlayerViewController {
     
     let viewController = ViewController()
     let likeButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    let popButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     private var favouriteStreamDataManager = FavoriteStreamDataManager()
     var musicUrl:String = ""
     var mainChannel:String = ""
@@ -20,21 +22,26 @@ class PlayerViewController: AVPlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-    }
-
-    func instantiate(_ musicUrl: String,_ mainChannel: String,_ destinationVC: UIViewController) {
-        destinationVC.present(self, animated: true) {
-            self.musicUrl = musicUrl
-            self.mainChannel = mainChannel
-            self.playMusic()
-            self.designButton()
-            self.displayImage()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        if self.isBeingDismissed {
+            
+            //miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
     }
     
-    func playMusic() {
+    func instantiate(_ musicUrl: String,_ mainChannel: String,_ destinationVC: UIViewController) {
+            self.musicUrl = musicUrl
+            self.mainChannel = mainChannel
+            self.playMusic(musicUrl)
+            self.designLikeButton()
+            //self.designPopButton()
+            self.displayImage()
+    }
+    
+    
+    func playMusic(_ musicUrl: String) {
         //Check if network is available
         if viewController.reachability.connection == .unavailable {
             UIAlertController.showAlert("Network Unavailable!", self)
@@ -56,8 +63,9 @@ class PlayerViewController: AVPlayerViewController {
             contentOverlayView?.addSubview(imageView)
         }
     }
-        
-    func designButton() {
+
+    
+    func designLikeButton() {
         likeButton.backgroundColor = .darkGray
         let favUrlArray = favouriteStreamDataManager.getUrl()
         if favUrlArray.contains(musicUrl) {
@@ -97,5 +105,31 @@ class PlayerViewController: AVPlayerViewController {
             favouriteStreamDataManager.addData(self.musicUrl,self.mainChannel)
         }
     }
+    
+    func designPopButton() {
+        popButton.backgroundColor = .darkGray
+        popButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        popButton.tintColor = .orange
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            popButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.minY+100, width: 50, height: 50)
+        } else {
+            popButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+70, width: 50, height: 50)
+        }
+        popButton.layer.cornerRadius = 15
+        popButton.addTarget(self, action: #selector(popButtonTapped), for: .touchUpInside)
+        self.view.addSubview(popButton)
+    }
+    
+    @objc func popButtonTapped() {
+        self.dismiss(animated: true) {
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+                vc.streamingUrl = self.musicUrl
+            
+            }
+        }
+    }
         
 }
+
+

@@ -11,6 +11,7 @@
 		2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */; };
 		20262F842642EA710049E700 /* MainChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */; };
 		20262F852642EA710049E700 /* MainChannelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */; };
+		2038A6CE264E4CE400FA0E93 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */; };
 		203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */; };
 		203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932026395C4C00ABF38A /* StreamUrlCell.swift */; };
 		203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203A932126395C4C00ABF38A /* StreamUrlCell.xib */; };
@@ -51,6 +52,7 @@
 		2006D65A26351C9E00BD6818 /* BasicChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicChannelModel.swift; sourceTree = "<group>"; };
 		20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainChannelCollectionViewCell.xib; sourceTree = "<group>"; };
+		2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		203A932026395C4C00ABF38A /* StreamUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlCell.swift; sourceTree = "<group>"; };
 		203A932126395C4C00ABF38A /* StreamUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamUrlCell.xib; sourceTree = "<group>"; };
@@ -138,15 +140,16 @@
 				20423614261C720700CBAA8B /* ViewController.swift */,
 				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
 				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
-				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
-				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				20B5805C263BF03500A1F985 /* SafariWebViewController.swift */,
 				20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */,
+				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
 				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
+				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				205FC71F26414C4100C72B3E /* PlayerViewController.swift */,
 				203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */,
 				206AEB74264566480023FC93 /* RecentSearchViewController.swift */,
 				2069E13D2648563F00FB7FF4 /* WebViewController.swift */,
+				2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */,
 				206AEB6B264562730023FC93 /* RecentSearchManager.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
+				2038A6CE264E4CE400FA0E93 /* MiniPlayerViewController.swift in Sources */,
 				20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
@@ -510,7 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49M2K9GQS4;
 				INFOPLIST_FILE = UrlExtractor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,7 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49M2K9GQS4;
 				INFOPLIST_FILE = UrlExtractor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

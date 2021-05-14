@@ -32,12 +32,11 @@ class RecentSearchViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func displayWebView(websiteUrl: String?) {
-//        if let requiredUrl = websiteUrl, let  url = URL(string: requiredUrl) {
-//            let config = SFSafariViewController.Configuration()
-//            config.entersReaderIfAvailable = true
-//            let vc = SafariWebViewController(url: url, configuration: config)
-//            present(vc, animated: true)
-//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
+            self.navigationController?.pushViewController(webViewController, animated: true)
+            webViewController.websiteUrl = websiteUrl
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

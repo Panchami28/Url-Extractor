@@ -12,13 +12,10 @@ import CoreData
 class StreamDataManager {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items = [Stream]()
-    var urlArray = [String]()
     
     func addData(_ streamUrl: String,_ mainSiteName: String) {
-        //Check if item exists in db
-        getData()
         //Get all urls and compare it with current streamUrl
-        getUrl()
+        let urlArray = getUrl()
         if urlArray.contains(streamUrl) {
             //If already present, update item in db
             updateData(streamUrl,mainSiteName)
@@ -57,10 +54,19 @@ class StreamDataManager {
         return items[indexpath.row]
     }
     
-    func getUrl() {
+    func allItems() -> [Stream] {
+        getData()
+        return items
+    }
+    
+    func getUrl() -> [String] {
+        var UrlArray = [String]()
+        //Check if item exists in db
+        getData()
         for i in 0..<items.count {
-            urlArray.append(items[i].url ?? "")
+            UrlArray.append(items[i].url ?? "")
         }
+        return UrlArray
     }
     
     func updateData(_ streamUrl: String, _ mainChannel: String) {

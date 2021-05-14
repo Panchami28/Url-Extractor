@@ -9,6 +9,7 @@ import UIKit
 
 protocol StreamUrlCellDelegate: AnyObject {
     func addToFavouritesButtonClicked(indexPath:IndexPath)
+    func moreButtonClicked(indexPath:IndexPath)
 }
 
 
@@ -17,6 +18,7 @@ class StreamUrlCell: UITableViewCell {
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var streamLabel: UILabel!
     @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     
     weak var delegate: StreamUrlCellDelegate?
     var indexpath : IndexPath?
@@ -38,4 +40,9 @@ class StreamUrlCell: UITableViewCell {
         }
     }
     
+    @IBAction func moreButtonClicked(_ sender: UIButton) {
+        if let indexpath = indexpath {
+            delegate?.moreButtonClicked(indexPath: indexpath)
+        }
+    }
 }

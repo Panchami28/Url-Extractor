@@ -133,4 +133,8 @@ class BasicChannelModel {
         return channelList[indexpPath.row]
     }
     
+    func itemAtSpecificRow(atRow row: Int) -> MainChannelOption {
+        return channelList[row]
+    }
+    
 }

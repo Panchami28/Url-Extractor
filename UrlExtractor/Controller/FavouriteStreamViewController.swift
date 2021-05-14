@@ -13,7 +13,9 @@ class FavouriteStreamViewController: UIViewController {
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    var favoriteStreamDataManager = FavoriteStreamDataManager()
+    private var favoriteStreamDataManager = FavoriteStreamDataManager()
+    private var recentStreamDataManager = StreamDataManager()
+    private var basicChannelModel = BasicChannelModel()
     
 // MARK: -
 // MARK: View LifeCycle
@@ -37,10 +39,26 @@ class FavouriteStreamViewController: UIViewController {
 //MARK: -
 //MARK: Private Methods
 //MARK: -
+    func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+            streamUrlViewController.mainUrl = channelUrl
+            streamUrlViewController.mainSiteName = channelName
+        }
+    }
     
-    func playMusic(_ musicUrl:String,_ mainSiteName: String) {
-            let playerViewController = PlayerViewController()
-            playerViewController.instantiate(musicUrl,mainSiteName,self)
+    func playMusic(_ musicUrl:String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+            self.tabBarController?.addChild(vc)
+            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
+            //vc.modalTransitionStyle = .crossDissolve
+            self.tabBarController?.view.addSubview(vc.view)
+            self.willMove(toParent: self.tabBarController)
+            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            vc.playMusic(musicUrl)
+        }
     }
     
     @objc func removeAll() {
@@ -74,11 +92,14 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
         cell.channelImageView.image = UIImage(named: favoriteStreamDataManager.item(indexPath).mainChannel ?? "")
         cell.delegate = self
         cell.indexpath = indexPath
+        cell.layoutIfNeeded()
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let stream = favoriteStreamDataManager.item(indexPath).url , let mainChannel = favoriteStreamDataManager.item(indexPath).mainChannel {
-            playMusic(stream, mainChannel)
+            recentStreamDataManager.addData(stream, mainChannel)
+            playMusic(stream)
         }
     }
     
@@ -88,8 +109,31 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
 // MARK: Custom Table cell Delegate
 // MARK: -
 extension FavouriteStreamViewController : StreamUrlCellDelegate {
+    func moreButtonClicked(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Options", message: "Please Choose", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "Share", style: .default) { (action) in
+            let items = [self.favoriteStreamDataManager.item(indexPath).url]
+            let activityVC = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+            self.presentActivityViewController(activityVC)
+        }
+        let action2 = UIAlertAction(title: "Go to station", style: .default) { (action) in
+            let name = self.favoriteStreamDataManager.item(indexPath).mainChannel
+            for i in 0..<self.basicChannelModel.numberOfChannels() {
+                if name == "\(self.basicChannelModel.itemAtSpecificRow(atRow: i))" {
+                    self.loadStreamUrlViewControllerData(self.basicChannelModel.itemAtSpecificRow(atRow: i).websiteUrl,name ?? "")
+                    break
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(action1)
+        alert.addAction(action2)
+        alert.addAction(cancelAction)
+        presentAlertController(alert)
+    }
+    
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
-        let cell = favoritesTableView.cellForRow(at: indexPath) as! StreamUrlCell
+        let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         if let currentUrl = self.favoriteStreamDataManager.item(indexPath).url {
             let alert = UIAlertController(title: "Alert", message: "Do you want to remove \(currentUrl) from list?", preferredStyle: .actionSheet)
             let action1 = UIAlertAction(title: "Remove", style: .destructive) { (action) in

@@ -12,6 +12,7 @@ class RecentStreamTableViewController: UITableViewController {
     @IBOutlet var recentTableView: UITableView!
     
     var streamDataManager = StreamDataManager()
+    var basicChannelModel = BasicChannelModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,37 @@ class RecentStreamTableViewController: UITableViewController {
         streamDataManager.getData()
         //Register a custome cell
         recentTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
+        recentTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        recentTableView.reloadData()
     }
 // MARK: -
 // MARK: - Private Methods
 // MARK: -
     
-    func playMusic(_ musicUrl:String,_ mainChannel: String) {
-            let playerViewController = PlayerViewController()
-            playerViewController.instantiate(musicUrl,mainChannel,self)
+    func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+            streamUrlViewController.mainUrl = channelUrl
+            streamUrlViewController.mainSiteName = channelName
+        }
+    }
+    
+    func playMusic(_ musicUrl:String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+            self.tabBarController?.addChild(vc)
+            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
+            //vc.modalTransitionStyle = .crossDissolve
+            self.tabBarController?.view.addSubview(vc.view)
+            self.willMove(toParent: self.tabBarController)
+            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            vc.playMusic(musicUrl)
+        }
     }
     
 // MARK: -
@@ -52,11 +76,13 @@ class RecentStreamTableViewController: UITableViewController {
         } else {
             cell.channelImageView.image = UIImage(named: "RecentStation")
         }
+        cell.layoutIfNeeded()
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playMusic(streamDataManager.item(indexPath).url ?? "", streamDataManager.item(indexPath).mainChannel ?? "")
+        streamDataManager.addData(streamDataManager.item(indexPath).url ?? "", streamDataManager.item(indexPath).mainChannel ?? "")
+        playMusic(streamDataManager.item(indexPath).url ?? "")
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -64,8 +90,40 @@ class RecentStreamTableViewController: UITableViewController {
         cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
         var index = 0
         UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
-            cell.transform = CGAffineTransform(translationX: 0, y: 0);
+            cell.transform = CGAffineTransform(translationX: 0, y: 0)
         }, completion: nil)
         index += 1
     }
+}
+
+extension RecentStreamTableViewController: StreamUrlCellDelegate {
+    func addToFavouritesButtonClicked(indexPath: IndexPath) {
+    }
+    
+    func moreButtonClicked(indexPath: IndexPath) {
+        func moreButtonClicked(indexPath: IndexPath) {
+            let alert = UIAlertController(title: "Options", message: "Please Choose", preferredStyle: .actionSheet)
+            let action1 = UIAlertAction(title: "Share", style: .default) { (action) in
+                let items = [self.streamDataManager.item(indexPath).url]
+                let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self.presentActivityViewController(activityVC)
+            }
+            let action2 = UIAlertAction(title: "Go to station", style: .default) { (action) in
+                let name = self.streamDataManager.item(indexPath).mainChannel
+                for i in 0..<self.basicChannelModel.numberOfChannels() {
+                    if name == "\(self.basicChannelModel.itemAtSpecificRow(atRow: i))" {
+                        self.loadStreamUrlViewControllerData(self.basicChannelModel.itemAtSpecificRow(atRow: i).websiteUrl,name ?? "")
+                        break
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+            alert.addAction(action1)
+            alert.addAction(action2)
+            alert.addAction(cancelAction)
+            presentAlertController(alert)
+        }
+    }
+    
+    
 }

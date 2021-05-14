@@ -27,7 +27,7 @@ class StreamUrlViewController: UIViewController {
     private var streamDataManager = StreamDataManager()
     private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
     private lazy var checkingStreamQueue = DispatchQueue(label: "StreamCheckingQueue")
-    let vc = ViewController()
+    let viewController = ViewController()
     
 // MARK: -
 // MARK: View LifeCycle
@@ -52,7 +52,7 @@ class StreamUrlViewController: UIViewController {
         urlTableView.reloadData()
         //To load stream urls only once initially when view appears
         if self.isBeingPresented || self.isMovingToParent {
-            if vc.reachability.connection == .unavailable {
+            if viewController.reachability.connection == .unavailable {
                 loadingActivityIndicator.isHidden = true
             } else {
                 scrapeWebpage(mainUrl) {
@@ -143,8 +143,16 @@ class StreamUrlViewController: UIViewController {
     }
     
     func playMusic(_ musicUrl:String) {
-            let playerViewController = PlayerViewController()
-            playerViewController.instantiate(musicUrl,mainSiteName,self)
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+            self.tabBarController?.addChild(vc)
+            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
+            //vc.modalTransitionStyle = .crossDissolve
+            self.tabBarController?.view.addSubview(vc.view)
+            self.willMove(toParent: self.tabBarController)
+            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            vc.playMusic(musicUrl)
+        }
     }
     
     func handleError() {
@@ -193,6 +201,14 @@ class StreamUrlViewController: UIViewController {
         }
     }
     
+    func createTabBarController(_ vc: PlayerViewController) {
+        tabBarController?.addChild(vc)
+        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 150, width: self.view.frame.width, height: 100)
+        vc.modalTransitionStyle = .crossDissolve
+        tabBarController?.view.addSubview(vc.view)
+        vc.willMove(toParent: tabBarController)
+    }
+    
 }
 // MARK: -
 // MARK: Tableview DataSource and Delegates
@@ -204,14 +220,12 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //var favUrlArray = [String]()
         let cell = urlTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamUrlArray[indexPath.row]
         cell.channelImageView.image = UIImage(named: mainSiteName)
         cell.delegate = self
         cell.indexpath = indexPath
         //Check if streamUrl is present in favorite stream list to display heart
-        //favoriteStreamDataManager.getData()
         let favUrlArray = favoriteStreamDataManager.getUrl()
         if favUrlArray.contains(streamUrlArray[indexPath.row]) {
             let item = favoriteStreamDataManager.getSelectedData(streamUrlArray[indexPath.row])
@@ -225,10 +239,10 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playMusic(streamUrlArray[indexPath.row])
         //Check if network is available
-        if vc.reachability.connection == .cellular || vc.reachability.connection == .wifi {
+        if viewController.reachability.connection == .cellular || viewController.reachability.connection == .wifi {
             streamDataManager.addData(streamUrlArray[indexPath.row],mainSiteName)
+            playMusic(streamUrlArray[indexPath.row])
         }
     }
 }
@@ -237,6 +251,19 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
 // MARK: Custom Table cell Delegate
 // MARK: -
 extension StreamUrlViewController: StreamUrlCellDelegate {
+    func moreButtonClicked(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Options", message: "Please Choose", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "Share", style: .default) { (action) in
+            let items = [self.streamUrlArray[indexPath.row]]
+            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self.presentActivityViewController(activityVC)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(action1)
+        alert.addAction(cancelAction)
+        presentAlertController(alert)
+    }
+    
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
         let result = favoriteStreamDataManager.addData(streamUrlArray[indexPath.row], mainSiteName)
         //If stream URL is already prsent in favourite list, then display action sheet with option to remove it from list

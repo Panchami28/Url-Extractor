@@ -35,5 +35,17 @@ extension UIViewController {
             }
         }
     }
-
+    func presentViewController(_ viewController: UIViewController) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverPresentationController = viewController.popoverPresentationController {
+                popoverPresentationController.permittedArrowDirections = []
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                self.present(viewController, animated: true, completion: nil)
+            } else {
+                present(viewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
 }
