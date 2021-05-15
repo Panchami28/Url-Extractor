@@ -18,8 +18,8 @@ class MiniPlayerViewController: UIViewController {
     let recentStreamDataManager = StreamDataManager()
     let playerController = PlayerViewController()
     static var player : AVPlayer?
-    var items = [Stream]()
-    var flag = 0
+    var items : [Stream]?
+    var isPlaying = false
     var streamingUrl = ""
 
     override func viewDidLoad() {
@@ -29,22 +29,27 @@ class MiniPlayerViewController: UIViewController {
     }
     
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        if flag == 0 {
-            flag = 1
+        if isPlaying == true {
+            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            isPlaying = false
+            pauseMusic()
+        }
+        if isPlaying == false {
+           isPlaying = true
             playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playMusic(streamingUrl)
-        } else {
-            flag = 0
-            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-           pauseMusic()
         }
     }
     
     func getStreamUrl() {
         items = recentStreamDataManager.allItems()
-        streamingUrl = items[0].url ?? ""
-        channelImage.image = UIImage(named: items[0].mainChannel ?? "")
-        streamUrl.text = streamingUrl
+        if let items = items {
+            if items != [] {
+                streamingUrl = items[0].url ?? ""
+                channelImage.image = UIImage(named: items[0].mainChannel ?? "")
+                streamUrl.text = streamingUrl
+            }
+        }
     }
     
     public func playMusic(_ musicUrl:String) {
@@ -63,9 +68,8 @@ class MiniPlayerViewController: UIViewController {
     }
     
     @IBAction func tapPressed(_ sender: UITapGestureRecognizer) {
-        pauseMusic()
         self.present(playerController, animated: true) {
-            self.playerController.instantiate(self.streamingUrl, self.items[0].mainChannel ?? "",self)
+            self.playerController.instantiate(self.streamingUrl, self.items?[0].mainChannel ?? "",self)
         }
     }
 }

@@ -714,16 +714,77 @@
             </objects>
             <point key="canvasLocation" x="-346.37681159420293" y="825"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="K8z-NJ-pPd">
+            <objects>
+                <viewController id="alA-fK-ghE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7CP-7U-cG1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-p1-i1O" userLabel="Cancel Button">
+                                <rect key="frame" x="166.5" y="60" width="81" height="82"/>
+                                <color key="backgroundColor" white="1" alpha="0.69394798801369861" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="30" maxX="30" maxY="30"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="60"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="csl-yc-Ncv">
+                                <rect key="frame" x="71" y="232" width="272" height="299"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="T3Y-Lc-Ddj"/>
+                                    <constraint firstAttribute="width" constant="272" id="zc2-69-v5i"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nva-W7-Ljk" userLabel="Play Button">
+                                <rect key="frame" x="166" y="582" width="82.5" height="82"/>
+                                <color key="backgroundColor" white="1" alpha="0.6911922089041096" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="30" maxX="30" maxY="30"/>
+                                <state key="normal" image="chevron.down" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xfa-2c-lsu"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstItem="Nva-W7-Ljk" firstAttribute="centerX" secondItem="Xfa-2c-lsu" secondAttribute="centerX" id="Q4F-2p-yjx"/>
+                            <constraint firstItem="FLt-p1-i1O" firstAttribute="top" secondItem="Xfa-2c-lsu" secondAttribute="top" constant="16" id="abZ-LD-xqB"/>
+                            <constraint firstItem="csl-yc-Ncv" firstAttribute="centerX" secondItem="Xfa-2c-lsu" secondAttribute="centerX" id="exz-qh-xBp"/>
+                            <constraint firstItem="FLt-p1-i1O" firstAttribute="centerX" secondItem="Xfa-2c-lsu" secondAttribute="centerX" id="oWp-yj-oeu"/>
+                            <constraint firstItem="csl-yc-Ncv" firstAttribute="top" secondItem="FLt-p1-i1O" secondAttribute="bottom" constant="90" id="pXQ-53-3jt"/>
+                            <constraint firstItem="Nva-W7-Ljk" firstAttribute="top" secondItem="csl-yc-Ncv" secondAttribute="bottom" constant="51" id="syU-Tu-PQY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQ8-C4-FcO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="634.78260869565224" y="889.95535714285711"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Google" width="1000" height="1000"/>
         <image name="back2" width="736" height="1308"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="clock.arrow.2.circlepath" catalog="system" width="128" height="103"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

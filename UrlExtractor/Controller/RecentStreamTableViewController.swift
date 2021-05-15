@@ -71,6 +71,8 @@ class RecentStreamTableViewController: UITableViewController {
         let cell = recentTableView.dequeueReusableCell(withIdentifier: "StreamUrlCell", for: indexPath) as! StreamUrlCell
         cell.streamLabel.text = streamDataManager.item(indexPath).url
         cell.favoritesButton.isHidden = true
+        cell.delegate = self
+        cell.indexpath = indexPath
         if let channelImage = streamDataManager.item(indexPath).mainChannel {
         cell.channelImageView.image = UIImage(named: channelImage)
         } else {
@@ -102,32 +104,29 @@ class RecentStreamTableViewController: UITableViewController {
 
 extension RecentStreamTableViewController: StreamUrlCellDelegate {
     func addToFavouritesButtonClicked(indexPath: IndexPath) {
+        print("Added to fav")
     }
     
     func moreButtonClicked(indexPath: IndexPath) {
-        func moreButtonClicked(indexPath: IndexPath) {
-            let alert = UIAlertController(title: "Options", message: "Please Choose", preferredStyle: .actionSheet)
-            let action1 = UIAlertAction(title: "Share", style: .default) { (action) in
-                let items = [self.streamDataManager.item(indexPath).url]
-                let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                self.presentActivityViewController(activityVC)
-            }
-            let action2 = UIAlertAction(title: "Go to station", style: .default) { (action) in
-                let name = self.streamDataManager.item(indexPath).mainChannel
-                for i in 0..<self.basicChannelModel.numberOfChannels() {
-                    if name == "\(self.basicChannelModel.itemAtSpecificRow(atRow: i))" {
-                        self.loadStreamUrlViewControllerData(self.basicChannelModel.itemAtSpecificRow(atRow: i).websiteUrl,name ?? "")
-                        break
-                    }
+        let alert = UIAlertController(title: "Options", message: "Please Choose", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "Share", style: .default) { (action) in
+            let items = [self.streamDataManager.item(indexPath).url]
+            let activityVC = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+            self.presentActivityViewController(activityVC)
+        }
+        let action2 = UIAlertAction(title: "Go to station", style: .default) { (action) in
+            let name = self.streamDataManager.item(indexPath).mainChannel
+            for i in 0..<self.basicChannelModel.numberOfChannels() {
+                if name == "\(self.basicChannelModel.itemAtSpecificRow(atRow: i))" {
+                    self.loadStreamUrlViewControllerData(self.basicChannelModel.itemAtSpecificRow(atRow: i).websiteUrl,name ?? "")
+                    break
                 }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-            alert.addAction(action1)
-            alert.addAction(action2)
-            alert.addAction(cancelAction)
-            presentAlertController(alert)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(action1)
+        alert.addAction(action2)
+        alert.addAction(cancelAction)
+        presentAlertController(alert)
     }
-    
-    
 }

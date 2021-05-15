@@ -16,17 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
-        let pvc = PlayerViewController()
-        let items = recentStreamDataMangaer.allItems()
-        pvc.instantiate(items[0].url ?? "", items[0].mainChannel ?? "", self)
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-            self.tabBarController?.addChild(vc)
-            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            //vc.modalTransitionStyle = .crossDissolve
-            self.tabBarController?.view.addSubview(vc.view)
-            self.willMove(toParent: self.tabBarController)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +25,14 @@ class ViewController: UIViewController {
             try reachability.startNotifier()
         }catch{
             print("could not start reachability notifier")
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+            self.tabBarController?.addChild(vc)
+            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
+            //vc.modalTransitionStyle = .crossDissolve
+            self.tabBarController?.view.addSubview(vc.view)
+            self.willMove(toParent: self.tabBarController)
         }
     }
     

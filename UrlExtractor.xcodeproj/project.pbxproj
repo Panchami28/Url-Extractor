@@ -139,10 +139,10 @@
 				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
 				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
-				205FC71F26414C4100C72B3E /* PlayerViewController.swift */,
 				203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */,
 				206AEB74264566480023FC93 /* RecentSearchViewController.swift */,
 				2069E13D2648563F00FB7FF4 /* WebViewController.swift */,
+				205FC71F26414C4100C72B3E /* PlayerViewController.swift */,
 				2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */,
 			);
 			path = Controller;
@@ -522,7 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49M2K9GQS4;
 				INFOPLIST_FILE = UrlExtractor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +543,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49M2K9GQS4;
 				INFOPLIST_FILE = UrlExtractor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

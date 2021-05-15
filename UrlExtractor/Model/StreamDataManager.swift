@@ -18,7 +18,9 @@ class StreamDataManager {
         let urlArray = getUrl()
         if urlArray.contains(streamUrl) {
             //If already present, update item in db
-            updateData(streamUrl,mainSiteName)
+            //updateData(streamUrl,mainSiteName)
+            deleteData(streamUrl)
+            addData(streamUrl, mainSiteName)
         } else {
             //Create a stream object
             let newStream = Stream(context: context)
@@ -63,10 +65,25 @@ class StreamDataManager {
         var UrlArray = [String]()
         //Check if item exists in db
         getData()
-        for i in 0..<items.count {
+        for i in 0..<10 {
             UrlArray.append(items[i].url ?? "")
         }
         return UrlArray
+    }
+    
+    func deleteData(_ streamUrl: String) {
+        var item = [Stream]()
+        let request = Stream.fetchRequest() as NSFetchRequest<Stream>
+        let predicate = NSPredicate(format: "url CONTAINS '\(streamUrl)'")
+        request.predicate = predicate
+        do {
+            item = try context.fetch(request)
+            self.context.delete(item[0])
+            try self.context.save()
+        } catch {
+            print("Error")
+        }
+        getData()
     }
     
     func updateData(_ streamUrl: String, _ mainChannel: String) {

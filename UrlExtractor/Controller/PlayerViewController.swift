@@ -8,39 +8,42 @@
 import UIKit
 import AVKit
 import Reachability
-
+import MediaPlayer
 
 class PlayerViewController: AVPlayerViewController {
     
     let viewController = ViewController()
     let likeButton = UIButton(type: UIButton.ButtonType.system) as UIButton
-    let popButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    let cancelButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     private var favouriteStreamDataManager = FavoriteStreamDataManager()
     var musicUrl:String = ""
     var mainChannel:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showsPlaybackControls = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        if self.isBeingDismissed {
-            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-                self.navigationController?.pushViewController(vc, animated: true)
-                vc.playMusic(musicUrl)
-            }
-        }
+//        if self.isBeingDismissed {
+//            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+//            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+//                self.navigationController?.pushViewController(vc, animated: true)
+//                vc.playMusic(musicUrl)
+//            }
+//        }
     }
     
     func instantiate(_ musicUrl: String,_ mainChannel: String,_ destinationVC: UIViewController) {
-            self.musicUrl = musicUrl
-            self.mainChannel = mainChannel
-            self.playMusic(musicUrl)
-            self.designLikeButton()
-            //self.designPopButton()
-            self.displayImage()
+        self.musicUrl = musicUrl
+        self.mainChannel = mainChannel
+        //self.playMusic(musicUrl)
+        self.designLikeButton()
+        self.designPlayButton()
+        self.designCancelButton()
+        self.displayImage()
     }
     
     
@@ -60,11 +63,12 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     func displayImage() {
-        if let frame = contentOverlayView?.bounds {
-            let imageView = UIImageView(image: UIImage(named: mainChannel))
-            imageView.frame = frame
-            contentOverlayView?.addSubview(imageView)
-        }
+        let frame = CGRect(x: self.view.frame.minX+60, y: self.view.frame.minY+100, width: self.view.frame.width-120, height: self.view.frame.height-400)
+        let imageView = UIImageView(image: UIImage(named: mainChannel))
+        imageView.frame = frame
+        contentOverlayView?.addSubview(imageView)
+        let volumeView = MPVolumeView(frame: CGRect(x: self.view.frame.maxX-200, y: self.view.frame.minY+50, width: 150, height: 100))
+        view.addSubview(volumeView)
     }
 
     
@@ -109,26 +113,55 @@ class PlayerViewController: AVPlayerViewController {
         }
     }
     
-    func designPopButton() {
-        popButton.backgroundColor = .darkGray
-        popButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        popButton.tintColor = .orange
+    func designCancelButton() {
+        cancelButton.backgroundColor = .darkGray
+        cancelButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        cancelButton.tintColor = .white
         if UIDevice.current.userInterfaceIdiom == .pad {
-            popButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.minY+100, width: 50, height: 50)
+            cancelButton.frame = CGRect(x: self.view.frame.minX+60, y: self.view.frame.minY+20, width: 50, height: 50)
         } else {
-            popButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+70, width: 50, height: 50)
+            cancelButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+50, width: 50, height: 50)
         }
-        popButton.layer.cornerRadius = 15
-        popButton.addTarget(self, action: #selector(popButtonTapped), for: .touchUpInside)
-        self.view.addSubview(popButton)
+        cancelButton.layer.cornerRadius = 20
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        self.view.addSubview(cancelButton)
     }
     
-    @objc func popButtonTapped() {
-        self.dismiss(animated: true) {
-            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-                vc.streamingUrl = self.musicUrl
-            
+    @objc func cancelButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func designPlayButton() {
+        playButton.backgroundColor = .white
+//        if vc.isPlaying == true {
+//            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+//        }
+//        if vc.isPlaying == false {
+//            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+//        }
+        playButton.tintColor = .black
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
+        } else {
+            playButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+70, width: 100, height: 70)
+        }
+        playButton.layer.cornerRadius = 20
+        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        self.view.addSubview(playButton)
+    }
+    
+    @objc func playButtonTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
+            if vc.isPlaying == true {
+                vc.isPlaying = false
+                playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+                vc.pauseMusic()
+            }
+            if vc.isPlaying == false {
+                vc.isPlaying = true
+                playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+                vc.playMusic(musicUrl)
             }
         }
     }
