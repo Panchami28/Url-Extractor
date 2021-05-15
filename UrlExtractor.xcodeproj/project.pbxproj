@@ -24,17 +24,17 @@
 		2042361A261C720900CBAA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20423619261C720900CBAA8B /* Assets.xcassets */; };
 		2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2042361B261C720900CBAA8B /* LaunchScreen.storyboard */; };
 		20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */; };
-		204C44BB264F9DDE007837FB /* Stream+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44B5264F9DDE007837FB /* Stream+CoreDataClass.swift */; };
-		204C44BC264F9DDE007837FB /* FavoriteStreams+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44B6264F9DDE007837FB /* FavoriteStreams+CoreDataProperties.swift */; };
-		204C44BD264F9DDE007837FB /* Stream+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44B7264F9DDE007837FB /* Stream+CoreDataProperties.swift */; };
-		204C44BE264F9DDE007837FB /* FavoriteStreams+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44B8264F9DDE007837FB /* FavoriteStreams+CoreDataClass.swift */; };
-		204C44BF264F9DDE007837FB /* RecentSearch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44B9264F9DDE007837FB /* RecentSearch+CoreDataProperties.swift */; };
-		204C44C0264F9DDE007837FB /* RecentSearch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C44BA264F9DDE007837FB /* RecentSearch+CoreDataClass.swift */; };
 		205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */; };
 		205FC72026414C4100C72B3E /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205FC71F26414C4100C72B3E /* PlayerViewController.swift */; };
 		2069E13E2648563F00FB7FF4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2069E13D2648563F00FB7FF4 /* WebViewController.swift */; };
 		206AEB6B264562730023FC93 /* RecentSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AEB6A264562730023FC93 /* RecentSearchManager.swift */; };
 		206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AEB74264566480023FC93 /* RecentSearchViewController.swift */; };
+		2071BDC5264FA38E009B8DBD /* Stream+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDBF264FA38E009B8DBD /* Stream+CoreDataClass.swift */; };
+		2071BDC6264FA38E009B8DBD /* Stream+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC0264FA38E009B8DBD /* Stream+CoreDataProperties.swift */; };
+		2071BDC7264FA38E009B8DBD /* RecentSearch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC1264FA38E009B8DBD /* RecentSearch+CoreDataClass.swift */; };
+		2071BDC8264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC2264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift */; };
+		2071BDC9264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC3264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift */; };
+		2071BDCA264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC4264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
 		2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */; };
@@ -67,17 +67,17 @@
 		2042361C261C720900CBAA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2042361E261C720900CBAA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlViewController.swift; sourceTree = "<group>"; };
-		204C44B5264F9DDE007837FB /* Stream+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stream+CoreDataClass.swift"; sourceTree = "<group>"; };
-		204C44B6264F9DDE007837FB /* FavoriteStreams+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		204C44B7264F9DDE007837FB /* Stream+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stream+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		204C44B8264F9DDE007837FB /* FavoriteStreams+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataClass.swift"; sourceTree = "<group>"; };
-		204C44B9264F9DDE007837FB /* RecentSearch+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		204C44BA264F9DDE007837FB /* RecentSearch+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataClass.swift"; sourceTree = "<group>"; };
 		205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUrlManagerViewController.swift; sourceTree = "<group>"; };
 		205FC71F26414C4100C72B3E /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2069E13D2648563F00FB7FF4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		206AEB6A264562730023FC93 /* RecentSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchManager.swift; sourceTree = "<group>"; };
 		206AEB74264566480023FC93 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
+		2071BDBF264FA38E009B8DBD /* Stream+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stream+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2071BDC0264FA38E009B8DBD /* Stream+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stream+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2071BDC1264FA38E009B8DBD /* RecentSearch+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2071BDC2264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2071BDC3264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2071BDC4264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
 		2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UrlExtractor.xcdatamodel; sourceTree = "<group>"; };
@@ -197,12 +197,12 @@
 		204C44B4264F9DA0007837FB /* Core Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				204C44BA264F9DDE007837FB /* RecentSearch+CoreDataClass.swift */,
-				204C44B9264F9DDE007837FB /* RecentSearch+CoreDataProperties.swift */,
-				204C44B8264F9DDE007837FB /* FavoriteStreams+CoreDataClass.swift */,
-				204C44B6264F9DDE007837FB /* FavoriteStreams+CoreDataProperties.swift */,
-				204C44B5264F9DDE007837FB /* Stream+CoreDataClass.swift */,
-				204C44B7264F9DDE007837FB /* Stream+CoreDataProperties.swift */,
+				2071BDC1264FA38E009B8DBD /* RecentSearch+CoreDataClass.swift */,
+				2071BDC2264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift */,
+				2071BDC3264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift */,
+				2071BDC4264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift */,
+				2071BDBF264FA38E009B8DBD /* Stream+CoreDataClass.swift */,
+				2071BDC0264FA38E009B8DBD /* Stream+CoreDataProperties.swift */,
 			);
 			path = "Core Data Models";
 			sourceTree = "<group>";
@@ -341,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2071BDC7264FA38E009B8DBD /* RecentSearch+CoreDataClass.swift in Sources */,
 				20262F842642EA710049E700 /* MainChannelCollectionViewCell.swift in Sources */,
 				20B58074263C597900A1F985 /* Reachability.swift in Sources */,
 				2000CA1526426595001CA014 /* UIViewController+Convenience.swift in Sources */,
@@ -351,27 +352,26 @@
 				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */,
 				206AEB6B264562730023FC93 /* RecentSearchManager.swift in Sources */,
+				2071BDC8264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift in Sources */,
 				2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */,
 				2038A6CE264E4CE400FA0E93 /* MiniPlayerViewController.swift in Sources */,
+				2071BDC6264FA38E009B8DBD /* Stream+CoreDataProperties.swift in Sources */,
 				20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
-				204C44BB264F9DDE007837FB /* Stream+CoreDataClass.swift in Sources */,
-				204C44BF264F9DDE007837FB /* RecentSearch+CoreDataProperties.swift in Sources */,
+				2071BDC5264FA38E009B8DBD /* Stream+CoreDataClass.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
-				204C44BD264F9DDE007837FB /* Stream+CoreDataProperties.swift in Sources */,
-				204C44C0264F9DDE007837FB /* RecentSearch+CoreDataClass.swift in Sources */,
 				20B5805D263BF03500A1F985 /* SafariWebViewController.swift in Sources */,
-				204C44BC264F9DDE007837FB /* FavoriteStreams+CoreDataProperties.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */,
 				206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */,
-				204C44BE264F9DDE007837FB /* FavoriteStreams+CoreDataClass.swift in Sources */,
 				2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */,
 				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
 				2069E13E2648563F00FB7FF4 /* WebViewController.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
+				2071BDC9264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift in Sources */,
+				2071BDCA264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
