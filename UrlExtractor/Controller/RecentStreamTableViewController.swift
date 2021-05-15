@@ -81,8 +81,12 @@ class RecentStreamTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        streamDataManager.addData(streamDataManager.item(indexPath).url ?? "", streamDataManager.item(indexPath).mainChannel ?? "")
-        playMusic(streamDataManager.item(indexPath).url ?? "")
+        if let musicUrl = streamDataManager.item(indexPath).url, let channel = streamDataManager.item(indexPath).mainChannel{
+            streamDataManager.addData(musicUrl,channel)
+            streamDataManager.getData()
+            recentTableView.reloadData()
+            playMusic(musicUrl)
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

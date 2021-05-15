@@ -26,8 +26,11 @@ class PlayerViewController: AVPlayerViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         if self.isBeingDismissed {
-            
-            //miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.playMusic(musicUrl)
+            }
         }
     }
     
