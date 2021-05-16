@@ -19,23 +19,28 @@ class MiniPlayerViewController: UIViewController {
     let playerController = PlayerViewController()
     static var player : AVPlayer?
     var items : [Stream]?
-    var isPlaying = false
+    static var isPlaying = false
     var streamingUrl = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         musicLoadingActivityIndicator.isHidden = true
         getStreamUrl()
+        updatePlayButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updatePlayButton()
     }
     
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        if isPlaying == true {
+        if MiniPlayerViewController.isPlaying == true {
+            MiniPlayerViewController.isPlaying = false
             playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-            isPlaying = false
             pauseMusic()
-        }
-        if isPlaying == false {
-           isPlaying = true
+        } else if MiniPlayerViewController.isPlaying == false {
+            MiniPlayerViewController.isPlaying = true
             playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playMusic(streamingUrl)
         }
@@ -49,6 +54,14 @@ class MiniPlayerViewController: UIViewController {
                 channelImage.image = UIImage(named: items[0].mainChannel ?? "")
                 streamUrl.text = streamingUrl
             }
+        }
+    }
+    
+    func updatePlayButton() {
+        if MiniPlayerViewController.isPlaying == true {
+            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        } else {
+            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
     

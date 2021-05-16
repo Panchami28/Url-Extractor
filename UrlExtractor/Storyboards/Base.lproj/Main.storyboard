@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YOi-ZU-fYA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -666,9 +665,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTo-hc-xC4">
-                                <rect key="frame" x="385" y="811" width="25" height="32"/>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" image="play.fill" catalog="system"/>
+                                <rect key="frame" x="386" y="806" width="20" height="42"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="c9O-B7-Uxd" eventType="touchUpInside" id="Xp0-kq-CdN"/>
                                 </connections>
@@ -686,7 +684,7 @@
                             <constraint firstItem="FTo-hc-xC4" firstAttribute="centerY" secondItem="Xtj-7T-xau" secondAttribute="centerY" id="2x4-Al-3nA"/>
                             <constraint firstItem="Xtj-7T-xau" firstAttribute="leading" secondItem="4mf-kv-7kV" secondAttribute="trailing" constant="4" id="A1T-kQ-2M0"/>
                             <constraint firstItem="4mf-kv-7kV" firstAttribute="leading" secondItem="HSM-Wv-5bx" secondAttribute="leading" id="E6c-tN-na1"/>
-                            <constraint firstItem="HSM-Wv-5bx" firstAttribute="trailing" secondItem="FTo-hc-xC4" secondAttribute="trailing" constant="4" id="Knd-Vc-cko"/>
+                            <constraint firstItem="HSM-Wv-5bx" firstAttribute="trailing" secondItem="FTo-hc-xC4" secondAttribute="trailing" constant="8" id="Knd-Vc-cko"/>
                             <constraint firstItem="Xtj-7T-xau" firstAttribute="centerY" secondItem="4mf-kv-7kV" secondAttribute="centerY" id="QEH-Ud-Zvr"/>
                             <constraint firstItem="HSM-Wv-5bx" firstAttribute="trailing" secondItem="Abf-bf-H9N" secondAttribute="trailing" constant="32" id="i0g-HF-R50"/>
                             <constraint firstItem="FTo-hc-xC4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xtj-7T-xau" secondAttribute="trailing" constant="8" id="ohL-GR-QzD"/>
@@ -783,7 +781,6 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
-        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -65,7 +65,7 @@ class StreamDataManager {
         var UrlArray = [String]()
         //Check if item exists in db
         getData()
-        for i in 0..<10 {
+        for i in 0..<items.count {
             UrlArray.append(items[i].url ?? "")
         }
         return UrlArray

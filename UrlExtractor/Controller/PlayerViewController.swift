@@ -133,12 +133,11 @@ class PlayerViewController: AVPlayerViewController {
     
     func designPlayButton() {
         playButton.backgroundColor = .white
-//        if vc.isPlaying == true {
-//            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//        }
-//        if vc.isPlaying == false {
-//            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-//        }
+        if MiniPlayerViewController.isPlaying == true {
+            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }else {
+            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
         playButton.tintColor = .black
         if UIDevice.current.userInterfaceIdiom == .pad {
             playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
@@ -153,16 +152,16 @@ class PlayerViewController: AVPlayerViewController {
     @objc func playButtonTapped() {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
-            if vc.isPlaying == true {
-                vc.isPlaying = false
+            if MiniPlayerViewController.isPlaying == true {
+                MiniPlayerViewController.isPlaying = false
                 playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
                 vc.pauseMusic()
-            }
-            if vc.isPlaying == false {
-                vc.isPlaying = true
+            } else if MiniPlayerViewController.isPlaying == false {
+                MiniPlayerViewController.isPlaying = true
                 playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
                 vc.playMusic(musicUrl)
             }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
         

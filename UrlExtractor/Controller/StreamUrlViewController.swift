@@ -147,11 +147,13 @@ class StreamUrlViewController: UIViewController {
         if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
             self.tabBarController?.addChild(vc)
             vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            //vc.modalTransitionStyle = .crossDissolve
+            vc.modalTransitionStyle = .crossDissolve
             self.tabBarController?.view.addSubview(vc.view)
             self.willMove(toParent: self.tabBarController)
             vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            MiniPlayerViewController.isPlaying = true
             vc.playMusic(musicUrl)
+            //elf.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -201,13 +203,13 @@ class StreamUrlViewController: UIViewController {
         }
     }
     
-    func createTabBarController(_ vc: PlayerViewController) {
-        tabBarController?.addChild(vc)
-        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 150, width: self.view.frame.width, height: 100)
-        vc.modalTransitionStyle = .crossDissolve
-        tabBarController?.view.addSubview(vc.view)
-        vc.willMove(toParent: tabBarController)
-    }
+//    func createTabBarController(_ vc: PlayerViewController) {
+//        tabBarController?.addChild(vc)
+//        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 150, width: self.view.frame.width, height: 100)
+//        vc.modalTransitionStyle = .crossDissolve
+//        tabBarController?.view.addSubview(vc.view)
+//        vc.willMove(toParent: tabBarController)
+//    }
     
 }
 // MARK: -
