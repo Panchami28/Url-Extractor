@@ -30,7 +30,6 @@ class ViewController: UIViewController {
         if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
             self.tabBarController?.addChild(vc)
             vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            //vc.modalTransitionStyle = .crossDissolve
             self.tabBarController?.view.addSubview(vc.view)
             self.willMove(toParent: self.tabBarController)
         }
@@ -58,9 +57,6 @@ class ViewController: UIViewController {
     
     @IBAction func viewSampleStationsButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-//        if let mainChannelViewController = storyboard.instantiateViewController(identifier: "MainChannelViewController") as? MainChannelViewController {
-//            self.navigationController?.pushViewController(mainChannelViewController, animated: true)
-//        }
         if let mainChannelCollectionViewController = storyboard.instantiateViewController(identifier: "MainChannelCollectionViewController") as? MainChannelCollectionViewController {
             self.navigationController?.pushViewController(mainChannelCollectionViewController, animated: true)
         }

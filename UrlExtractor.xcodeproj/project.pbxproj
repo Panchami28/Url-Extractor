@@ -40,10 +40,8 @@
 		2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */; };
 		2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */; };
 		2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA36263ED8430021DFA8 /* StreamDataManager.swift */; };
-		20B5805D263BF03500A1F985 /* SafariWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5805C263BF03500A1F985 /* SafariWebViewController.swift */; };
 		20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */; };
 		20B58074263C597900A1F985 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B58073263C597900A1F985 /* Reachability.swift */; };
-		20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E630422626E4BC0001CF28 /* MainChannelViewController.swift */; };
 		2D6AE956EEAB7C9C02FC602D /* Pods_UrlExtractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,10 +81,8 @@
 		2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UrlExtractor.xcdatamodel; sourceTree = "<group>"; };
 		2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentStreamTableViewController.swift; sourceTree = "<group>"; };
 		2095EA36263ED8430021DFA8 /* StreamDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataManager.swift; sourceTree = "<group>"; };
-		20B5805C263BF03500A1F985 /* SafariWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebViewController.swift; sourceTree = "<group>"; };
 		20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		20B58073263C597900A1F985 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		20E630422626E4BC0001CF28 /* MainChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelViewController.swift; sourceTree = "<group>"; };
 		35AF972D0FCC0DFC4E82780B /* Pods-UrlExtractor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.debug.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.debug.xcconfig"; sourceTree = "<group>"; };
 		60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UrlExtractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC65D2F4C4DADA1593581ED4 /* Pods-UrlExtractor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.release.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,12 +129,10 @@
 				20423610261C720700CBAA8B /* AppDelegate.swift */,
 				20423614261C720700CBAA8B /* ViewController.swift */,
 				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
-				20E630422626E4BC0001CF28 /* MainChannelViewController.swift */,
-				20B5805C263BF03500A1F985 /* SafariWebViewController.swift */,
 				20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */,
+				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
 				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
-				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */,
 				206AEB74264566480023FC93 /* RecentSearchViewController.swift */,
 				2069E13D2648563F00FB7FF4 /* WebViewController.swift */,
@@ -349,7 +343,6 @@
 				205FC72026414C4100C72B3E /* PlayerViewController.swift in Sources */,
 				2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */,
 				2006D65B26351C9E00BD6818 /* BasicChannelModel.swift in Sources */,
-				20E630432626E4BC0001CF28 /* MainChannelViewController.swift in Sources */,
 				2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */,
 				206AEB6B264562730023FC93 /* RecentSearchManager.swift in Sources */,
 				2071BDC8264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift in Sources */,
@@ -361,7 +354,6 @@
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
 				2071BDC5264FA38E009B8DBD /* Stream+CoreDataClass.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
-				20B5805D263BF03500A1F985 /* SafariWebViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */,
 				206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */,

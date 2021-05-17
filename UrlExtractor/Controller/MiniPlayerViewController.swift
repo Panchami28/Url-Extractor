@@ -7,21 +7,34 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 class MiniPlayerViewController: UIViewController {
+    
+// MARK: -
+// MARK: IB Outlets
+// MARK: -
     
     @IBOutlet weak var channelImage: UIImageView!
     @IBOutlet weak var streamUrl: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var musicLoadingActivityIndicator: UIActivityIndicatorView!
+
+// MARK: -
+// MARK: Varaiable declarations
+// MARK: -
     
     let recentStreamDataManager = StreamDataManager()
     let playerController = PlayerViewController()
     static var player : AVPlayer?
-    var items : [Stream]?
     static var isPlaying = false
-    var streamingUrl = ""
+    var items: [Stream]?
+    var streamingUrl: String?
+    var channelImageName: String?
 
+// MARK: -
+// MARK: View Lifecycle
+// MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         musicLoadingActivityIndicator.isHidden = true
@@ -33,6 +46,17 @@ class MiniPlayerViewController: UIViewController {
         super.viewDidAppear(true)
         updatePlayButton()
     }
+
+// MARK: -
+// MARK: IB Actions
+// MARK: -
+    @IBAction func tapPressed(_ sender: UITapGestureRecognizer) {
+        self.present(playerController, animated: true) {
+            if let streamingUrl = self.streamingUrl, let channelImageName = self.channelImageName {
+                self.playerController.instantiate(streamingUrl, channelImageName,self)
+            }
+        }
+    }
     
     @IBAction func playButtonPressed(_ sender: UIButton) {
         if MiniPlayerViewController.isPlaying == true {
@@ -42,17 +66,25 @@ class MiniPlayerViewController: UIViewController {
         } else if MiniPlayerViewController.isPlaying == false {
             MiniPlayerViewController.isPlaying = true
             playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            playMusic(streamingUrl)
+            if let streamUrl = streamingUrl {
+                playMusic(streamUrl)
+            }
         }
     }
     
+// MARK: -
+// MARK: Private Functions
+// MARK: -
     func getStreamUrl() {
         items = recentStreamDataManager.allItems()
         if let items = items {
             if items != [] {
-                streamingUrl = items[0].url ?? ""
-                channelImage.image = UIImage(named: items[0].mainChannel ?? "")
-                streamUrl.text = streamingUrl
+                streamingUrl = items[0].url
+                channelImageName = items[0].mainChannel
+                if let streamingUrl = streamingUrl , let channelImageName = channelImageName {
+                    channelImage.image = UIImage(named: channelImageName)
+                    streamUrl.text = streamingUrl
+                }
             }
         }
     }
@@ -65,24 +97,57 @@ class MiniPlayerViewController: UIViewController {
         }
     }
     
-    public func playMusic(_ musicUrl:String) {
+    func playMusic(_ musicUrl:String) {
         pauseMusic()
         if let reqdUrl = URL(string: musicUrl) {
             //let playerItem = AVPlayerItem(url: reqdUrl)
             MiniPlayerViewController.player = AVPlayer(url: reqdUrl)
             MiniPlayerViewController.player?.play()
+            setupNowPlaying()
+            setupRemoteCommandCenter()
         } else {
             //handle error
         }
     }
     
-    public func pauseMusic() {
+   func pauseMusic() {
         MiniPlayerViewController.player?.pause()
     }
     
-    @IBAction func tapPressed(_ sender: UITapGestureRecognizer) {
-        self.present(playerController, animated: true) {
-            self.playerController.instantiate(self.streamingUrl, self.items?[0].mainChannel ?? "",self)
+    ///Below 2 functions are used to provide scroll notification and lock screen notification of  currently playing track
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        if let streamingUrl = streamingUrl, let image = UIImage(named: channelImageName ?? "") {
+            nowPlayingInfo[MPMediaItemPropertyTitle] = streamingUrl
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) {
+                (size) -> UIImage in
+                return image
+            }
+        }
+        //nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = MiniPlayerViewController.player?.currentTime().seconds
+        //nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = MiniPlayerViewController.player?.asset.duration.seconds
+        //nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = MiniPlayerViewController.player?.rate
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        MPNowPlayingInfoCenter.default().playbackState = .playing
+    }
+    
+    func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared();
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget {event in
+            MiniPlayerViewController.player?.play()
+            MiniPlayerViewController.isPlaying = true
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget {event in
+            MiniPlayerViewController.player?.pause()
+            MiniPlayerViewController.isPlaying = false
+            return .success
         }
     }
 }
+

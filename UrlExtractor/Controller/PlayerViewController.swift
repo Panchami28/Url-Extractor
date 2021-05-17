@@ -16,6 +16,7 @@ class PlayerViewController: AVPlayerViewController {
     let likeButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let cancelButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    let moreButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     private var favouriteStreamDataManager = FavoriteStreamDataManager()
     var musicUrl:String = ""
     var mainChannel:String = ""
@@ -43,6 +44,7 @@ class PlayerViewController: AVPlayerViewController {
         self.designLikeButton()
         self.designPlayButton()
         self.designCancelButton()
+        self.designMoreButton()
         self.displayImage()
     }
     
@@ -67,13 +69,18 @@ class PlayerViewController: AVPlayerViewController {
         let imageView = UIImageView(image: UIImage(named: mainChannel))
         imageView.frame = frame
         contentOverlayView?.addSubview(imageView)
-        let volumeView = MPVolumeView(frame: CGRect(x: self.view.frame.maxX-200, y: self.view.frame.minY+50, width: 150, height: 100))
-        view.addSubview(volumeView)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let volumeView = MPVolumeView(frame: CGRect(x: self.view.frame.maxX-200, y: self.view.frame.minY+50, width: 150, height: 100))
+            view.addSubview(volumeView)
+        } else {
+            let volumeView = MPVolumeView(frame: CGRect(x: self.view.frame.minX+50, y: self.view.frame.maxY-100, width: 150, height: 100))
+            view.addSubview(volumeView)
+        }
     }
 
     
     func designLikeButton() {
-        likeButton.backgroundColor = .darkGray
+        //likeButton.backgroundColor = .white
         let favUrlArray = favouriteStreamDataManager.getUrl()
         if favUrlArray.contains(musicUrl) {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -83,9 +90,9 @@ class PlayerViewController: AVPlayerViewController {
             likeButton.tintColor = .white
         }
         if UIDevice.current.userInterfaceIdiom == .pad {
-            likeButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.minY+20, width: 50, height: 50)
+            likeButton.frame = CGRect(x: self.view.frame.minX+100, y: self.view.frame.maxY-250, width: 50, height: 50)
         } else {
-            likeButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+50, width: 50, height: 50)
+            likeButton.frame = CGRect(x: self.view.frame.minX+65, y: self.view.frame.maxY-245, width: 50, height: 50)
         }
         likeButton.layer.cornerRadius = 15
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -95,10 +102,10 @@ class PlayerViewController: AVPlayerViewController {
     @objc func likeButtonTapped() {
         let favUrlArray = favouriteStreamDataManager.getUrl()
         if favUrlArray.contains(musicUrl) {
-            let selectedItem = favouriteStreamDataManager.getSelectedData(musicUrl)
-            favouriteStreamDataManager.deleteData(selectedItem)
             let alert = UIAlertController(title: "Warning!" , message: "\(musicUrl) already in favourites list. Do you wanna unfavourite it?", preferredStyle: .actionSheet)
             let action1 = UIAlertAction(title: "Yes", style: .destructive) { (action) in
+                let selectedItem = self.favouriteStreamDataManager.getSelectedData(self.musicUrl)
+                self.favouriteStreamDataManager.deleteData(selectedItem)
                 self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 self.likeButton.tintColor = .white
             }
@@ -114,13 +121,12 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     func designCancelButton() {
-        cancelButton.backgroundColor = .darkGray
         cancelButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         cancelButton.tintColor = .white
         if UIDevice.current.userInterfaceIdiom == .pad {
             cancelButton.frame = CGRect(x: self.view.frame.minX+60, y: self.view.frame.minY+20, width: 50, height: 50)
         } else {
-            cancelButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+50, width: 50, height: 50)
+            cancelButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.minY+50, width: 50, height: 50)
         }
         cancelButton.layer.cornerRadius = 20
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
@@ -142,9 +148,9 @@ class PlayerViewController: AVPlayerViewController {
         if UIDevice.current.userInterfaceIdiom == .pad {
             playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
         } else {
-            playButton.frame = CGRect(x: self.view.frame.midX-15, y: self.view.frame.minY+70, width: 100, height: 70)
+            playButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.maxY-250, width: 70, height: 70)
         }
-        playButton.layer.cornerRadius = 20
+        playButton.layer.cornerRadius = 30
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         self.view.addSubview(playButton)
     }
@@ -163,6 +169,32 @@ class PlayerViewController: AVPlayerViewController {
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func designMoreButton() {
+        moreButton.setImage(UIImage(named: "Moreicon"), for: .normal)
+        moreButton.tintColor = .white
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            moreButton.frame = CGRect(x: self.view.frame.maxX-150, y: self.view.frame.maxY-250, width: 50, height: 50)
+        } else {
+            moreButton.frame = CGRect(x: self.view.frame.maxX-70, y: self.view.frame.maxY-245, width: 50, height: 50)
+        }
+        moreButton.layer.cornerRadius = 15
+        moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
+        self.view.addSubview(moreButton)
+    }
+    
+    @objc func moreButtonTapped() {
+        let alert = UIAlertController(title: "Options", message: "Choose", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "Share Url", style: .default) { (action) in
+            let items = [self.musicUrl]
+            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self.presentActivityViewController(activityVC)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(action1)
+        alert.addAction(cancelAction)
+        presentAlertController(alert)
     }
         
 }
