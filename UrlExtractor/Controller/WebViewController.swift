@@ -11,9 +11,27 @@ import WebKit
 class WebViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
-    var websiteUrl: String?
+    var websiteString: String?
     private var basicChannelModel = BasicChannelModel()
     private var recentSearchManager = RecentSearchManager()
+
+//MARK: -
+//MARK: Instantiation
+//MARK: -
+
+//    class func instantiate(url: String?, siteName: String? = nil) -> WebViewController {
+//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+//        if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
+//            webViewController.websiteUrl = url
+//            return webViewController
+//        }
+//        //let webVC = UIStoryboard.Main.instantiateViewController(identifier: "WebViewController") as! WebViewController
+//        //webVC.websiteUrl = url
+//    }
+    
+//MARK: -
+//MARK: Instantiation
+//MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +53,7 @@ class WebViewController: UIViewController {
     }
     
     func displayWebView() {
-        if let requiredUrl = websiteUrl, let myUrl = URL(string: requiredUrl) {
+        if let requiredString = websiteString, let myUrl = URL(string: requiredString) {
             let request = URLRequest(url: myUrl)
             webView.load(request)
         }

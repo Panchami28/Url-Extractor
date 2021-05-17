@@ -35,7 +35,7 @@ class RecentSearchViewController: UIViewController, UITableViewDataSource, UITab
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
             self.navigationController?.pushViewController(webViewController, animated: true)
-            webViewController.websiteUrl = websiteUrl
+            webViewController.websiteString = websiteUrl
         }
     }
     

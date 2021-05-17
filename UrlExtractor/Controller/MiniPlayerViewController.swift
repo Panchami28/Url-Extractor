@@ -125,9 +125,6 @@ class MiniPlayerViewController: UIViewController {
                 return image
             }
         }
-        //nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = MiniPlayerViewController.player?.currentTime().seconds
-        //nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = MiniPlayerViewController.player?.asset.duration.seconds
-        //nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = MiniPlayerViewController.player?.rate
         
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo

@@ -14,7 +14,7 @@ class PlayerViewController: AVPlayerViewController {
     
     let viewController = ViewController()
     let likeButton = UIButton(type: UIButton.ButtonType.system) as UIButton
-    let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    static let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let cancelButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let moreButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     private var favouriteStreamDataManager = FavoriteStreamDataManager()
@@ -138,21 +138,21 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     func designPlayButton() {
-        playButton.backgroundColor = .white
+        PlayerViewController.playButton.backgroundColor = .white
         if MiniPlayerViewController.isPlaying == true {
-            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            PlayerViewController.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }else {
-            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
-        playButton.tintColor = .black
+        PlayerViewController.playButton.tintColor = .black
         if UIDevice.current.userInterfaceIdiom == .pad {
-            playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
+            PlayerViewController.playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
         } else {
-            playButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.maxY-250, width: 70, height: 70)
+            PlayerViewController.playButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.maxY-250, width: 70, height: 70)
         }
-        playButton.layer.cornerRadius = 30
-        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        self.view.addSubview(playButton)
+        PlayerViewController.playButton.layer.cornerRadius = 30
+        PlayerViewController.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        self.view.addSubview(PlayerViewController.playButton)
     }
     
     @objc func playButtonTapped() {
@@ -160,11 +160,11 @@ class PlayerViewController: AVPlayerViewController {
         if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
             if MiniPlayerViewController.isPlaying == true {
                 MiniPlayerViewController.isPlaying = false
-                playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+                PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
                 vc.pauseMusic()
             } else if MiniPlayerViewController.isPlaying == false {
                 MiniPlayerViewController.isPlaying = true
-                playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+                PlayerViewController.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
                 vc.playMusic(musicUrl)
             }
             self.navigationController?.pushViewController(vc, animated: true)
@@ -191,12 +191,50 @@ class PlayerViewController: AVPlayerViewController {
             let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
             self.presentActivityViewController(activityVC)
         }
+        let action2 = UIAlertAction(title: "Sleep timer", style: .default) { (action) in
+            self.setTimerFeature()
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         alert.addAction(action1)
+        alert.addAction(action2)
         alert.addAction(cancelAction)
         presentAlertController(alert)
     }
+    
+    func setTimerFeature() {
+        let subAlert = UIAlertController(title: "Options", message: "Choose timer", preferredStyle: .actionSheet)
+        let subAction1 = UIAlertAction(title: "5 minutes", style: .default) { (action) in
+           Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { (timer) in
+            self.setPlayButtonAfterTimer()
+            }
+        }
+        let subAction2 = UIAlertAction(title: "10 minutes", style: .default) { (action) in
+           Timer.scheduledTimer(withTimeInterval: 10*60, repeats: false) { (timer) in
+            self.setPlayButtonAfterTimer()
+            }
+        }
+        let subAction3 = UIAlertAction(title: "30 minutes", style: .default) { (action) in
+           Timer.scheduledTimer(withTimeInterval: 30*60, repeats: false) { (timer) in
+            self.setPlayButtonAfterTimer()
+            }
+        }
+        let subAction4 = UIAlertAction(title: "1 hour", style: .default) { (action) in
+           Timer.scheduledTimer(withTimeInterval: 60*60, repeats: false) { (timer) in
+            self.setPlayButtonAfterTimer()
+            }
+        }
+        subAlert.addAction(subAction1)
+        subAlert.addAction(subAction2)
+        subAlert.addAction(subAction3)
+        subAlert.addAction(subAction4)
+        presentAlertController(subAlert)
+    }
         
+    func setPlayButtonAfterTimer() {
+        PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        MiniPlayerViewController.player?.pause()
+        MiniPlayerViewController.isPlaying = false
+    }
 }
 
 

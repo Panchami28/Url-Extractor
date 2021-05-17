@@ -28,10 +28,14 @@ class ViewController: UIViewController {
         }
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
+            if let rootVc = UIApplication.shared.windows.first?.rootViewController as? UITabBarController {
+                print("Tab  bar Controller is presented")
+            }
             self.tabBarController?.addChild(vc)
             vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
             self.tabBarController?.view.addSubview(vc.view)
             self.willMove(toParent: self.tabBarController)
+            //ServiceLocator.shared.playerManager
         }
     }
     

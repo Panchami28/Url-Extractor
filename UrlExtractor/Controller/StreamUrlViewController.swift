@@ -153,7 +153,7 @@ class StreamUrlViewController: UIViewController {
             vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             MiniPlayerViewController.isPlaying = true
             vc.playMusic(musicUrl)
-            //elf.navigationController?.pushViewController(vc, animated: true)
+            //self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -235,6 +235,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
                 cell.favoritesButton.setImage(UIImage(systemName:"heart.fill"), for: .normal)
             }
         } else {
+            //cell.favoritesButton.isHidden = true
             cell.favoritesButton.setImage(UIImage(systemName:"heart"), for: .normal)
         }
         return cell

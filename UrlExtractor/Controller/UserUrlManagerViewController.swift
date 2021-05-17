@@ -80,7 +80,7 @@ class UserUrlManagerViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let webViewController = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController {
             self.navigationController?.pushViewController(webViewController, animated: true)
-            webViewController.websiteUrl = urlToLoad
+            webViewController.websiteString = urlToLoad
         }
     }
     

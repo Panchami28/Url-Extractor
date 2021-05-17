@@ -12,7 +12,6 @@
 		20262F842642EA710049E700 /* MainChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */; };
 		20262F852642EA710049E700 /* MainChannelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */; };
 		2038A6CE264E4CE400FA0E93 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */; };
-		203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */; };
 		203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932026395C4C00ABF38A /* StreamUrlCell.swift */; };
 		203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203A932126395C4C00ABF38A /* StreamUrlCell.xib */; };
 		203A932726396F0700ABF38A /* FavouriteStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */; };
@@ -35,6 +34,7 @@
 		2071BDC8264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC2264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift */; };
 		2071BDC9264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC3264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift */; };
 		2071BDCA264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071BDC4264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift */; };
+		209001C72652C91A00BF5F62 /* MainChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209001C62652C91A00BF5F62 /* MainChannelCollectionViewController.swift */; };
 		2095318826284D2C00DDA758 /* BasicUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095318626284D2C00DDA758 /* BasicUrlCell.swift */; };
 		2095318926284D2C00DDA758 /* BasicUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2095318726284D2C00DDA758 /* BasicUrlCell.xib */; };
 		2095E9F7263E804C0021DFA8 /* UrlExtractor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2095E9F5263E804C0021DFA8 /* UrlExtractor.xcdatamodeld */; };
@@ -42,6 +42,7 @@
 		2095EA37263ED8430021DFA8 /* StreamDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2095EA36263ED8430021DFA8 /* StreamDataManager.swift */; };
 		20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */; };
 		20B58074263C597900A1F985 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B58073263C597900A1F985 /* Reachability.swift */; };
+		20F40E44265293CC009C8738 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F40E43265293CC009C8738 /* PlayerManager.swift */; };
 		2D6AE956EEAB7C9C02FC602D /* Pods_UrlExtractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +52,6 @@
 		20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainChannelCollectionViewCell.xib; sourceTree = "<group>"; };
 		2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
-		203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		203A932026395C4C00ABF38A /* StreamUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlCell.swift; sourceTree = "<group>"; };
 		203A932126395C4C00ABF38A /* StreamUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamUrlCell.xib; sourceTree = "<group>"; };
 		203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStreamViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +76,7 @@
 		2071BDC2264FA38E009B8DBD /* RecentSearch+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2071BDC3264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2071BDC4264FA38E009B8DBD /* FavoriteStreams+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteStreams+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		209001C62652C91A00BF5F62 /* MainChannelCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		2095318626284D2C00DDA758 /* BasicUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUrlCell.swift; sourceTree = "<group>"; };
 		2095318726284D2C00DDA758 /* BasicUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicUrlCell.xib; sourceTree = "<group>"; };
 		2095E9F6263E804C0021DFA8 /* UrlExtractor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UrlExtractor.xcdatamodel; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		2095EA36263ED8430021DFA8 /* StreamDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataManager.swift; sourceTree = "<group>"; };
 		20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		20B58073263C597900A1F985 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		20F40E43265293CC009C8738 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		35AF972D0FCC0DFC4E82780B /* Pods-UrlExtractor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.debug.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.debug.xcconfig"; sourceTree = "<group>"; };
 		60921955FED9A26EEFD51AC4 /* Pods_UrlExtractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UrlExtractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC65D2F4C4DADA1593581ED4 /* Pods-UrlExtractor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlExtractor.release.xcconfig"; path = "Target Support Files/Pods-UrlExtractor/Pods-UrlExtractor.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,11 +135,12 @@
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
 				203A932626396F0700ABF38A /* FavouriteStreamViewController.swift */,
 				2095EA33263EA26C0021DFA8 /* RecentStreamTableViewController.swift */,
-				203A71C92642CCC7005FB785 /* MainChannelCollectionViewController.swift */,
 				206AEB74264566480023FC93 /* RecentSearchViewController.swift */,
 				2069E13D2648563F00FB7FF4 /* WebViewController.swift */,
 				205FC71F26414C4100C72B3E /* PlayerViewController.swift */,
 				2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */,
+				20F40E43265293CC009C8738 /* PlayerManager.swift */,
+				209001C62652C91A00BF5F62 /* MainChannelCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,11 +354,12 @@
 				2071BDC6264FA38E009B8DBD /* Stream+CoreDataProperties.swift in Sources */,
 				20B5806B263C0F1200A1F985 /* NetworkReachabilityManager.swift in Sources */,
 				205A5630262FEE2D00D30EDE /* UserUrlManagerViewController.swift in Sources */,
+				209001C72652C91A00BF5F62 /* MainChannelCollectionViewController.swift in Sources */,
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
 				2071BDC5264FA38E009B8DBD /* Stream+CoreDataClass.swift in Sources */,
 				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
-				203A71CA2642CCC7005FB785 /* MainChannelCollectionViewController.swift in Sources */,
+				20F40E44265293CC009C8738 /* PlayerManager.swift in Sources */,
 				206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */,
 				2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */,
 				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
