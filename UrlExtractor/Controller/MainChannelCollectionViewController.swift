@@ -44,12 +44,12 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
     }
 
     func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-//        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
-//            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
-//            streamUrlViewController.mainUrl = channelUrl
-//            streamUrlViewController.mainSiteName = channelName
-//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
+            self.navigationController?.pushViewController(streamUrlViewController, animated: true)
+            streamUrlViewController.mainUrl = channelUrl
+            streamUrlViewController.mainSiteName = channelName
+        }
     }
     
     func displayWebView(websiteUrl: String) {
@@ -103,7 +103,8 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
         let selectedItem = basicChannelListModel.item(atIndexPath: indexPath)
         let websiteString = selectedItem.websiteUrl
         //if let websiteURL = URL(string: websiteString) {
-            displayWebView(websiteUrl: websiteString)
+        loadStreamUrlViewControllerData(websiteString, "\(selectedItem)")
+            //displayWebView(websiteUrl: websiteString)
         //}
     }
 

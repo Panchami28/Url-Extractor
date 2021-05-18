@@ -22,12 +22,10 @@ class StreamUrlViewController: UIViewController {
     var mainUrl:String = ""
     var mainSiteName:String = ""
     var streamUrlArray = [String]()
-    var regexx = "(https?://)[-a-zA-Z0-9@:%._\\+~#=;]{2,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+;.~#?&//=]*)"
     private var favoriteStreamDataManager = FavoriteStreamDataManager()
     private var streamDataManager = StreamDataManager()
-    private lazy var scrapingWebpageQueue = DispatchQueue(label: "ScrapeWebpageQueue")
-    private lazy var checkingStreamQueue = DispatchQueue(label: "StreamCheckingQueue")
     let viewController = ViewController()
+    let websiteStreamURLExtractor = WebsiteStreamURLExtractor()
     
 // MARK: -
 // MARK: View LifeCycle
@@ -44,7 +42,6 @@ class StreamUrlViewController: UIViewController {
         urlTableView.separatorStyle = .none
         //Register a custom cell
         urlTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
-        //scrapingWebpageQueue.resume()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,90 +52,28 @@ class StreamUrlViewController: UIViewController {
             if viewController.reachability.connection == .unavailable {
                 loadingActivityIndicator.isHidden = true
             } else {
-                scrapeWebpage(mainUrl) {
-                    self.checkStreamUrlArray()
-                }
+                callScrapeWebpage()
             }
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-    }
     
     
 // MARK: -
 // MARK: Private methods
 // MARK: -
-        
-    func scrapeWebpage(_ mainUrl:String?,completion: @escaping ()-> Void) {
-        scrapingWebpageQueue.async { [weak self] in
-            ///To ensure that completion block is fired only after all urls are fetched
-            let myGroup = DispatchGroup()
-            guard let mainUrl = mainUrl, let requiredUrl = URL(string: mainUrl) else {
-                self?.handleError()
-                return
+
+    func callScrapeWebpage() {
+        websiteStreamURLExtractor.scrapeWebpage(mainUrl) { (streamableUrl) in
+            self.loadingActivityIndicator.isHidden = true
+            if streamableUrl.isEmpty {
+                UIAlertController.showAlert("\(self.mainUrl) has no streaming URLs that can be extracted", self)
+            } else if streamableUrl == "error" {
+                self.handleError()
+            } else {
+                self.streamUrlArray.append(streamableUrl)
+                self.urlTableView.reloadData()
             }
-            do{
-                ///Get source code of entire webpage of given URL
-                let content = try String(contentsOf: requiredUrl)
-                ///Parse the source code for given regex
-                if let pattern = self?.regexx,
-                   let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
-                    let string = (content) as NSString
-                    regex.matches(in: content, options: [], range: NSRange(location: 0, length: string.length)).map {
-                        ///To indicate that a batch inside the group has started execution
-                        myGroup.enter()
-                        ///If match found, get the corresponding URL
-                        let obtainedString = string.substring(with: $0.range)
-                        let obtainedUrl = URL(string: obtainedString)
-                        ///Check if corresponding URL is streamable or not
-                        if let obtainedUrl = obtainedUrl {
-                            self?.isPlayable(url: obtainedUrl) { (streamResult) in
-                                print(streamResult)
-                                ///If URL is streamable, append it to streamUrlArray for further processing
-                                if streamResult == true {
-                                    self?.streamUrlArray.append(obtainedString)
-                                    self?.loadingActivityIndicator.isHidden = true
-                                }
-                                self?.urlTableView.reloadData()
-                                ///To indicate that a batch inside the group that had started executing has now finished its execution
-                                ///This should be called inside the completion handler only
-                               myGroup.leave()
-                            }
-                        }
-                    }
-                }
-            } catch {
-                self?.handleError()
-                print("Error while parsing:\(error)")
-            }
-            ///Notify the main thread when all members inside the group have finished their execution
-            myGroup.notify(queue: .main) {
-                completion()
-            }
-        }
-    }
-    
-    func isPlayable(url: URL, completion: @escaping (Bool) -> ()) {
-        let asset = AVAsset(url: url)
-        let playableKey = "playable"
-        asset.loadValuesAsynchronously(forKeys: [playableKey]) {
-            var error: NSError? = nil
-            let status = asset.statusOfValue(forKey: playableKey, error: &error)
-            //Check the status of asset passed and store the result in isPlayable
-            let isPlayable = status == .loaded
-            DispatchQueue.main.async {
-                completion(isPlayable)
-            }
-        }
-    }
-    
-    func checkStreamUrlArray() {
-        if streamUrlArray.isEmpty {
-            loadingActivityIndicator.isHidden = true
-            UIAlertController.showAlert("\(mainUrl) doesn't have any streaming urls that can be fetched", self)
         }
     }
     
@@ -238,6 +173,7 @@ extension StreamUrlViewController:UITableViewDataSource,UITableViewDelegate {
             //cell.favoritesButton.isHidden = true
             cell.favoritesButton.setImage(UIImage(systemName:"heart"), for: .normal)
         }
+        cell.layoutIfNeeded()
         return cell
     }
     
