@@ -38,6 +38,7 @@ class MiniPlayerViewController: UIViewController {
         super.viewDidLoad()
         musicLoadingActivityIndicator.isHidden = true
         getStreamUrl()
+        PlayerManager.shared.loadMusicUrl(streamingUrl ?? "", channelImageName ?? "")
         updatePlayButton()
     }
     
@@ -64,9 +65,9 @@ class MiniPlayerViewController: UIViewController {
             PlayerManager.shared.pauseMusic()
         } else if PlayerManager.shared.isPlaying == false {
             playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            if let streamUrl = streamingUrl,let channelImageName = channelImageName {
-                PlayerManager.shared.playMusic(streamUrl,channelImageName)
-            }
+            //if let streamUrl = streamingUrl,let channelImageName = channelImageName {
+                PlayerManager.shared.playMusic()
+            //}
         }
     }
     
@@ -85,6 +86,7 @@ class MiniPlayerViewController: UIViewController {
                 }
             }
         }
+        
     }
     
     func updatePlayButton() {

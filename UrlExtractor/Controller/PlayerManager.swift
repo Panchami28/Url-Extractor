@@ -14,6 +14,22 @@ class PlayerManager {
     var player : AVPlayer?
     var isPlaying = false
     
+    func loadMusicUrl(_ musicUrl:String,_ mainChannel: String) {
+        if let reqdUrl = URL(string: musicUrl) {
+            player = AVPlayer(url: reqdUrl)
+        } else {
+            //handle Error
+        }
+        setupNowPlaying(musicUrl, mainChannel)
+        setupRemoteCommandCenter()
+    }
+    
+        func playMusic() {
+            isPlaying = true
+            player?.play()
+            
+        }
+        
     func playMusic(_ musicUrl:String,_ mainChannel: String) {
         pauseMusic()
         if let reqdUrl = URL(string: musicUrl) {

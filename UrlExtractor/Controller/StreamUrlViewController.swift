@@ -81,7 +81,8 @@ class StreamUrlViewController: UIViewController {
     }
     
     func playMusic(_ musicUrl:String) {
-        PlayerManager.shared.playMusic(musicUrl,mainSiteName)
+        PlayerManager.shared.loadMusicUrl(musicUrl, mainSiteName)
+        PlayerManager.shared.playMusic()
         setupTabBarController()
     }
     

@@ -146,19 +146,14 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     @objc func playButtonTapped() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-//        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
             if PlayerManager.shared.isPlaying == true {
-                //MiniPlayerViewController.isPlaying = false
                 playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
                 PlayerManager.shared.pauseMusic()
             } else if PlayerManager.shared.isPlaying == false {
-                //MiniPlayerViewController.isPlaying = true
                 playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-                PlayerManager.shared.playMusic(musicUrl,mainChannel)
+                PlayerManager.shared.playMusic()
+                //PlayerManager.shared.playMusic(musicUrl,mainChannel)
             }
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
     }
     
     func designMoreButton() {
