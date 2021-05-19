@@ -22,6 +22,15 @@ class RecentSearchViewController: UIViewController, UITableViewDataSource, UITab
         recentSearchTableView.register(UINib(nibName: "BasicUrlCell", bundle: nil), forCellReuseIdentifier: "BasicUrlCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupTabBarController()
+    }
+    
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
+    }
+    
     func loadData(_ siteUrl: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {

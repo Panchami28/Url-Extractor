@@ -12,9 +12,9 @@ import MediaPlayer
 
 class PlayerViewController: AVPlayerViewController {
     
-    let viewController = ViewController()
+    let viewController = HomeScreenViewController()
     let likeButton = UIButton(type: UIButton.ButtonType.system) as UIButton
-    static let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+    let playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let cancelButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     let moreButton = UIButton(type: UIButton.ButtonType.system) as UIButton
     private var favouriteStreamDataManager = FavoriteStreamDataManager()
@@ -26,16 +26,6 @@ class PlayerViewController: AVPlayerViewController {
         showsPlaybackControls = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-//        if self.isBeingDismissed {
-//            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-//            if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-//                self.navigationController?.pushViewController(vc, animated: true)
-//                vc.playMusic(musicUrl)
-//            }
-//        }
-    }
     
     func instantiate(_ musicUrl: String,_ mainChannel: String,_ destinationVC: UIViewController) {
         self.musicUrl = musicUrl
@@ -138,37 +128,37 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     func designPlayButton() {
-        PlayerViewController.playButton.backgroundColor = .white
-        if MiniPlayerViewController.isPlaying == true {
-            PlayerViewController.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        playButton.backgroundColor = .white
+        if PlayerManager.shared.isPlaying == true {
+            playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }else {
-            PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
-        PlayerViewController.playButton.tintColor = .black
+        playButton.tintColor = .black
         if UIDevice.current.userInterfaceIdiom == .pad {
-            PlayerViewController.playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
+            playButton.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.maxY-250, width: 50, height: 50)
         } else {
-            PlayerViewController.playButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.maxY-250, width: 70, height: 70)
+           playButton.frame = CGRect(x: self.view.frame.midX-10, y: self.view.frame.maxY-250, width: 70, height: 70)
         }
-        PlayerViewController.playButton.layer.cornerRadius = 30
-        PlayerViewController.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        self.view.addSubview(PlayerViewController.playButton)
+        playButton.layer.cornerRadius = 30
+        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        self.view.addSubview(playButton)
     }
     
     @objc func playButtonTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
-            if MiniPlayerViewController.isPlaying == true {
-                MiniPlayerViewController.isPlaying = false
-                PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-                vc.pauseMusic()
-            } else if MiniPlayerViewController.isPlaying == false {
-                MiniPlayerViewController.isPlaying = true
-                PlayerViewController.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-                vc.playMusic(musicUrl)
+//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+//        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController{
+            if PlayerManager.shared.isPlaying == true {
+                //MiniPlayerViewController.isPlaying = false
+                playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+                PlayerManager.shared.pauseMusic()
+            } else if PlayerManager.shared.isPlaying == false {
+                //MiniPlayerViewController.isPlaying = true
+                playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+                PlayerManager.shared.playMusic(musicUrl,mainChannel)
             }
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func designMoreButton() {
@@ -231,9 +221,9 @@ class PlayerViewController: AVPlayerViewController {
     }
         
     func setPlayButtonAfterTimer() {
-        PlayerViewController.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        MiniPlayerViewController.player?.pause()
-        MiniPlayerViewController.isPlaying = false
+        playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        PlayerManager.shared.pauseMusic()
+        //MiniPlayerViewController.isPlaying = false
     }
 }
 

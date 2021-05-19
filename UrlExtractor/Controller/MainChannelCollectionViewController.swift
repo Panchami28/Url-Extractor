@@ -32,6 +32,7 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        setupTabBarController()
     }
 
 // MARK: -
@@ -41,6 +42,10 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
     private func setupNavigationBar() {
         self.navigationItem.title = "Sample Stations"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"),style: .plain,target: self, action: #selector(toggleChannelsDisplayMode))
+    }
+    
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
     }
 
     func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
@@ -132,7 +137,7 @@ class MainChannelCollectionViewController: UIViewController, UICollectionViewDel
             ///iPhone 8 Rows x 2 Columns
             ///iPad 12 Rows x 4 Columns
             cellSize = UIDevice.current.userInterfaceIdiom == .phone ? CGSize(width: (channelCollectionView.bounds.size.width - 32)/2, height: (channelCollectionView.bounds.size.width - 32)/2 + 30) :
-                CGSize(width: (channelCollectionView.bounds.size.width - 50)/4, height: collectionView.bounds.size.height/12)
+                CGSize(width: (channelCollectionView.bounds.size.width - 50)/4, height: (channelCollectionView.bounds.size.height-50)/3)
         }
         return cellSize
     }

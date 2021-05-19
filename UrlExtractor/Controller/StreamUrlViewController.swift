@@ -24,7 +24,7 @@ class StreamUrlViewController: UIViewController {
     var streamUrlArray = [String]()
     private var favoriteStreamDataManager = FavoriteStreamDataManager()
     private var streamDataManager = StreamDataManager()
-    let viewController = ViewController()
+    let viewController = HomeScreenViewController()
     let websiteStreamURLExtractor = WebsiteStreamURLExtractor()
     
 // MARK: -
@@ -47,6 +47,7 @@ class StreamUrlViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         urlTableView.reloadData()
+        setupTabBarController()
         //To load stream urls only once initially when view appears
         if self.isBeingPresented || self.isMovingToParent {
             if viewController.reachability.connection == .unavailable {
@@ -65,31 +66,23 @@ class StreamUrlViewController: UIViewController {
 
     func callScrapeWebpage() {
         websiteStreamURLExtractor.scrapeWebpage(mainUrl) { (streamableUrl) in
-            self.loadingActivityIndicator.isHidden = true
-            if streamableUrl.isEmpty {
-                UIAlertController.showAlert("\(self.mainUrl) has no streaming URLs that can be extracted", self)
-            } else if streamableUrl == "error" {
-                self.handleError()
-            } else {
-                self.streamUrlArray.append(streamableUrl)
-                self.urlTableView.reloadData()
+            DispatchQueue.main.async {
+                self.loadingActivityIndicator.isHidden = true
+                if streamableUrl.isEmpty {
+                    UIAlertController.showAlert("\(self.mainUrl) has no streaming URLs that can be extracted", self)
+                } else if streamableUrl == "error" {
+                    self.handleError()
+                } else {
+                    self.streamUrlArray.append(streamableUrl)
+                    self.urlTableView.reloadData()
+                }
             }
         }
     }
     
     func playMusic(_ musicUrl:String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-            self.tabBarController?.addChild(vc)
-            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            vc.modalTransitionStyle = .crossDissolve
-            self.tabBarController?.view.addSubview(vc.view)
-            self.willMove(toParent: self.tabBarController)
-            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            MiniPlayerViewController.isPlaying = true
-            vc.playMusic(musicUrl)
-            //self.navigationController?.pushViewController(vc, animated: true)
-        }
+        PlayerManager.shared.playMusic(musicUrl,mainSiteName)
+        setupTabBarController()
     }
     
     func handleError() {
@@ -138,13 +131,9 @@ class StreamUrlViewController: UIViewController {
         }
     }
     
-//    func createTabBarController(_ vc: PlayerViewController) {
-//        tabBarController?.addChild(vc)
-//        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 150, width: self.view.frame.width, height: 100)
-//        vc.modalTransitionStyle = .crossDissolve
-//        tabBarController?.view.addSubview(vc.view)
-//        vc.willMove(toParent: tabBarController)
-//    }
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
+    }
     
 }
 // MARK: -

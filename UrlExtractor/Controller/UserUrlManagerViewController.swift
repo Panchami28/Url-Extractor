@@ -29,6 +29,7 @@ class UserUrlManagerViewController: UIViewController {
         super.viewWillAppear(true)
         submitButton.isEnabled = false
         urlTextField.text = ""
+        setupTabBarController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,9 +64,12 @@ class UserUrlManagerViewController: UIViewController {
     @IBAction func googleButtonPressed(_ sender: UIButton) {
         loadData("http://google.com")
     }
-    // MARK: -
+// MARK: -
 // MARK: Private Methods
 // MARK: -
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
+    }
     
     func verifyUrl () -> Bool {
         if let urlString = urlTextField.text {

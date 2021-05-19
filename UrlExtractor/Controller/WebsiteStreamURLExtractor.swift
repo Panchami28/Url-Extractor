@@ -35,6 +35,7 @@ class WebsiteStreamURLExtractor {
                 do{
                     ///Get source code of entire webpage of given URL
                     let content = try String(contentsOf: requiredUrl)
+                    print("Panchami_Debug:Source code : \(content)")
                     ///Parse the source code for given regex
                     if let pattern = self?.regexx,
                        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
@@ -67,8 +68,10 @@ class WebsiteStreamURLExtractor {
                 }
                 ///Notify the main thread when all members inside the group have finished their execution
                 myGroup.notify(queue: .main) {
-                    if self?.streamUrlArray == [] {
-                        completion("")
+                    DispatchQueue.main.async {
+                        if self?.streamUrlArray == [] {
+                            completion("")
+                        }
                     }
                 }
             }

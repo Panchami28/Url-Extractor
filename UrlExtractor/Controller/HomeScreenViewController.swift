@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeScreenViewController.swift
 //  UrlExtractor
 //
 //  Created by Panchami Rao on 06/04/21.
@@ -8,10 +8,18 @@
 import UIKit
 import Reachability
 
-class ViewController: UIViewController {
+class HomeScreenViewController: UIViewController {
+    
+//MARK: -
+//MARK: Variable declarations
+//MARK: -
     
     let reachability = try! Reachability()
     let recentStreamDataMangaer = StreamDataManager()
+
+//MARK: -
+//MARK: View Lifecycle
+//MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,19 +34,13 @@ class ViewController: UIViewController {
         }catch{
             print("could not start reachability notifier")
         }
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-            if let rootVc = UIApplication.shared.windows.first?.rootViewController as? UITabBarController {
-                print("Tab  bar Controller is presented")
-            }
-            self.tabBarController?.addChild(vc)
-            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            self.tabBarController?.view.addSubview(vc.view)
-            self.willMove(toParent: self.tabBarController)
-            //ServiceLocator.shared.playerManager
-        }
+       //setupTabBarController()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setupTabBarController()
+    }
     @objc func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability
         switch reachability.connection {
@@ -52,6 +54,10 @@ class ViewController: UIViewController {
         }
     }
 
+//MARK: -
+//MARK: IB Actions
+//MARK: -
+    
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let userUrlManagerViewController = storyboard.instantiateViewController(identifier: "UserUrlManagerViewController") as? UserUrlManagerViewController {
@@ -79,6 +85,13 @@ class ViewController: UIViewController {
         if let recentStreamTableViewController = storyboard.instantiateViewController(identifier: "RecentStreamTableViewController") as? RecentStreamTableViewController {
             self.navigationController?.pushViewController(recentStreamTableViewController, animated: true)
         }
+    }
+
+//MARK: -
+//MARK: Private functions
+//MARK: -
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
     }
     
 }

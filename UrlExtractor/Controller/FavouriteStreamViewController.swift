@@ -36,9 +36,18 @@ class FavouriteStreamViewController: UIViewController {
         favoritesTableView.register(UINib(nibName: "StreamUrlCell", bundle: nil), forCellReuseIdentifier: "StreamUrlCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupTabBarController()
+    }
+    
 //MARK: -
 //MARK: Private Methods
 //MARK: -
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
+    }
+    
     func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         if let streamUrlViewController = storyboard.instantiateViewController(identifier: "StreamUrlViewController") as? StreamUrlViewController {
@@ -48,17 +57,9 @@ class FavouriteStreamViewController: UIViewController {
         }
     }
     
-    func playMusic(_ musicUrl:String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-            self.tabBarController?.addChild(vc)
-            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            //vc.modalTransitionStyle = .crossDissolve
-            self.tabBarController?.view.addSubview(vc.view)
-            self.willMove(toParent: self.tabBarController)
-            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            vc.playMusic(musicUrl)
-        }
+    func playMusic(_ musicUrl:String,_ channelName: String) {
+        PlayerManager.shared.playMusic(musicUrl,channelName)
+        setupTabBarController()
     }
     
     @objc func removeAll() {
@@ -99,7 +100,7 @@ extension FavouriteStreamViewController: UITableViewDataSource,UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let stream = favoriteStreamDataManager.item(indexPath).url , let mainChannel = favoriteStreamDataManager.item(indexPath).mainChannel {
             recentStreamDataManager.addData(stream, mainChannel)
-            playMusic(stream)
+            playMusic(stream,mainChannel)
         }
     }
     

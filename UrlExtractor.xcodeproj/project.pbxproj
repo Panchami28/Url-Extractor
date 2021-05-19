@@ -12,6 +12,8 @@
 		20262F842642EA710049E700 /* MainChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */; };
 		20262F852642EA710049E700 /* MainChannelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */; };
 		203749C3265371E200890EE2 /* WebsiteStreamURLExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203749C2265371E200890EE2 /* WebsiteStreamURLExtractor.swift */; };
+		203749C626538BA900890EE2 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203749C526538BA900890EE2 /* ServiceManager.swift */; };
+		203749C92653A70E00890EE2 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203749C82653A70E00890EE2 /* RootTabBarController.swift */; };
 		2038A6CE264E4CE400FA0E93 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */; };
 		203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A932026395C4C00ABF38A /* StreamUrlCell.swift */; };
 		203A932326395C4C00ABF38A /* StreamUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203A932126395C4C00ABF38A /* StreamUrlCell.xib */; };
@@ -19,7 +21,7 @@
 		204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204225E326410B2200E408C7 /* FavoriteStreamDataManager.swift */; };
 		20423611261C720700CBAA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423610261C720700CBAA8B /* AppDelegate.swift */; };
 		20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423612261C720700CBAA8B /* SceneDelegate.swift */; };
-		20423615261C720700CBAA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423614261C720700CBAA8B /* ViewController.swift */; };
+		20423615261C720700CBAA8B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20423614261C720700CBAA8B /* HomeScreenViewController.swift */; };
 		20423618261C720700CBAA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20423616261C720700CBAA8B /* Main.storyboard */; };
 		2042361A261C720900CBAA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20423619261C720900CBAA8B /* Assets.xcassets */; };
 		2042361D261C720900CBAA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2042361B261C720900CBAA8B /* LaunchScreen.storyboard */; };
@@ -53,6 +55,8 @@
 		20262F822642EA710049E700 /* MainChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		20262F832642EA710049E700 /* MainChannelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainChannelCollectionViewCell.xib; sourceTree = "<group>"; };
 		203749C2265371E200890EE2 /* WebsiteStreamURLExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStreamURLExtractor.swift; sourceTree = "<group>"; };
+		203749C526538BA900890EE2 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		203749C82653A70E00890EE2 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		2038A6CC264E4CE400FA0E93 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		203A932026395C4C00ABF38A /* StreamUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamUrlCell.swift; sourceTree = "<group>"; };
 		203A932126395C4C00ABF38A /* StreamUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamUrlCell.xib; sourceTree = "<group>"; };
@@ -61,7 +65,7 @@
 		2042360D261C720700CBAA8B /* UrlExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrlExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20423610261C720700CBAA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20423612261C720700CBAA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		20423614261C720700CBAA8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		20423614261C720700CBAA8B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		20423617261C720700CBAA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20423619261C720900CBAA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2042361C261C720900CBAA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -131,7 +135,7 @@
 			children = (
 				20423612261C720700CBAA8B /* SceneDelegate.swift */,
 				20423610261C720700CBAA8B /* AppDelegate.swift */,
-				20423614261C720700CBAA8B /* ViewController.swift */,
+				20423614261C720700CBAA8B /* HomeScreenViewController.swift */,
 				205A562F262FEE2D00D30EDE /* UserUrlManagerViewController.swift */,
 				20B5806A263C0F1200A1F985 /* NetworkReachabilityManager.swift */,
 				20423628261C7ED900CBAA8B /* StreamUrlViewController.swift */,
@@ -144,6 +148,8 @@
 				20F40E43265293CC009C8738 /* PlayerManager.swift */,
 				209001C62652C91A00BF5F62 /* MainChannelCollectionViewController.swift */,
 				203749C2265371E200890EE2 /* WebsiteStreamURLExtractor.swift */,
+				203749C526538BA900890EE2 /* ServiceManager.swift */,
+				203749C82653A70E00890EE2 /* RootTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -361,13 +367,15 @@
 				209001C72652C91A00BF5F62 /* MainChannelCollectionViewController.swift in Sources */,
 				204225E426410B2200E408C7 /* FavoriteStreamDataManager.swift in Sources */,
 				2071BDC5264FA38E009B8DBD /* Stream+CoreDataClass.swift in Sources */,
-				20423615261C720700CBAA8B /* ViewController.swift in Sources */,
+				20423615261C720700CBAA8B /* HomeScreenViewController.swift in Sources */,
 				20423611261C720700CBAA8B /* AppDelegate.swift in Sources */,
 				20F40E44265293CC009C8738 /* PlayerManager.swift in Sources */,
 				206AEB75264566480023FC93 /* RecentSearchViewController.swift in Sources */,
+				203749C92653A70E00890EE2 /* RootTabBarController.swift in Sources */,
 				2095EA34263EA26C0021DFA8 /* RecentStreamTableViewController.swift in Sources */,
 				203A932226395C4C00ABF38A /* StreamUrlCell.swift in Sources */,
 				2069E13E2648563F00FB7FF4 /* WebViewController.swift in Sources */,
+				203749C626538BA900890EE2 /* ServiceManager.swift in Sources */,
 				20423613261C720700CBAA8B /* SceneDelegate.swift in Sources */,
 				20423629261C7ED900CBAA8B /* StreamUrlViewController.swift in Sources */,
 				2071BDC9264FA38E009B8DBD /* FavoriteStreams+CoreDataClass.swift in Sources */,

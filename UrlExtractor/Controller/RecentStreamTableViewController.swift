@@ -26,10 +26,14 @@ class RecentStreamTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         recentTableView.reloadData()
+        setupTabBarController()
     }
 // MARK: -
 // MARK: - Private Methods
 // MARK: -
+    func setupTabBarController() {
+        ServiceManager.shared.addMiniController(self)
+    }
     
     func loadStreamUrlViewControllerData(_ channelUrl:String,_ channelName:String) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
@@ -40,17 +44,9 @@ class RecentStreamTableViewController: UITableViewController {
         }
     }
     
-    func playMusic(_ musicUrl:String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        if let vc = storyboard.instantiateViewController(identifier: "MiniPlayerViewController") as? MiniPlayerViewController {
-            self.tabBarController?.addChild(vc)
-            vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY - 120, width: self.view.frame.width, height: 70)
-            //vc.modalTransitionStyle = .crossDissolve
-            self.tabBarController?.view.addSubview(vc.view)
-            self.willMove(toParent: self.tabBarController)
-            vc.playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            vc.playMusic(musicUrl)
-        }
+    func playMusic(_ musicUrl:String,_ channelName: String) {
+        PlayerManager.shared.playMusic(musicUrl,channelName)
+        setupTabBarController()
     }
     
 // MARK: -
@@ -87,7 +83,7 @@ class RecentStreamTableViewController: UITableViewController {
             streamDataManager.addData(musicUrl,channel)
             streamDataManager.getData()
             recentTableView.reloadData()
-            playMusic(musicUrl)
+            playMusic(musicUrl,channel)
         }
     }
     
